@@ -151,7 +151,7 @@ License: For each use you must have a valid license purchased only from above li
                                 </span>
                                 <div class="menu-sub menu-sub-accordion menu-active-bg">
                                     <div class="menu-item">
-                                        <a class="menu-link" href="../../demo1/dist/pages/contact.html">
+                                        <a class="menu-link" href="{{ route('masterKategoriSoal') }}">
                                             <span class="menu-bullet">
                                                 <span class="bullet bullet-dot"></span>
                                             </span>
@@ -2917,7 +2917,7 @@ License: For each use you must have a valid license purchased only from above li
                             <div class="d-flex align-items-stretch flex-shrink-0">
                                 <!--begin::Search-->
                                 <div class="d-flex align-items-stretch ms-1 ms-lg-3">
-                                    
+
                                     <!--end::Search-->
                                 </div>
                                 <!--end::Search-->
@@ -4204,7 +4204,12 @@ License: For each use you must have a valid license purchased only from above li
                     </div>
                     <!--end::Toolbar-->
                     <!--begin::Post-->
-                    @yield('content')
+                    <div class="post d-flex flex-column-fluid" id="kt_post">
+                        <!--begin::Container-->
+                        <div id="kt_content_container" class="container-xxl">
+                            @yield('content')
+                        </div>
+                    </div>
                     <!--end::Post-->
                 </div>
                 <!--end::Content-->
