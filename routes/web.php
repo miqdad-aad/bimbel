@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\kategoriSoalController;
+use App\Http\Controllers\dataTentorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,7 @@ Route::get('/', function () {
 
 Route::controller(kategoriSoalController::class)->group(function () {
     Route::get('/masterKategoriSoal', 'masterKategoriSoal')->name('masterKategoriSoal');
+});
+Route::controller(dataTentorController::class)->group(function () {
+    Route::get('/dataTentor', 'dataTentor')->name('dataTentor');
 });

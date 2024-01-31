@@ -22,7 +22,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Kategori Soal</th>
+                                <th>Nama Tentor</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -41,14 +41,20 @@
             <form id="addkategori">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title">Form Input Kategori Soal</h5><button type="button" class="btn btn-label-danger btn-icon"
+                    <h5 class="modal-title">Form Input Data Tentor</h5><button type="button" class="btn btn-label-danger btn-icon"
                         data-bs-dismiss="modal"><i class="fa fa-times"></i></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-12">
-                            <label class="form-label" for="text">Nama Kategori Soal</label>
+                            <label class="form-label" for="text">Nama Tentor</label>
                             <input name="kategori" class="form-control nama_kategori" type="text">
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="form-label" for="text">Nama Tentor</label>
+                            <input class="form-control file" id="input-id" name="gambar" type="file"
+                                data-preview-file-type="text" required>
+                            <p class="text-danger"></p>
                         </div>
                     </div>
                 </div>
@@ -64,6 +70,15 @@
 </div>
 @endsection
 @section('page-js')
+<script>
+    $(document).ready(function () {
+        $(".file").fileinput({
+            'showUpload': false,
+            'previewFileType': 'any'
+        });
+    })
+
+</script>
 <script>
     $(document).ready(function () {
 
