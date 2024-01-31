@@ -22,7 +22,8 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Kategori Soal</th>
+                                <th>Kode Kategori Soal</th>
+                                <th>Nama Kategori Soal</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -82,7 +83,12 @@
                     className: 'text-center'
                 },
                 {
-                    data: 'kategori',
+                    data: 'kode_kategori_soal',
+                    name: 'name',
+                    className: 'text-center'
+                },
+                {
+                    data: 'nama_kategori_soal',
                     name: 'name',
                     className: 'text-center'
                 },
