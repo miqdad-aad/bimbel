@@ -18,6 +18,7 @@ return new class extends Migration
             $table->char('nama_mentor');
             $table->char('jabatan');
             $table->text('deskripsi');
+            $table->text('gambar');
             $table->timestamps();
             $table->dateTime('deleted_at')->nullable();
         });

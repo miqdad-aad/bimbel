@@ -23,7 +23,8 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama Tentor</th>
-                                <th>Action</th>
+                                <th>Jabatan</th>
+                                <th width="250">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,10 +36,10 @@
         </div>
     </div>
 </div>
-<div class="modal fade " id="modal7" aria-modal="true" role="dialog">
+<div class="modal fade" id="modal7" aria-modal="true" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="addkategori">
+            <form id="addmentor">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title">Form Input Data Tentor</h5><button type="button" class="btn btn-label-danger btn-icon"
@@ -47,11 +48,19 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-12">
-                            <label class="form-label" for="text">Nama Tentor</label>
-                            <input name="kategori" class="form-control nama_kategori" type="text">
+                            <label class="form-label" for="text">Nama Mentor</label>
+                            <input name="nama_mentor" class="form-control nama_kategori" type="text">
                         </div>
                         <div class="col-sm-12">
-                            <label class="form-label" for="text">Nama Tentor</label>
+                            <label class="form-label" for="text">Deskripsi</label>
+                            <input name="deskripsi" class="form-control nama_kategori" type="text">
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="form-label" for="text">Jabatan</label>
+                            <input name="jabatan" class="form-control nama_kategori" type="text">
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="form-label" for="text">Foto Mentor</label>
                             <input class="form-control file" id="input-id" name="gambar" type="file"
                                 data-preview-file-type="text" required>
                             <p class="text-danger"></p>
@@ -90,14 +99,19 @@
             serverSide: true,
             "searching": true,
             filter: true,
-            ajax: "{{ route('masterKategoriSoal') }}",
+            ajax: "{{ route('dataTentor') }}",
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',
                     className: 'text-center'
                 },
                 {
-                    data: 'kategori',
+                    data: 'nama_mentor',
+                    name: 'name',
+                    className: 'text-center'
+                },
+                {
+                    data: 'jabatan',
                     name: 'name',
                     className: 'text-center'
                 },
@@ -111,6 +125,57 @@
                 },
             ]
         });
+
+        $('#addmentor').submit(function (e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+            $('#image-input-error').text('');
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('addMentor') }}",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: (response) => {
+                    if (response) {
+                        this.reset();
+                        // alert('Image has been uploaded successfully');
+                        $('#modal7').modal('hide');
+                        table.ajax.reload(null, false);
+                    }
+                },
+                error: function (response) {
+                    console.log(response);
+                    $('#image-input-error').text(response.responseJSON.errors.file);
+                }
+            });
+        });
+
+        $(document).on('click', '.btn-hapus',
+            function () {
+                params = table.row($(this).closest('tr')).data();
+
+                Swal.fire({
+                    title: 'Apakah Anda Yakin?',
+                    text: "Menghapus Kendaraan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Batal',
+                    confirmButtonText: 'Yes, Hapus!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.get(_url + "/deleteMentor/" + params.id_mentor, function (data) {
+                            toastr.success('Data kategori ' + params.nama_mentor +
+                                ' berhasil di simpan',
+                                'Berhasil !!!');
+                            table.ajax.reload(null, false)
+                        });
+                    }
+                })
+            })
 
     });
 

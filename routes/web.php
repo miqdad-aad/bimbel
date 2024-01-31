@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KategoriSoalController;
-use App\Http\Controllers\dataTentorController;
+use App\Http\Controllers\mentorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +21,11 @@ Route::get('/', function () {
 
 Route::controller(KategoriSoalController::class)->group(function () {
     Route::get('/masterKategoriSoal', 'index')->name('masterKategoriSoal');
+    Route::post('/postKategoriSoal', 'store')->name('postKategoriSoal');
+    Route::post('/updateKategoriSoal', 'update')->name('updateKategoriSoal');
 });
-Route::controller(dataTentorController::class)->group(function () {
-    Route::get('/dataTentor', 'dataTentor')->name('dataTentor');
+Route::controller(mentorController::class)->group(function () {
+    Route::get('/dataTentor', 'index')->name('dataTentor');
+    Route::post('/addMentor', 'store')->name('addMentor');
+    Route::get('/deleteMentor/{hapus}', 'destroy')->name('deleteMentor');
 });

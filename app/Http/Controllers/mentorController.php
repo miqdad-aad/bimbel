@@ -3,37 +3,37 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\KategoriSoalModels;
+use App\models\MentorModels;
 use DataTables;
 
-class KategoriSoalController extends Controller
+class mentorController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function __construct()
     {
-        $this->KategoriSoalModels = new KategoriSoalModels();
+        $this->MentorModels = new MentorModels();
     }
-
 
     public function index(Request $request)
     {
         if($request->ajax() ){
-            $data = KategoriSoalModels::all();
+            $data = MentorModels::all();
              return DataTables::of($data)
                      ->addIndexColumn()
                      ->addColumn('action', function($row){
-                       $btn = '  <a href="javascript:void(0)" data-id="'. $row->id_kategori_soal .'" class="edit btn btn-info btn-sm btn-edit">Edit</a>';
+                       $btn = '  <a href="javascript:void(0)" data-id="'. $row->id_mentor .'" class="edit btn btn-info btn-sm btn-edit">Edit</a><a type="button"  class="delete btn btn-danger btn-sm btn-hapus">Delete</a>';
    
                         return $btn;
                      })
                      ->rawColumns(['action'])
                      ->make(true);
            }
-           return view('admin.master.masterKategoriSoal');
+           return view('admin.master.masterMentor');
     }
 
     /**
@@ -43,8 +43,7 @@ class KategoriSoalController extends Controller
      */
     public function create()
     {
-       
-        
+        //
     }
 
     /**
@@ -55,7 +54,7 @@ class KategoriSoalController extends Controller
      */
     public function store(Request $request)
     {
-        $result = $this->KategoriSoalModels->postKategoriSoal($request);
+        $result = $this->MentorModels->addMentor($request);
 
         if ($result == true) {
             return response()->json(['status' => 200]);
@@ -93,15 +92,9 @@ class KategoriSoalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $result = $this->KategoriSoalModels->updateKategoriSoal($request);
-
-        if ($result == true) {
-            return response()->json(['status' => 200]);
-        } else {
-            return response()->json(['status' => 400]);
-        }
+        //
     }
 
     /**
@@ -112,6 +105,7 @@ class KategoriSoalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        MentorModels::where('id_mentor',$id)->delete();
+        return response()->json(['status' => 200]);
     }
 }

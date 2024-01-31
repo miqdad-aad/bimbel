@@ -39,7 +39,7 @@
 <div class="modal fade " id="modal7" aria-modal="true" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="addkategori">
+            <form id="addmentor">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title">Form Input Kategori Soal</h5><button type="button" class="btn btn-label-danger btn-icon"
@@ -49,7 +49,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <label class="form-label" for="text">Nama Kategori Soal</label>
-                            <input name="kategori" class="form-control nama_kategori" type="text">
+                            <input name="nama_mentor" class="form-control nama_mentor" type="text">
                         </div>
                     </div>
                 </div>
@@ -88,11 +88,10 @@
                     className: 'text-center'
                 },
                 {
-                    data: 'nama_kategori_soal',
+                    data: 'uraian_kategori_soal',
                     name: 'name',
                     className: 'text-center'
                 },
-
                 {
                     data: 'action',
                     name: 'action',
@@ -101,6 +100,69 @@
                     className: 'text-center'
                 },
             ]
+        });
+
+        $('#addmentor').submit(function (e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+            $('#image-input-error').text('');
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('postKategoriSoal') }}",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: (response) => {
+                    if (response) {
+                        this.reset();
+                        // alert('Image has been uploaded successfully');
+                        $('#modal7').modal('hide');
+                        table.ajax.reload(null, false);
+                    }
+                },
+                error: function (response) {
+                    console.log(response);
+                    $('#image-input-error').text(response.responseJSON.errors.file);
+                }
+            });
+        });
+        let kategori_id = 0;
+        $(document).on('click', '.btn-edit', function () {
+            params = table.row($(this).closest('tr')).data();
+            kategori_id = params.id_kategori_soal;
+            console.log(kategori_id);
+            $('.nama_mentor').val(params.uraian_kategori_soal);
+            $('.btn-tambah').hide()
+            $('.btn-update').show()
+            $('#modal7').modal('show');
+
+        });
+        $(document).on('click', '.btn-update', function () {
+            var kategori = $('.nama_mentor').val();
+            $('#modal7').modal('show');
+            $.ajax({
+                url: "{{ route('updateKategoriSoal') }}",
+                type: "POST",
+                data: {
+                    kategori: kategori,
+                    id_kategori: kategori_id,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function (data) {
+                    $('.nama_mentor').val('')
+                    toastr.success('Data kategori ' + 
+                        ' berhasil di perbarui', 'Berhasil !!!');
+                    table.ajax.reload(null, false)
+                    $('#modal7').modal('hide');
+                },
+                error: function (data) {
+                    toastr.error(data.responseJSON.message, 'Error !!!');
+                    $('#modal7').modal('hide');
+                },
+            });
+            $('.btn-save').show()
+            $('.btn-update').hide()
         });
 
     });
