@@ -28,10 +28,15 @@ License: For each use you must have a valid license purchased only from above li
         content="Metronic - Bootstrap 5 HTML, VueJS, React, Angular &amp; Laravel Admin Dashboard Theme" />
     <meta property="og:url" content="https://keenthemes.com/metronic" />
     <meta property="og:site_name" content="Keenthemes | Metronic" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="url" content="{{ url('') }}" />
+
     <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
     <link rel="shortcut icon" href="{{ asset ('assetsAdmin/assets/media/logos/favicon.ico') }}" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
     <!--end::Fonts-->
     <!--begin::Page Vendor Stylesheets(used by this page)-->
     <link href="{{ asset ('assetsAdmin/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet"
@@ -151,7 +156,7 @@ License: For each use you must have a valid license purchased only from above li
                                 </span>
                                 <div class="menu-sub menu-sub-accordion menu-active-bg">
                                     <div class="menu-item">
-                                        <a class="menu-link" href="../../demo1/dist/pages/contact.html">
+                                        <a class="menu-link" href="{{ route('masterKategoriSoal') }}">
                                             <span class="menu-bullet">
                                                 <span class="bullet bullet-dot"></span>
                                             </span>
@@ -175,7 +180,7 @@ License: For each use you must have a valid license purchased only from above li
                                         </a>
                                     </div>
                                     <div class="menu-item">
-                                        <a class="menu-link" href="../../demo1/dist/pages/sitemap.html">
+                                        <a class="menu-link" href="{{ route('dataTentor') }}">
                                             <span class="menu-bullet">
                                                 <span class="bullet bullet-dot"></span>
                                             </span>
@@ -2917,7 +2922,7 @@ License: For each use you must have a valid license purchased only from above li
                             <div class="d-flex align-items-stretch flex-shrink-0">
                                 <!--begin::Search-->
                                 <div class="d-flex align-items-stretch ms-1 ms-lg-3">
-                                    
+
                                     <!--end::Search-->
                                 </div>
                                 <!--end::Search-->
@@ -4204,7 +4209,12 @@ License: For each use you must have a valid license purchased only from above li
                     </div>
                     <!--end::Toolbar-->
                     <!--begin::Post-->
-                    @yield('content')
+                    <div class="post d-flex flex-column-fluid" id="kt_post">
+                        <!--begin::Container-->
+                        <div id="kt_content_container" class="container-xxl">
+                            @yield('content')
+                        </div>
+                    </div>
                     <!--end::Post-->
                 </div>
                 <!--end::Content-->
@@ -9185,6 +9195,14 @@ License: For each use you must have a valid license purchased only from above li
     <!--begin::Global Javascript Bundle(used by all pages)-->
     <script src="{{ asset ('assetsAdmin/assets/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset ('assetsAdmin/assets/js/scripts.bundle.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.4.1/js/dataTables.dateTime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/fileinput.min.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Page Vendors Javascript(used by this page)-->
     <script src="{{ asset ('assetsAdmin/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
@@ -9197,6 +9215,7 @@ License: For each use you must have a valid license purchased only from above li
     <script src="{{ asset ('assetsAdmin/assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
     <script src="{{ asset ('assetsAdmin/assets/js/custom/utilities/modals/create-app.js') }}"></script>
     <script src="{{ asset ('assetsAdmin/assets/js/custom/utilities/modals/users-search.js') }}"></script>
+    @yield('page-js')
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
 </body>

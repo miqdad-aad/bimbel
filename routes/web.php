@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\kategoriSoalController;
+use App\Http\Controllers\dataTentorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('admin.dashboard.dashboard');
+});
+
+Route::controller(kategoriSoalController::class)->group(function () {
+    Route::get('/masterKategoriSoal', 'masterKategoriSoal')->name('masterKategoriSoal');
+});
+Route::controller(dataTentorController::class)->group(function () {
+    Route::get('/dataTentor', 'dataTentor')->name('dataTentor');
 });
