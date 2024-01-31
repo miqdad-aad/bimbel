@@ -35,10 +35,10 @@ class KategoriSoalModels extends Model
     {
         DB::beginTransaction();
         try {
-            // dd($request);
-            $data = KategoriSoalModels::where('id_kategori_soal', $request->id_kategori)->first();
-
-            KategoriSoalModels::where('id_kategori_soal', $data->id_kategori_soal)->update([
+            // dd($request->id_kategori);
+            $data = KategoriSoalModels::where('kode_kategori_soal', $request->id_kategori)->first();
+            // dd($data);
+            KategoriSoalModels::where('kode_kategori_soal', $data->kode_kategori_soal)->update([
                 'uraian_kategori_soal'=> $request->kategori,
             ]);
             DB::commit();

@@ -39,7 +39,7 @@
 <div class="modal fade " id="modal7" aria-modal="true" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="addmentor">
+            <form id="addkategori">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title">Form Input Kategori Soal</h5><button type="button" class="btn btn-label-danger btn-icon"
@@ -49,7 +49,8 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <label class="form-label" for="text">Nama Kategori Soal</label>
-                            <input name="nama_mentor" class="form-control nama_mentor" type="text">
+                            <input name="nama_kategori" class="form-control nama_kategori" type="text">
+                            <input name="kode_kategori" class="form-control nama_kategori" type="text" hidden>
                         </div>
                     </div>
                 </div>
@@ -102,7 +103,7 @@
             ]
         });
 
-        $('#addmentor').submit(function (e) {
+        $('#addkategori').submit(function (e) {
             e.preventDefault();
             let formData = new FormData(this);
             $('#image-input-error').text('');
@@ -127,19 +128,20 @@
                 }
             });
         });
+
         let kategori_id = 0;
         $(document).on('click', '.btn-edit', function () {
             params = table.row($(this).closest('tr')).data();
-            kategori_id = params.id_kategori_soal;
+            kategori_id = params.kode_kategori_soal;
             console.log(kategori_id);
-            $('.nama_mentor').val(params.uraian_kategori_soal);
+            $('.nama_kategori').val(params.uraian_kategori_soal);
             $('.btn-tambah').hide()
             $('.btn-update').show()
             $('#modal7').modal('show');
 
         });
         $(document).on('click', '.btn-update', function () {
-            var kategori = $('.nama_mentor').val();
+            var kategori = $('.nama_kategori').val();
             $('#modal7').modal('show');
             $.ajax({
                 url: "{{ route('updateKategoriSoal') }}",
@@ -150,7 +152,7 @@
                     _token: "{{ csrf_token() }}"
                 },
                 success: function (data) {
-                    $('.nama_mentor').val('')
+                    $('.nama_kategori').val('')
                     toastr.success('Data kategori ' + 
                         ' berhasil di perbarui', 'Berhasil !!!');
                     table.ajax.reload(null, false)
