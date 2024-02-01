@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KategoriSoalController;
+use App\Http\Controllers\SoalController;
 use App\Http\Controllers\mentorController;
 
 /*
@@ -26,6 +27,11 @@ Route::controller(KategoriSoalController::class)->group(function () {
 });
 Route::controller(mentorController::class)->group(function () {
     Route::get('/dataTentor', 'index')->name('dataTentor');
+    Route::post('/addMentor', 'store')->name('addMentor');
+    Route::get('/deleteMentor/{hapus}', 'destroy')->name('deleteMentor');
+});
+Route::controller(SoalController::class)->group(function () {
+    Route::get('/tambah/soal', 'create')->name('soal.create');
     Route::post('/addMentor', 'store')->name('addMentor');
     Route::get('/deleteMentor/{hapus}', 'destroy')->name('deleteMentor');
 });

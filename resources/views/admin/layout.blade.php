@@ -48,6 +48,7 @@ License: For each use you must have a valid license purchased only from above li
     <link href="{{ asset ('assetsAdmin/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet"
         type="text/css" />
     <link href="{{ asset ('assetsAdmin/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <!--end::Global Stylesheets Bundle-->
 </head>
 <!--end::Head-->
@@ -187,6 +188,41 @@ License: For each use you must have a valid license purchased only from above li
                                             <span class="menu-title">Master data Tentor</span>
                                         </a>
                                     </div>
+                                </div>
+                            </div>
+                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                                <span class="menu-link">
+                                    <span class="menu-icon">
+                                        <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm007.svg') }}-->
+                                        <span class="svg-icon svg-icon-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path
+                                                    d="M21 9V11C21 11.6 20.6 12 20 12H14V8H20C20.6 8 21 8.4 21 9ZM10 8H4C3.4 8 3 8.4 3 9V11C3 11.6 3.4 12 4 12H10V8Z"
+                                                    fill="black" />
+                                                <path
+                                                    d="M15 2C13.3 2 12 3.3 12 5V8H15C16.7 8 18 6.7 18 5C18 3.3 16.7 2 15 2Z"
+                                                    fill="black" />
+                                                <path opacity="0.3"
+                                                    d="M9 2C10.7 2 12 3.3 12 5V8H9C7.3 8 6 6.7 6 5C6 3.3 7.3 2 9 2ZM4 12V21C4 21.6 4.4 22 5 22H10V12H4ZM20 12V21C20 21.6 19.6 22 19 22H14V12H20Z"
+                                                    fill="black" />
+                                            </svg>
+                                        </span>
+                                        <!--end::Svg Icon-->
+                                    </span>
+                                    <span class="menu-title">Academy</span>
+                                    <span class="menu-arrow"></span>
+                                </span>
+                                <div class="menu-sub menu-sub-accordion menu-active-bg">
+                                    <div class="menu-item">
+                                        <a class="menu-link" href="{{ route('soal.create') }}">
+                                            <span class="menu-bullet">
+                                                <span class="bullet bullet-dot"></span>
+                                            </span>
+                                            <span class="menu-title">Master Soal</span>
+                                        </a>
+                                    </div>
+                                   
                                 </div>
                             </div>
                             <div class="menu-item">
@@ -4069,144 +4105,6 @@ License: For each use you must have a valid license purchased only from above li
                 <!--begin::Content-->
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
                     <!--begin::Toolbar-->
-                    <div class="toolbar" id="kt_toolbar">
-                        <!--begin::Container-->
-                        <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-                            <!--begin::Page title-->
-                            <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
-                                data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
-                                class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                                <!--begin::Title-->
-                                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Dashboard
-
-                                    <span class="h-20px border-gray-200 border-start ms-3 mx-2"></span>
-                                    <!--end::Separator-->
-                                    <!--begin::Description-->
-                                    <small class="text-muted fs-7 fw-bold my-1 ms-1">#XRS-45670</small>
-                                    <!--end::Description-->
-                                </h1>
-                                <!--end::Title-->
-                            </div>
-                            <!--end::Page title-->
-                            <!--begin::Actions-->
-                            <div class="d-flex align-items-center gap-2 gap-lg-3">
-                                <!--begin::Filter menu-->
-                                <div class="m-0">
-                                    <!--begin::Menu toggle-->
-                                    <a href="#" class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder"
-                                        data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen031.svg') }}-->
-                                        <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <path
-                                                    d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z"
-                                                    fill="black" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->Filter</a>
-                                    <!--end::Menu toggle-->
-                                    <!--begin::Menu 1-->
-                                    <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true"
-                                        id="kt_menu_61de0c0cad61e">
-                                        <!--begin::Header-->
-                                        <div class="px-7 py-5">
-                                            <div class="fs-5 text-dark fw-bolder">Filter Options</div>
-                                        </div>
-                                        <!--end::Header-->
-                                        <!--begin::Menu separator-->
-                                        <div class="separator border-gray-200"></div>
-                                        <!--end::Menu separator-->
-                                        <!--begin::Form-->
-                                        <div class="px-7 py-5">
-                                            <!--begin::Input group-->
-                                            <div class="mb-10">
-                                                <!--begin::Label-->
-                                                <label class="form-label fw-bold">Status:</label>
-                                                <!--end::Label-->
-                                                <!--begin::Input-->
-                                                <div>
-                                                    <select class="form-select form-select-solid" data-kt-select2="true"
-                                                        data-placeholder="Select option"
-                                                        data-dropdown-parent="#kt_menu_61de0c0cad61e"
-                                                        data-allow-clear="true">
-                                                        <option></option>
-                                                        <option value="1">Approved</option>
-                                                        <option value="2">Pending</option>
-                                                        <option value="2">In Process</option>
-                                                        <option value="2">Rejected</option>
-                                                    </select>
-                                                </div>
-                                                <!--end::Input-->
-                                            </div>
-                                            <!--end::Input group-->
-                                            <!--begin::Input group-->
-                                            <div class="mb-10">
-                                                <!--begin::Label-->
-                                                <label class="form-label fw-bold">Member Type:</label>
-                                                <!--end::Label-->
-                                                <!--begin::Options-->
-                                                <div class="d-flex">
-                                                    <!--begin::Options-->
-                                                    <label
-                                                        class="form-check form-check-sm form-check-custom form-check-solid me-5">
-                                                        <input class="form-check-input" type="checkbox" value="1" />
-                                                        <span class="form-check-label">Author</span>
-                                                    </label>
-                                                    <!--end::Options-->
-                                                    <!--begin::Options-->
-                                                    <label
-                                                        class="form-check form-check-sm form-check-custom form-check-solid">
-                                                        <input class="form-check-input" type="checkbox" value="2"
-                                                            checked="checked" />
-                                                        <span class="form-check-label">Customer</span>
-                                                    </label>
-                                                    <!--end::Options-->
-                                                </div>
-                                                <!--end::Options-->
-                                            </div>
-                                            <!--end::Input group-->
-                                            <!--begin::Input group-->
-                                            <div class="mb-10">
-                                                <!--begin::Label-->
-                                                <label class="form-label fw-bold">Notifications:</label>
-                                                <!--end::Label-->
-                                                <!--begin::Switch-->
-                                                <div
-                                                    class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        name="notifications" checked="checked" />
-                                                    <label class="form-check-label">Enabled</label>
-                                                </div>
-                                                <!--end::Switch-->
-                                            </div>
-                                            <!--end::Input group-->
-                                            <!--begin::Actions-->
-                                            <div class="d-flex justify-content-end">
-                                                <button type="reset"
-                                                    class="btn btn-sm btn-light btn-active-light-primary me-2"
-                                                    data-kt-menu-dismiss="true">Reset</button>
-                                                <button type="submit" class="btn btn-sm btn-primary"
-                                                    data-kt-menu-dismiss="true">Apply</button>
-                                            </div>
-                                            <!--end::Actions-->
-                                        </div>
-                                        <!--end::Form-->
-                                    </div>
-                                    <!--end::Menu 1-->
-                                </div>
-                                <!--end::Filter menu-->
-                                <!--begin::Secondary button-->
-                                <!--end::Secondary button-->
-                                <!--begin::Primary button-->
-                                <a href="../../demo1/dist/.html" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#kt_modal_create_app">Create</a>
-                                <!--end::Primary button-->
-                            </div>
-                            <!--end::Actions-->
-                        </div>
-                        <!--end::Container-->
-                    </div>
                     <!--end::Toolbar-->
                     <!--begin::Post-->
                     <div class="post d-flex flex-column-fluid" id="kt_post">
@@ -5480,441 +5378,7 @@ License: For each use you must have a valid license purchased only from above li
                             </div>
                         </div>
                         <!--end::License-->
-                        <!--begin::License-->
-                        <div class="rounded border border-dashed border-gray-300 py-4 px-6 mb-5">
-                            <div class="d-flex flex-stack">
-                                <div class="d-flex flex-column">
-                                    <div class="d-flex align-items-center mb-1">
-                                        <div class="fs-6 fw-bold text-gray-800 fw-bold mb-0 me-1">Custom License</div>
-                                    </div>
-                                    <div class="fs-7 text-muted">Reach us for custom license offers.</div>
-                                </div>
-                                <div class="text-nowrap">
-                                    <a href="https://keenthemes.com/contact/" class="btn btn-sm btn-success"
-                                        target="_blank">Contact Us</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end::License-->
-                        <!--begin::Purchase-->
-                        <a href="https://1.envato.market/EA4JP" class="btn btn-primary mb-15 w-100">Buy Now</a>
-                        <!--end::Purchase-->
-                        <!--begin::Demos-->
-                        <div class="mb-0">
-                            <h3 class="fw-bolder text-center mb-6">Metronic Demos</h3>
-                            <!--begin::Row-->
-                            <div class="row g-5">
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-success rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo1.png') }}"
-                                                alt="demo" class="w-100" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <a href="https://preview.keenthemes.com/metronic8/demo1"
-                                                class="btn btn-sm btn-success shadow">Demo 1</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo2.png') }}"
-                                                alt="demo" class="w-100" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <a href="https://preview.keenthemes.com/metronic8/demo2"
-                                                class="btn btn-sm btn-success shadow">Demo 2</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo3.png') }}"
-                                                alt="demo" class="w-100" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <a href="https://preview.keenthemes.com/metronic8/demo3"
-                                                class="btn btn-sm btn-success shadow">Demo 3</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo4.png') }}"
-                                                alt="demo" class="w-100" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <a href="https://preview.keenthemes.com/metronic8/demo4"
-                                                class="btn btn-sm btn-success shadow">Demo 4</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo5.png') }}"
-                                                alt="demo" class="w-100" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <a href="https://preview.keenthemes.com/metronic8/demo5"
-                                                class="btn btn-sm btn-success shadow">Demo 5</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo6.png') }}"
-                                                alt="demo" class="w-100" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <a href="https://preview.keenthemes.com/metronic8/demo6"
-                                                class="btn btn-sm btn-success shadow">Demo 6</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo7.png') }}"
-                                                alt="demo" class="w-100" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <a href="https://preview.keenthemes.com/metronic8/demo7"
-                                                class="btn btn-sm btn-success shadow">Demo 7</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo8.png') }}"
-                                                alt="demo" class="w-100" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <a href="https://preview.keenthemes.com/metronic8/demo8"
-                                                class="btn btn-sm btn-success shadow">Demo 8</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo9.png') }}"
-                                                alt="demo" class="w-100" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <a href="https://preview.keenthemes.com/metronic8/demo9"
-                                                class="btn btn-sm btn-success shadow">Demo 9</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo10.png') }}"
-                                                alt="demo" class="w-100" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <a href="https://preview.keenthemes.com/metronic8/demo10"
-                                                class="btn btn-sm btn-success shadow">Demo 10</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo11.png') }}"
-                                                alt="demo" class="w-100" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <a href="https://preview.keenthemes.com/metronic8/demo11"
-                                                class="btn btn-sm btn-success shadow">Demo 11</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo12.png') }}"
-                                                alt="demo" class="w-100" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <a href="https://preview.keenthemes.com/metronic8/demo12"
-                                                class="btn btn-sm btn-success shadow">Demo 12</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo13.png') }}"
-                                                alt="demo" class="w-100" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <a href="https://preview.keenthemes.com/metronic8/demo13"
-                                                class="btn btn-sm btn-success shadow">Demo 13</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo14.png') }}"
-                                                alt="demo" class="w-100" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <a href="https://preview.keenthemes.com/metronic8/demo14"
-                                                class="btn btn-sm btn-success shadow">Demo 14</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo15.png') }}"
-                                                alt="demo" class="w-100" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <a href="https://preview.keenthemes.com/metronic8/demo15"
-                                                class="btn btn-sm btn-success shadow">Demo 15</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo16.png') }}"
-                                                alt="demo" class="w-100" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <a href="https://preview.keenthemes.com/metronic8/demo16"
-                                                class="btn btn-sm btn-success shadow">Demo 16</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo17.png') }}"
-                                                alt="demo" class="w-100" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <a href="https://preview.keenthemes.com/metronic8/demo17"
-                                                class="btn btn-sm btn-success shadow">Demo 17</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo18.png') }}"
-                                                alt="demo" class="w-100" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <a href="https://preview.keenthemes.com/metronic8/demo18"
-                                                class="btn btn-sm btn-success shadow">Demo 18</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo19.png') }}"
-                                                alt="demo" class="w-100" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <a href="https://preview.keenthemes.com/metronic8/demo19"
-                                                class="btn btn-sm btn-success shadow">Demo 19</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo20.png') }}"
-                                                alt="demo" class="w-100" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <a href="https://preview.keenthemes.com/metronic8/demo20"
-                                                class="btn btn-sm btn-success shadow">Demo 20</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo21.png') }}"
-                                                alt="demo" class="w-100 opacity-25" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <div class="badge badge-white px-6 py-4 fw-bold fs-base shadow">Coming soon
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo22.png') }}"
-                                                alt="demo" class="w-100 opacity-25" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <div class="badge badge-white px-6 py-4 fw-bold fs-base shadow">Coming soon
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo23.png') }}"
-                                                alt="demo" class="w-100 opacity-25" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <div class="badge badge-white px-6 py-4 fw-bold fs-base shadow">Coming soon
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <!--begin::Demo-->
-                                    <div
-                                        class="overlay overflow-hidden position-relative border border-4 border-gray-200 rounded">
-                                        <div class="overlay-wrapper">
-                                            <img src="{{ asset ('assetsAdmin/assets/media/demos/demo24.png') }}"
-                                                alt="demo" class="w-100 opacity-25" />
-                                        </div>
-                                        <div class="overlay-layer bg-dark bg-opacity-10">
-                                            <div class="badge badge-white px-6 py-4 fw-bold fs-base shadow">Coming soon
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Demo-->
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Row-->
-                        </div>
+                     
                         <!--end::Demos-->
                     </div>
                     <!--end::Wrapper-->
@@ -6191,27 +5655,6 @@ License: For each use you must have a valid license purchased only from above li
     <!--end::Help drawer-->
     <!--end::Engage drawers-->
     <!--begin::Engage toolbar-->
-    <div class="engage-toolbar d-flex position-fixed px-5 fw-bolder zindex-2 top-50 end-0 transform-90 mt-20 gap-2">
-        <!--begin::Demos drawer toggle-->
-        <button id="kt_engage_demos_toggle"
-            class="engage-demos-toggle btn btn-flex h-35px bg-body btn-color-gray-700 btn-active-color-gray-900 shadow-sm fs-6 px-4 rounded-top-0"
-            title="Check out 20 more demos" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-dismiss="click"
-            data-bs-trigger="hover">
-            <span id="kt_engage_demos_label">Demos</span>
-        </button>
-        <!--end::Demos drawer toggle-->
-        <!--begin::Help drawer toggle-->
-        <button id="kt_help_toggle"
-            class="engage-help-toggle btn btn-flex h-35px bg-body btn-color-gray-700 btn-active-color-gray-900 shadow-sm px-5 rounded-top-0"
-            title="Learn &amp; Get Inspired" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-dismiss="click"
-            data-bs-trigger="hover">Help</button>
-        <!--end::Help drawer toggle-->
-        <!--begin::Purchase link-->
-        <a href="https://1.envato.market/EA4JP" target="_blank"
-            class="engage-purchase-link btn btn-flex h-35px bg-body btn-color-gray-700 btn-active-color-gray-900 px-5 shadow-sm rounded-top-0">Buy
-            Now</a>
-        <!--end::Purchase link-->
-    </div>
     <!--end::Engage toolbar-->
     <!--begin::Scrolltop-->
     <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
@@ -9215,6 +8658,7 @@ License: For each use you must have a valid license purchased only from above li
     <script src="{{ asset ('assetsAdmin/assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
     <script src="{{ asset ('assetsAdmin/assets/js/custom/utilities/modals/create-app.js') }}"></script>
     <script src="{{ asset ('assetsAdmin/assets/js/custom/utilities/modals/users-search.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     @yield('page-js')
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
