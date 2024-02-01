@@ -5,6 +5,7 @@ use App\Http\Controllers\KategoriSoalController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\SekolahKedinasanController;
+use App\Http\Controllers\SoalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,4 +45,9 @@ Route::controller(SekolahKedinasanController::class)->group(function () {
     Route::post('/addSekolahkedinasan', 'store')->name('addSekolahkedinasan');
     Route::post('/updateSekolahKedinasan', 'update')->name('updateSekolahKedinasan');
     Route::get('/deleteSekolahKedinasan/{hapus}', 'destroy')->name('deleteSekolahKedinasan');
+});
+Route::controller(SoalController::class)->group(function () {
+    Route::get('/tambah/soal', 'create')->name('soal.create');
+    Route::post('/addMentor', 'store')->name('addMentor');
+    Route::get('/deleteMentor/{hapus}', 'destroy')->name('deleteMentor');
 });
