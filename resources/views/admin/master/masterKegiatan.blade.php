@@ -22,8 +22,8 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Tentor</th>
-                                <th>Jabatan</th>
+                                <th>Nama Kegiatan</th>
+                                <th>Deskripsi</th>
                                 <th>Gambar</th>
                                 <th width="250">Action</th>
                             </tr>
@@ -49,19 +49,15 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-12">
-                            <label class="form-label" for="text">Nama Mentor</label>
-                            <input name="nama_mentor" class="form-control nama_mentor" type="text">
+                            <label class="form-label" for="text">Nama Kegiatan</label>
+                            <input name="nama_kegiatan" class="form-control nama_kegiatan" type="text">
                         </div>
                         <div class="col-sm-12">
                             <label class="form-label" for="text">Deskripsi</label>
                             <input name="deskripsi" class="form-control deskripsi" type="text">
                         </div>
                         <div class="col-sm-12">
-                            <label class="form-label" for="text">Jabatan</label>
-                            <input name="jabatan" class="form-control jabatan" type="text">
-                        </div>
-                        <div class="col-sm-12">
-                            <label class="form-label" for="text">Foto Mentor</label>
+                            <label class="form-label" for="text">Foto Kegiatan</label>
                             <input class="form-control file gambar" id="input-id" name="gambar" type="file"
                                 data-preview-file-type="text" required>
                             <p class="text-danger"></p>
@@ -92,25 +88,25 @@
 
         var _url = $('meta[name="url"]').attr('content');
         var params = null;
-        var url = "{{ asset('public/mentor/') }}"
+        var url = "{{ asset('public/kegiatan/') }}"
         var table = $('#yajra-datatable').DataTable({
             processing: true,
             serverSide: true,
             "searching": true,
             filter: true,
-            ajax: "{{ route('dataTentor') }}",
+            ajax: "{{ route('dataKegiatan') }}",
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',
                     className: 'text-center'
                 },
                 {
-                    data: 'nama_mentor',
+                    data: 'nama_kegiatan',
                     name: 'name',
                     className: 'text-center'
                 },
                 {
-                    data: 'jabatan',
+                    data: 'deskripsi',
                     name: 'name',
                     className: 'text-center'
                 },
@@ -140,7 +136,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "{{ route('addMentor') }}",
+                url: "{{ route('addKegiatan') }}",
                 data: formData,
                 contentType: false,
                 processData: false,
@@ -223,8 +219,8 @@
                     confirmButtonText: 'Yes, Hapus!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        $.get(_url + "/deleteMentor/" + params.id_mentor, function (data) {
-                            toastr.success('Data kategori ' + params.nama_mentor +
+                        $.get(_url + "/deleteKegiatan/" + params.id_kegiatan, function (data) {
+                            toastr.success('Data Kegiatan ' + params.nama_kegiatan +
                                 ' berhasil di simpan',
                                 'Berhasil !!!');
                             table.ajax.reload(null, false)

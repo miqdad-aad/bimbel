@@ -22,9 +22,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Tentor</th>
-                                <th>Jabatan</th>
-                                <th>Gambar</th>
+                                <th>Nama Sekolah Kedinasan</th>
                                 <th width="250">Action</th>
                             </tr>
                         </thead>
@@ -43,28 +41,14 @@
             <form id="addmentor">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title">Form Input Data Tentor</h5><button type="button" class="btn btn-label-danger btn-icon"
+                    <h5 class="modal-title">Form Input Data Sekolah Kedinasan</h5><button type="button" class="btn btn-label-danger btn-icon"
                         data-bs-dismiss="modal"><i class="fa fa-times"></i></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-12">
-                            <label class="form-label" for="text">Nama Mentor</label>
-                            <input name="nama_mentor" class="form-control nama_mentor" type="text">
-                        </div>
-                        <div class="col-sm-12">
-                            <label class="form-label" for="text">Deskripsi</label>
-                            <input name="deskripsi" class="form-control deskripsi" type="text">
-                        </div>
-                        <div class="col-sm-12">
-                            <label class="form-label" for="text">Jabatan</label>
-                            <input name="jabatan" class="form-control jabatan" type="text">
-                        </div>
-                        <div class="col-sm-12">
-                            <label class="form-label" for="text">Foto Mentor</label>
-                            <input class="form-control file gambar" id="input-id" name="gambar" type="file"
-                                data-preview-file-type="text" required>
-                            <p class="text-danger"></p>
+                            <label class="form-label" for="text">Nama Sekolah Kedinasan</label>
+                            <input name="nama_sekolah_kedinasan" class="form-control nama_sekolah_kedinasan" type="text">
                         </div>
                     </div>
                 </div>
@@ -92,36 +76,22 @@
 
         var _url = $('meta[name="url"]').attr('content');
         var params = null;
-        var url = "{{ asset('public/mentor/') }}"
+        var url = "{{ asset('public/kegiatan/') }}"
         var table = $('#yajra-datatable').DataTable({
             processing: true,
             serverSide: true,
             "searching": true,
             filter: true,
-            ajax: "{{ route('dataTentor') }}",
+            ajax: "{{ route('dataSekolahKedinasan') }}",
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',
                     className: 'text-center'
                 },
                 {
-                    data: 'nama_mentor',
+                    data: 'nama_sekolah_kedinasan',
                     name: 'name',
                     className: 'text-center'
-                },
-                {
-                    data: 'jabatan',
-                    name: 'name',
-                    className: 'text-center'
-                },
-                {
-                    data: 'gambar',
-                    name: 'name',
-                    className: 'text-center',
-                    render: function (meta, data, row, type) {
-                        return '<img style="max-width: 100px;" src="' + url + '/' + row.gambar +
-                            '" />';
-                    },
                 },
                 {
                     data: 'action',
@@ -140,7 +110,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "{{ route('addMentor') }}",
+                url: "{{ route('addSekolahkedinasan') }}",
                 data: formData,
                 contentType: false,
                 processData: false,
@@ -163,38 +133,30 @@
             location.reload();
         });
 
-        let mentor_id = 0;
+        let sekolah_id = 0;
         $(document).on('click', '.btn-edit', function () {
             params = table.row($(this).closest('tr')).data();
-            mentor_id = params.id_mentor;
-            $('.nama_mentor').val(params.nama_mentor);
-            $('.deskripsi').val(params.deskripsi);
-            $('.jabatan').val(params.jabatan);
+            sekolah_id = params.id_sekolah_kedinasan;
+            $('.nama_sekolah_kedinasan').val(params.nama_sekolah_kedinasan);
             $('.btn-tambah').hide()
             $('.btn-update').show()
             $('#modal7').modal('show');
 
         });
         $(document).on('click', '.btn-update', function () {
-            var nama_mentor = $('.nama_mentor').val();
-            var gambar = $('.gambar').val();
-            var deskripsi = $('.deskripsi').val();
-            var jabatan = $('.jabatan').val();
+            var nama_sekolah_kedinasan = $('.nama_sekolah_kedinasan').val();
             $('#modal7').modal('show');
             $.ajax({
-                url: "{{ route('updateMentor') }}",
+                url: "{{ route('updateSekolahKedinasan') }}",
                 type: "POST",
                 data: {
-                    nama_mentor: nama_mentor,
-                    deskripsi: deskripsi,
-                    jabatan: jabatan,
-                    gambar: gambar,
-                    id_mentor: mentor_id,
+                    id_sekolah_kedinasan: sekolah_id,
+                    nama_sekolah_kedinasan: nama_sekolah_kedinasan,
                     _token: "{{ csrf_token() }}"
                 },
                 success: function (data) {
                     $('.nama_kategori').val('')
-                    toastr.success('Data kategori ' + 
+                    toastr.success('Data Sekolah Kedinasan ' + 
                         ' berhasil di perbarui', 'Berhasil !!!');
                     table.ajax.reload(null, false)
                     $('#modal7').modal('hide');
@@ -223,9 +185,9 @@
                     confirmButtonText: 'Yes, Hapus!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        $.get(_url + "/deleteMentor/" + params.id_mentor, function (data) {
-                            toastr.success('Data kategori ' + params.nama_mentor +
-                                ' berhasil di simpan',
+                        $.get(_url + "/deleteSekolahKedinasan/" + params.id_sekolah_kedinasan, function (data) {
+                            toastr.success('Data Kegiatan ' + params.nama_sekolah_kedinasan +
+                                ' berhasil di Hapus',
                                 'Berhasil !!!');
                             table.ajax.reload(null, false)
                         });

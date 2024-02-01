@@ -3,30 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\MentorModels;
+use App\models\KegiatanModels;
 use DataTables;
+use DB;
 
-class MentorController extends Controller
+
+class KegiatanController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function __construct()
     {
-        $this->MentorModels = new MentorModels();
+        $this->KegiatanModels = new KegiatanModels();
     }
-
+     
     public function index(Request $request)
     {
         if($request->ajax() ){
-            $data = MentorModels::all();
+            $data = KegiatanModels::all();
              return DataTables::of($data)
                      ->addIndexColumn()
                      ->addColumn('action', function($row){
-                       $btn = '  <a href="javascript:void(0)" data-id="'. $row->id_mentor .'" class="edit btn btn-info btn-sm btn-edit">Edit</a>';
+                       $btn = '  <a href="javascript:void(0)" data-id="'. $row->id_kegiatan .'" class="edit btn btn-info btn-sm btn-edit">Edit</a>';
                        $btn .= ' <a type="button"  class="delete btn btn-danger btn-sm btn-hapus">Delete</a>';
    
                         return $btn;
@@ -34,7 +35,7 @@ class MentorController extends Controller
                      ->rawColumns(['action'])
                      ->make(true);
            }
-           return view('admin.master.masterMentor');
+           return view('admin.master.masterKegiatan');
     }
 
     /**
@@ -55,7 +56,7 @@ class MentorController extends Controller
      */
     public function store(Request $request)
     {
-        $result = $this->MentorModels->addMentor($request);
+        $result = $this->KegiatanModels->addKegiatan($request);
 
         if ($result == true) {
             return response()->json(['status' => 200]);
@@ -93,15 +94,9 @@ class MentorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $result = $this->MentorModels->updateMentor($request);
-
-        if ($result == true) {
-            return response()->json(['status' => 200]);
-        } else {
-            return response()->json(['status' => 400]);
-        }
+        //
     }
 
     /**
@@ -112,7 +107,7 @@ class MentorController extends Controller
      */
     public function destroy($id)
     {
-        MentorModels::where('id_mentor',$id)->delete();
+        KegiatanModels::where('id_kegiatan',$id)->delete();
         return response()->json(['status' => 200]);
     }
 }
