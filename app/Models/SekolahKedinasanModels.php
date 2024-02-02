@@ -41,4 +41,25 @@ class SekolahKedinasanModels extends Model
             dd($e->getMessage());
         }
     }
+
+    public function addFotoSekolah($request)
+    {
+        DB::beginTransaction();
+        try {
+
+            $file = $request->file('gambar');
+            $filename = Str::slug($request->nama_mentor) . '.' . $file->getClientOriginalExtension();
+            $file->move('public/fotosekolahkedinasan', $filename);
+
+            $data = DB::table('m_detail_sekolah_kedinasan')->insert([
+                'id_sekolah_kedinasan' => $request->id_sekolah,
+                'gambar'=> $filename,
+            ]);
+
+            DB::commit();
+            return true;
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
+    }
 }

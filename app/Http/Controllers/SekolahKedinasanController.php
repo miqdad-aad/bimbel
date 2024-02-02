@@ -28,7 +28,6 @@ class SekolahKedinasanController extends Controller
                      ->addColumn('action', function($row){
                        $btn = '  <a href="javascript:void(0)" data-id="'. $row->id_sekolah_kedinasan .'" class="edit btn btn-info btn-sm btn-edit">Edit</a>';
                        $btn .= ' <a type="button"  class="delete btn btn-danger btn-sm btn-hapus">Delete</a>';
-                       $btn .= ' <a type="button"  class="delete btn btn-danger btn-sm btn-tambah">Tambah Foto</a>';
    
                         return $btn;
                      })
@@ -36,6 +35,38 @@ class SekolahKedinasanController extends Controller
                      ->make(true);
            }
            return view('admin.master.masterSekolahKedinasan');
+    }
+
+    public function masterFotoSekolah(Request $request)
+    {
+        $sekolah = SekolahKedinasanModels::all();
+        if($request->ajax() ){
+            $data = DB::table('m_detail_sekolah_kedinasan as a')
+            ->leftjoin('m_sekolah_kedinasan as b', 'a.id_sekolah_kedinasan', 'b.id_sekolah_kedinasan')
+            ->get();
+             return DataTables::of($data)
+                     ->addIndexColumn()
+                     ->addColumn('action', function($row){
+                       $btn = '  <a href="javascript:void(0)" data-id="'. $row->id_sekolah_kedinasan .'" class="edit btn btn-info btn-sm btn-edit">Edit</a>';
+                       $btn .= ' <a type="button"  class="delete btn btn-danger btn-sm btn-hapus">Delete</a>';
+   
+                        return $btn;
+                     })
+                     ->rawColumns(['action'])
+                     ->make(true);
+           }
+           return view('admin.master.masterFotoSekolah', compact('sekolah'));
+    }
+
+    public function addFotoSekolah(Request $request)
+    {
+        $result = $this->SekolahKedinasanModels->addFotoSekolah($request);
+
+        if ($result == true) {
+            return response()->json(['status' => 200]);
+        } else {
+            return response()->json(['status' => 400]);
+        }
     }
 
     /**
@@ -114,6 +145,12 @@ class SekolahKedinasanController extends Controller
     public function destroy($id)
     {
         SekolahKedinasanModels::where('id_sekolah_kedinasan',$id)->delete();
+        return response()->json(['status' => 200]);
+    }
+
+    public function deleteFotoSekolahKedinasan($id)
+    {
+        DB::table('m_detail_sekolah_kedinasan')->where('id',$id)->delete();
         return response()->json(['status' => 200]);
     }
 }

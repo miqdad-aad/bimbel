@@ -8,7 +8,7 @@
             data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
             class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
             <!--begin::Title-->
-            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Tambah Sekolah Kedinasan
+            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Tambah Foto Sekolah Kedinasan
 
                 <span class="h-20px border-gray-200 border-start ms-3 mx-2"></span>
 
@@ -29,13 +29,13 @@
                 <div class="row">
                     <div class="col-xl-6">
                         <div class="btn-group">
-                            <a class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#modal7"><i class="fas fa-plus"></i></a>
+                            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal7"><i
+                                    class="fas fa-plus"></i></a>
                             <a href="" class="btn btn-sm btn-light text-muted"><i
                                     class="fas fa-sync-alt"></i></a>&nbsp;&nbsp;
                         </div>
                     </div>
-                    
+
                 </div>
                 <div class="table-responsive mt-3">
                     <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4 fs-9"
@@ -45,6 +45,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama Sekolah Kedinasan</th>
+                                <th>Gambar</th>
                                 <th width="250">Action</th>
                             </tr>
                         </thead>
@@ -63,14 +64,27 @@
             <form id="addmentor">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title">Form Input Data Sekolah Kedinasan</h5><button type="button" class="btn btn-label-danger btn-icon"
-                        data-bs-dismiss="modal"><i class="fa fa-times"></i></button>
+                    <h5 class="modal-title">Form Input Data Tentor</h5><button type="button"
+                        class="btn btn-label-danger btn-icon" data-bs-dismiss="modal"><i
+                            class="fa fa-times"></i></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
+                        <div class="form-group">
+                            <label class="form-label" for="text">Sekolah Kedinasan</label>
+                            <select name="id_sekolah" class="form-control ip halaman">
+                                <option value=""></option>
+                                @foreach ($sekolah as $item)
+                                <option value="{{ $item->id_sekolah_kedinasan }}">{{ $item->nama_sekolah_kedinasan }}</option>
+                                @endforeach
+                            </select>
+                            <p class="text-danger">{{ $errors->first('category_id') }}</p>
+                        </div>
                         <div class="col-sm-12">
-                            <label class="form-label" for="text">Nama Sekolah Kedinasan</label>
-                            <input name="nama_sekolah_kedinasan" class="form-control nama_sekolah_kedinasan" type="text">
+                            <label class="form-label" for="text">Logo Sekolah Kedinasan</label>
+                            <input class="form-control file gambar" id="input-id" name="gambar" type="file"
+                                data-preview-file-type="text" required>
+                            <p class="text-danger"></p>
                         </div>
                     </div>
                 </div>
@@ -87,10 +101,10 @@
 @endsection
 @section('page-js')
 <script>
-        $(".file-barang").fileinput({
-            'showUpload': false,
-            'previewFileType': 'any',
-        });
+    $(".file-barang").fileinput({
+        'showUpload': false,
+        'previewFileType': 'any',
+    });
 
 </script>
 <script>
@@ -98,13 +112,13 @@
 
         var _url = $('meta[name="url"]').attr('content');
         var params = null;
-        var url = "{{ asset('public/kegiatan/') }}"
+        var url = "{{ asset('public/fotosekolahkedinasan/') }}"
         var table = $('#yajra-datatable').DataTable({
             processing: true,
             serverSide: true,
             "searching": true,
             filter: true,
-            ajax: "{{ route('dataSekolahKedinasan') }}",
+            ajax: "{{ route('masterFotoSekolah') }}",
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',
@@ -114,6 +128,15 @@
                     data: 'nama_sekolah_kedinasan',
                     name: 'name',
                     className: 'text-center'
+                },
+                {
+                    data: 'gambar',
+                    name: 'name',
+                    className: 'text-center',
+                    render: function (meta, data, row, type) {
+                        return '<img style="max-width: 100px;" src="' + url + '/' + row.gambar +
+                            '" />';
+                    },
                 },
                 {
                     data: 'action',
@@ -132,7 +155,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "{{ route('addSekolahkedinasan') }}",
+                url: "{{ route('addFotoSekolah') }}",
                 data: formData,
                 contentType: false,
                 processData: false,
@@ -155,30 +178,38 @@
             location.reload();
         });
 
-        let sekolah_id = 0;
+        let mentor_id = 0;
         $(document).on('click', '.btn-edit', function () {
             params = table.row($(this).closest('tr')).data();
-            sekolah_id = params.id_sekolah_kedinasan;
-            $('.nama_sekolah_kedinasan').val(params.nama_sekolah_kedinasan);
+            mentor_id = params.id_mentor;
+            $('.nama_mentor').val(params.nama_mentor);
+            $('.deskripsi').val(params.deskripsi);
+            $('.jabatan').val(params.jabatan);
             $('.btn-tambah').hide()
             $('.btn-update').show()
             $('#modal7').modal('show');
 
         });
         $(document).on('click', '.btn-update', function () {
-            var nama_sekolah_kedinasan = $('.nama_sekolah_kedinasan').val();
+            var nama_mentor = $('.nama_mentor').val();
+            var gambar = $('.gambar').val();
+            var deskripsi = $('.deskripsi').val();
+            var jabatan = $('.jabatan').val();
             $('#modal7').modal('show');
             $.ajax({
-                url: "{{ route('updateSekolahKedinasan') }}",
+                url: "{{ route('updateMentor') }}",
                 type: "POST",
                 data: {
-                    id_sekolah_kedinasan: sekolah_id,
-                    nama_sekolah_kedinasan: nama_sekolah_kedinasan,
+                    nama_mentor: nama_mentor,
+                    deskripsi: deskripsi,
+                    jabatan: jabatan,
+                    gambar: gambar,
+                    id_mentor: mentor_id,
                     _token: "{{ csrf_token() }}"
                 },
                 success: function (data) {
                     $('.nama_kategori').val('')
-                    toastr.success('Data Sekolah Kedinasan ' + 
+                    toastr.success('Data kategori ' +
                         ' berhasil di perbarui', 'Berhasil !!!');
                     table.ajax.reload(null, false)
                     $('#modal7').modal('hide');
@@ -207,9 +238,8 @@
                     confirmButtonText: 'Yes, Hapus!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        $.get(_url + "/deleteSekolahKedinasan/" + params.id_sekolah_kedinasan, function (data) {
-                            toastr.success('Data Kegiatan ' + params.nama_sekolah_kedinasan +
-                                ' berhasil di Hapus',
+                        $.get(_url + "/deleteFotoSekolahKedinasan/" + params.id, function (data) {
+                            toastr.success('Data Kegiatan berhasil di simpan',
                                 'Berhasil !!!');
                             table.ajax.reload(null, false)
                         });

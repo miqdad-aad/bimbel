@@ -196,6 +196,14 @@ License: For each use you must have a valid license purchased only from above li
                                             <span class="menu-title">Master data Sekolah Kedinasan</span>
                                         </a>
                                     </div>
+                                    <div class="menu-item">
+                                        <a class="menu-link" href="{{ route('masterFotoSekolah') }}">
+                                            <span class="menu-bullet">
+                                                <span class="bullet bullet-dot"></span>
+                                            </span>
+                                            <span class="menu-title">Master Foto Sekolah Kedinasan</span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">

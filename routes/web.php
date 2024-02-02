@@ -45,6 +45,9 @@ Route::controller(SekolahKedinasanController::class)->group(function () {
     Route::post('/addSekolahkedinasan', 'store')->name('addSekolahkedinasan');
     Route::post('/updateSekolahKedinasan', 'update')->name('updateSekolahKedinasan');
     Route::get('/deleteSekolahKedinasan/{hapus}', 'destroy')->name('deleteSekolahKedinasan');
+    Route::get('/masterFotoSekolah', 'masterFotoSekolah')->name('masterFotoSekolah');
+    Route::post('/addFotoSekolah', 'addFotoSekolah')->name('addFotoSekolah');
+    Route::get('/deleteFotoSekolahKedinasan/{hapus}', 'deleteFotoSekolahKedinasan')->name('deleteFotoSekolahKedinasan');
 });
 Route::controller(SoalController::class)->group(function () {
     Route::get('/tambah/soal', 'create')->name('soal.create');
