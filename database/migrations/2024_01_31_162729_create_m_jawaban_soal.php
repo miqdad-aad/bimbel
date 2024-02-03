@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('id_soal');
             $table->char('kode_jawaban');
             $table->text('keterangan');
+            $table->text('file_tambahan');
             $table->dateTime('deleted_at');
             $table->timestamps();
         });

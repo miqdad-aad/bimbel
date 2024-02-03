@@ -28,12 +28,16 @@
             <div class="card-body py-3">
                 <div class="row form-group">
                     <div class="col-sm-12 form-group">
-                        <label for=""><h3>Uraian Soal</h3></label>
+                        <label for=""><p><h3>Uraian Soal</h3></p></label>
                         <textarea name=""  cols="30" class="form-control" rows="10"></textarea>
                     </div>
-                    <div class="col-sm-12 form-group">
-                        <label for=""><h3>File tambahan</h3></label>
-                        <textarea name=""  cols="30" class="form-control" rows="10"></textarea>
+                    <div class="col-sm-6 form-group">
+                        <label for=""><p><h3>File tambahan</h3></p></label>
+                        <input type="file" class="form-control">
+                    </div>
+                    <div class="col-sm-3 form-group">
+                        <label for=""><p><h3>Score</h3></p></label>
+                        <input type="number" class="form-control">
                     </div>
                 </div>
                 <div class="row form-group">
@@ -45,10 +49,14 @@
                         <table class="table table-sm table-bordered" width="100%">
                             <thead>
                                 <tr class="text-center">
-                                    <th>Kode Jawaban</th>
+                                    <th>Kode</th>
+                                    <th>Benar ?</th>
                                     <th>Uraian Jawaban</th>
                                     <th>File tambahan</th>
-                                    <th><button class="btn btn-sm btn-success add-jawaban" type="button"><i class="fa fa-plus-circle"></i></button></th>
+                                    <th>
+
+                                        <button class="btn btn-sm btn-success add-jawaban" type="button"><i class="fa fa-plus-circle"></i></button>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody class="body-jawaban">
@@ -67,14 +75,32 @@
         $('#summernote').summernote();
         
         $(document).on('click','.add-jawaban', function(){
-            $('.body-jawaban').append(`<tr>
-                <td><input class="form-control form-control-sm" /></td>
+            $('.body-jawaban').append(`<tr class="text-center">
+                <td style="width:50px;" class="text-center"><input class="form-control form-control-sm kode-jawaban" /></td>
+                <td class="text-center"><input type="radio" /></td>
                 <td style="width:50%"> <textarea name=""  cols="30" class="form-control summernote-jawaban" rows="2"></textarea></td>
                 <td><input type="file" class="form-control form-control-sm" /></td>
                 <td><button class="btn btn-sm btn-danger" type="button"><i class="fa fa-trash"></i></button></td>
             </tr>`);
+
+            generateCodeJawaban()
         })
     });
+
+    function generateCodeJawaban(){
+        let i = 0;
+        let alphabetArray = [];
+
+        for (let i = 65; i <= 90; i++) {
+            alphabetArray.push(String.fromCharCode(i));
+        }
+
+        $('.body-jawaban').find('tr').each(function(){
+            var kode = alphabetArray[i];
+            $(this).find('.kode-jawaban').val(kode);
+            i++;
+        })
+    }
 </script>
 
 @endsection

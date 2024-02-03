@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('m_soal', function (Blueprint $table) {
-            $table->increments('id_soal');
-            $table->integer('id_kategori_soal');
-            $table->integer('id_paket');
-            $table->text('pertanyaan');
-            $table->text('file_tambahan');
-            $table->decimal('score',20,2);
-            $table->dateTime('deleted_at');
+        Schema::create('m_paket', function (Blueprint $table) {
+            $table->increments('id_paket');
+            $table->char('nama_paket');
+            $table->text('deskripsi')->nullable();
+            $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('m_soal');
+        Schema::dropIfExists('m_paket');
     }
 };
