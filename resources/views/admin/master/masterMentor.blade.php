@@ -1,5 +1,27 @@
 @extends('admin.layout')
 @section('content')
+<div class="toolbar" id="kt_toolbar">
+    <!--begin::Container-->
+    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+        <!--begin::Page title-->
+        <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
+            data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+            class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+            <!--begin::Title-->
+            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Tambah Mentor
+
+                <span class="h-20px border-gray-200 border-start ms-3 mx-2"></span>
+
+            </h1>
+            <!--end::Title-->
+        </div>
+        <!--end::Page title-->
+        <!--begin::Actions-->
+
+        <!--end::Actions-->
+    </div>
+    <!--end::Container-->
+</div>
 <div class="row gy-5 g-xl-8">
     <div class="col-xl-12">
         <div class="card card-xl-stretch mb-5 mb-xl-8">
@@ -24,6 +46,7 @@
                                 <th>No</th>
                                 <th>Nama Tentor</th>
                                 <th>Jabatan</th>
+                                <th>Gambar</th>
                                 <th width="250">Action</th>
                             </tr>
                         </thead>
@@ -49,26 +72,26 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <label class="form-label" for="text">Nama Mentor</label>
-                            <input name="nama_mentor" class="form-control nama_kategori" type="text">
+                            <input name="nama_mentor" class="form-control nama_mentor" type="text">
                         </div>
                         <div class="col-sm-12">
                             <label class="form-label" for="text">Deskripsi</label>
-                            <input name="deskripsi" class="form-control nama_kategori" type="text">
+                            <input name="deskripsi" class="form-control deskripsi" type="text">
                         </div>
                         <div class="col-sm-12">
                             <label class="form-label" for="text">Jabatan</label>
-                            <input name="jabatan" class="form-control nama_kategori" type="text">
+                            <input name="jabatan" class="form-control jabatan" type="text">
                         </div>
                         <div class="col-sm-12">
                             <label class="form-label" for="text">Foto Mentor</label>
-                            <input class="form-control file" id="input-id" name="gambar" type="file"
+                            <input class="form-control file gambar" id="input-id" name="gambar" type="file"
                                 data-preview-file-type="text" required>
                             <p class="text-danger"></p>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary " id="btn-close"
+                    <button type="button" class="btn btn-secondary" id="btn-close"
                         data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary btn-tambah">Simpan</button>
                     <button type="button" style="display:none" class="btn btn-primary btn-update">perbarui</button>
@@ -80,12 +103,10 @@
 @endsection
 @section('page-js')
 <script>
-    $(document).ready(function () {
-        $(".file").fileinput({
+        $(".file-barang").fileinput({
             'showUpload': false,
-            'previewFileType': 'any'
+            'previewFileType': 'any',
         });
-    })
 
 </script>
 <script>
@@ -93,7 +114,7 @@
 
         var _url = $('meta[name="url"]').attr('content');
         var params = null;
-
+        var url = "{{ asset('public/mentor/') }}"
         var table = $('#yajra-datatable').DataTable({
             processing: true,
             serverSide: true,
@@ -115,7 +136,15 @@
                     name: 'name',
                     className: 'text-center'
                 },
-
+                {
+                    data: 'gambar',
+                    name: 'name',
+                    className: 'text-center',
+                    render: function (meta, data, row, type) {
+                        return '<img style="max-width: 100px;" src="' + url + '/' + row.gambar +
+                            '" />';
+                    },
+                },
                 {
                     data: 'action',
                     name: 'action',
@@ -150,6 +179,55 @@
                     $('#image-input-error').text(response.responseJSON.errors.file);
                 }
             });
+        });
+
+        $(document).on('click', '#btn-close', function () {
+            location.reload();
+        });
+
+        let mentor_id = 0;
+        $(document).on('click', '.btn-edit', function () {
+            params = table.row($(this).closest('tr')).data();
+            mentor_id = params.id_mentor;
+            $('.nama_mentor').val(params.nama_mentor);
+            $('.deskripsi').val(params.deskripsi);
+            $('.jabatan').val(params.jabatan);
+            $('.btn-tambah').hide()
+            $('.btn-update').show()
+            $('#modal7').modal('show');
+
+        });
+        $(document).on('click', '.btn-update', function () {
+            var nama_mentor = $('.nama_mentor').val();
+            var gambar = $('.gambar').val();
+            var deskripsi = $('.deskripsi').val();
+            var jabatan = $('.jabatan').val();
+            $('#modal7').modal('show');
+            $.ajax({
+                url: "{{ route('updateMentor') }}",
+                type: "POST",
+                data: {
+                    nama_mentor: nama_mentor,
+                    deskripsi: deskripsi,
+                    jabatan: jabatan,
+                    gambar: gambar,
+                    id_mentor: mentor_id,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function (data) {
+                    $('.nama_kategori').val('')
+                    toastr.success('Data kategori ' + 
+                        ' berhasil di perbarui', 'Berhasil !!!');
+                    table.ajax.reload(null, false)
+                    $('#modal7').modal('hide');
+                },
+                error: function (data) {
+                    toastr.error(data.responseJSON.message, 'Error !!!');
+                    $('#modal7').modal('hide');
+                },
+            });
+            $('.btn-save').show()
+            $('.btn-update').hide()
         });
 
         $(document).on('click', '.btn-hapus',
