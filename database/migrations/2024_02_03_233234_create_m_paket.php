@@ -17,6 +17,8 @@ return new class extends Migration
             $table->increments('id_paket');
             $table->char('nama_paket');
             $table->text('deskripsi')->nullable();
+            $table->decimal('harga', 20,2)->nullable();
+            $table->text('gambar')->nullable();
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });

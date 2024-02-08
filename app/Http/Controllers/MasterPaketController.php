@@ -6,13 +6,17 @@ use Illuminate\Http\Request;
 use App\models\MasterPaketModels;
 use DataTables;
 
-class KategoriSoalController extends Controller
+class MasterPaketController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->masterPaketModels = new MasterPaketModels();
+    }
 
     public function index(Request $request)
     {
@@ -50,7 +54,7 @@ class KategoriSoalController extends Controller
      */
     public function store(Request $request)
     {
-        $result = $this->KategoriSoalModels->postKategoriSoal($request);
+        $result = $this->masterPaketModels->addPaket($request);
 
         if ($result == true) {
             return response()->json(['status' => 200]);

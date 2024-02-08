@@ -51,8 +51,11 @@ License: For each use you must have a valid license purchased only from above li
         type="text/css" />
     <link href="{{ asset ('assetsAdmin/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  
     <!--end::Global Stylesheets Bundle-->
 </head>
+
 <!--end::Head-->
 <!--begin::Body-->
 
@@ -206,6 +209,14 @@ License: For each use you must have a valid license purchased only from above li
                                             <span class="menu-title">Master Foto Sekolah Kedinasan</span>
                                         </a>
                                     </div>
+                                    <div class="menu-item">
+                                        <a class="menu-link" href="{{ route('masterPaket') }}">
+                                            <span class="menu-bullet">
+                                                <span class="bullet bullet-dot"></span>
+                                            </span>
+                                            <span class="menu-title">Master Paket Soal</span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
@@ -233,7 +244,7 @@ License: For each use you must have a valid license purchased only from above li
                                 </span>
                                 <div class="menu-sub menu-sub-accordion menu-active-bg">
                                     <div class="menu-item">
-                                        <a class="menu-link" href="{{ route('soal.create') }}">
+                                        <a class="menu-link" href="{{ route('soal.view') }}">
                                             <span class="menu-bullet">
                                                 <span class="bullet bullet-dot"></span>
                                             </span>
@@ -1024,7 +1035,17 @@ License: For each use you must have a valid license purchased only from above li
     <script src="{{ asset ('assetsAdmin/assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
     <script src="{{ asset ('assetsAdmin/assets/js/custom/utilities/modals/create-app.js') }}"></script>
     <script src="{{ asset ('assetsAdmin/assets/js/custom/utilities/modals/users-search.js') }}"></script>
+    <script src="{{ asset ('assetsAdmin/formplugins/inputmask/inputmask.bundle.js') }}"></script>
+    <script src="{{ asset ('assetsAdmin/accounting.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".input-mask").inputmask({
+                removeMaskOnSubmit: true
+            });
+        })
+    </script>
     @yield('page-js')
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->

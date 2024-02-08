@@ -6,6 +6,7 @@ use App\Http\Controllers\MentorController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\SekolahKedinasanController;
 use App\Http\Controllers\SoalController;
+use App\Http\Controllers\MasterPaketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,12 @@ Route::controller(KegiatanController::class)->group(function () {
     Route::get('/deleteKegiatan/{hapus}', 'destroy')->name('deleteKegiatan');
 });
 
+Route::controller(MasterPaketController::class)->group(function () {
+    Route::get('/paketSoal', 'index')->name('masterPaket');
+    Route::post('/addPaket', 'store')->name('addPaket');
+    Route::get('/deleteKegiatan/{hapus}', 'destroy')->name('deleteKegiatan');
+});
+
 Route::controller(SekolahKedinasanController::class)->group(function () {
     Route::get('/dataSekolahKedinasan', 'index')->name('dataSekolahKedinasan');
     Route::post('/addSekolahkedinasan', 'store')->name('addSekolahkedinasan');
@@ -50,7 +57,9 @@ Route::controller(SekolahKedinasanController::class)->group(function () {
     Route::get('/deleteFotoSekolahKedinasan/{hapus}', 'deleteFotoSekolahKedinasan')->name('deleteFotoSekolahKedinasan');
 });
 Route::controller(SoalController::class)->group(function () {
+    Route::get('/soal', 'index')->name('soal.view');
+    Route::get('/edit/soal/{id}', 'edit')->name('soal.edit');
     Route::get('/tambah/soal', 'create')->name('soal.create');
-    Route::post('/addMentor', 'store')->name('addMentor');
+    Route::post('/addSoal', 'store')->name('addSoal.store');
     Route::get('/deleteMentor/{hapus}', 'destroy')->name('deleteMentor');
 });
