@@ -253,6 +253,17 @@ License: For each use you must have a valid license purchased only from above li
                                     </div>
                                    
                                 </div>
+                                <div class="menu-sub menu-sub-accordion menu-active-bg">
+                                    <div class="menu-item">
+                                        <a class="menu-link" href="{{ route('pembelajaran.view') }}">
+                                            <span class="menu-bullet">
+                                                <span class="bullet bullet-dot"></span>
+                                            </span>
+                                            <span class="menu-title">Pembelajaran</span>
+                                        </a>
+                                    </div>
+                                   
+                                </div>
                             </div>
                             <div class="menu-item">
                                 <div class="menu-content">

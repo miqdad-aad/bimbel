@@ -19,8 +19,15 @@ class SoalController extends Controller
      */
     public function index(Request $request)
     {
+         
         if($request->ajax() ){
-        $data = SoalModels::with('paketSoal')->get();
+            $data = SoalModels::with('paketSoal');
+            if(!empty($request->id_materi)){
+                $data->where('id_materi', $request->id_materi);
+            }
+            $data->get();
+            $data = $data->get();
+
              return DataTables::of($data)
                      ->addIndexColumn()
                      ->addColumn('action', function($row){
@@ -32,7 +39,7 @@ class SoalController extends Controller
                      ->rawColumns(['action'])
                      ->make(true);
                     }
-                    return view('admin.soal.view');
+            return view('admin.soal.view');
     }
 
     /**
@@ -40,10 +47,15 @@ class SoalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+
+        $id_materi = 0;
+        if(!empty($request->id_materi)){
+            $id_materi = $request->id_materi;
+        }
         $paket = MasterPaketModels::all();
-        return view('admin.soal.add',compact('paket'));
+        return view('admin.soal.add',compact('paket','id_materi'));
     }
 
     /**
@@ -67,6 +79,7 @@ class SoalController extends Controller
                 'pertanyaan' => $request->pertanyaan,
                 'score' => $request->score,
                 'id_paket' => $request->id_paket,
+                'id_materi' => $request->id_materi,
                 'file_tambahan' => $filename,
                 'id_kategori_soal' => isset($request->id_kategori_soal) ? $request->id_kategori_soal : 0
             ]);
@@ -91,7 +104,7 @@ class SoalController extends Controller
 
             }
             DB::commit();
-            return redirect()->back();
+            return redirect('soal?id_materi='. (isset($request->id_materi) ? $request->id_materi : ''));
         } catch (\Exception $e) {
             dd($e->getMessage());
         }

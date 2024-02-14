@@ -5,12 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use App\models\Pembelajaran;
 
 class KategoriSoalModels extends Model
 {
     use HasFactory;
     protected $table ="m_kategori_soal";
-    protected $guarded = ['id'];
+    protected $guarded = ['id_kategori_soal'];
+
+    public function materi()
+    {
+        return $this->hasMany(Pembelajaran::class,'id_kategori_soal','id_kategori_soal');
+    }
 
     public function postKategoriSoal($request)
     {

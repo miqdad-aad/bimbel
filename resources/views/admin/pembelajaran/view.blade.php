@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-xl-6">
                         <div class="btn-group">
-                            <a class="btn btn-primary" href="{{ route('soal.create', ['id_materi' => isset($_GET['id_materi']) ? $_GET['id_materi'] : '' ]) }}"><i class="fas fa-plus"></i></a>
+                            <a class="btn btn-primary" href="{{ route('pembelajaran.create') }}"><i class="fas fa-plus"></i></a>
                             <a href="" class="btn btn-sm btn-light text-muted"><i
                                     class="fas fa-sync-alt"></i></a>&nbsp;&nbsp;
                         </div>
@@ -43,9 +43,10 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Paket</th>
-                                <th>Deskripsi Soal</th>
-                                <th>Score</th>
+                                <th>Judul Materi</th>
+                                <th>Uraian Materi</th>
+                                <th>Kategori</th>
+                                <th>Total Soal</th>
                                 <th width="250">Action</th>
                             </tr>
                         </thead>
@@ -95,35 +96,38 @@
             serverSide: true,
             "searching": true,
             filter: true,
-            ajax  : {
-                url: "{{ route('soal.view') }}",
-                data: function (d) {
-                    d.id_materi = "{{ isset($_GET['id_materi']) ? $_GET['id_materi'] : '' }}"
-                    return d;
-                }
-                
-            },
+            ajax: "{{ route('pembelajaran.view') }}",
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',
                     className: 'text-center'
                 },
                 {
-                    data: 'paket_soal.nama_paket',
+                    data: 'judul_materi',
+                    name: 'name',
+                    className: 'text-left'
+                },
+                {
+                    data: 'uraian_materi',
+                    name: 'name',
+                    className: 'text-left',
+                    render : function(meta,data,row){
+                        if(row.uraian_materi.length > 100){
+                            return row.uraian_materi.substring(0, 100) + '...';
+                        }
+                        return row.uraian_materi;
+                    }
+                },
+                {
+                    data: 'kategori_soal.uraian_kategori_soal',
                     name: 'name',
                     className: 'text-center'
                 },
                 {
-                    data: 'pertanyaan',
+                    data: 'totalSoal',
                     name: 'name',
                     className: 'text-center'
                 },
-                {
-                    data: 'score',
-                    name: 'name',
-                    className: 'text-center'
-                },
-                
                 {
                     data: 'action',
                     name: 'action',

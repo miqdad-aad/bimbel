@@ -46,9 +46,11 @@ class SekolahKedinasanModels extends Model
     {
         DB::beginTransaction();
         try {
-
+            $sekolah =  DB::table('m_detail_sekolah_kedinasan')->where('id_sekolah_kedinasan',$request->id_sekolah)->get();
+            $total = $sekolah->count() + 1;
+            // dd($total);
             $file = $request->file('gambar');
-            $filename = Str::slug($request->nama_mentor) . '.' . $file->getClientOriginalExtension();
+            $filename = Str::slug($request->id_sekolah) . '.' . $total . '.' .$file->getClientOriginalExtension();
             $file->move('public/fotosekolahkedinasan', $filename);
 
             $data = DB::table('m_detail_sekolah_kedinasan')->insert([
