@@ -16,8 +16,8 @@ class SekolahKedinasanController extends Controller
      */
     public function sekolahKedinasanApi(Request $request)
     {
-        $data = SekolahKedinasanModels::get();
-        // dd($data);
+        $data = SekolahKedinasanModels::with('detailSekolahKedinasan')->get();
+// $this->printJSON($data);
         $datas = [];
         if (!$data) {
             $code = 400;
@@ -28,16 +28,13 @@ class SekolahKedinasanController extends Controller
             );
         } else {
             foreach ($data as $key => $value) {
-                
+                $this->printJSON($value);
                 $arrays = array(
                     'id_sekolah_kedinasan' => $value->id_sekolah_kedinasan,
                     'nama_sekolah_kedinasan' => $value->nama_sekolah_kedinasan,
+                    'detail_sekolah_kedinasan' => $value->detail_sekolah_kedinasan,
                 );
-                $detailSekolah = DB::table('m_detail_sekolah_kedinasan')->where('id_sekolah_kedinasan', $value->id_sekolah_kedinasan)->first();
-                $sekolahDetail = array(
-                    'detailSekolah' => $detailSekolah,
-                );
-                array_push( $datas, $arrays, $sekolahDetail);
+                array_push( $datas, $arrays);
                 
             }
             $code = 200;
@@ -45,12 +42,18 @@ class SekolahKedinasanController extends Controller
                 'status' => true,
                 'message' => 'Data Sekolah Kedinasan ditemukan',
                 'data' => $datas,
-                'detail' => $sekolahDetail,
             );
+            $this->printJSON($data);
         }
 
         return response($data, $code);
         
+    }
+    function printJSON($v){
+        header('Access-Control-Allow-Origin: *');
+        header("Content-type: application/json");
+        echo json_encode($v, JSON_PRETTY_PRINT);
+        exit;
     }
     /**
      * Store a newly created resource in storage.

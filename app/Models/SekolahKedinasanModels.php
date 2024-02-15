@@ -11,7 +11,18 @@ class SekolahKedinasanModels extends Model
 {
     use HasFactory;
     protected $table ="m_sekolah_kedinasan";
-    protected $guarded = ['id'];
+    protected $guarded = ['id_sekolah_kedinasan'];
+
+    public function sekolahKedinasan()
+    {
+        return $this->belongsTo(DetailSekolahKedinasanModels::class,'id_sekolah_kedinasan','id_sekolah_kedinasan');
+    }
+    
+    public function detailSekolahKedinasan()
+    {
+        return $this->hasMany(DetailSekolahKedinasanModels::class,'id_sekolah_kedinasan','id_sekolah_kedinasan');
+
+    }
 
     public function addSekolahKedinasan($request)
     {

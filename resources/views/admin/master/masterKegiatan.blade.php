@@ -230,7 +230,6 @@
         $(document).on('click', '.btn-hapus',
             function () {
                 params = table.row($(this).closest('tr')).data();
-
                 Swal.fire({
                     title: 'Apakah Anda Yakin?',
                     text: "Menghapus Kendaraan!",
