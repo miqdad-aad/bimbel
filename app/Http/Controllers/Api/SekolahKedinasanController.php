@@ -17,7 +17,7 @@ class SekolahKedinasanController extends Controller
     public function sekolahKedinasanApi(Request $request)
     {
         $data = SekolahKedinasanModels::with('detailSekolahKedinasan')->get();
-// $this->printJSON($data);
+        $this->printJSON($data);
         $datas = [];
         if (!$data) {
             $code = 400;
