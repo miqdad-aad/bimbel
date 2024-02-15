@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\models\SoalModels;
+use App\Models\SoalModels;
 use DB;
 use Str;
 

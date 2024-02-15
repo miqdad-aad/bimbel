@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use DB;
-use App\models\Pembelajaran;
+use App\Models\Pembelajaran;
 
 class KategoriSoalModels extends Model
 {

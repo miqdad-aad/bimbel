@@ -12,6 +12,7 @@ class KegiatanModels extends Model
     use HasFactory;
     protected $table ="m_kegiatan";
     protected $guarded = ['id'];
+    protected $appends = ['url_gambar'];
 
     public function addKegiatan($request)
     {
@@ -32,5 +33,11 @@ class KegiatanModels extends Model
         } catch (\Exception $e) {
             dd($e->getMessage());
         }
+    }
+
+    public function getUrlGambarAttribute()
+    {
+        return asset('public/kegiatan/'. $this->gambar);
+
     }
 }

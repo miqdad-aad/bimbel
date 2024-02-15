@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\MasterPaketModels;
-use App\models\KategoriSoalModels;
-use App\models\Pembelajaran;
+use App\Models\MasterPaketModels;
+use App\Models\KategoriSoalModels;
+use App\Models\Pembelajaran;
 use DB;
 use Str;
 use DataTables;

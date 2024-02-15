@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\models\MasterPaketModels;
-use App\models\Pembelajaran;
+use App\Models\MasterPaketModels;
+use App\Models\Pembelajaran;
 
 class SoalModels extends Model
 {
