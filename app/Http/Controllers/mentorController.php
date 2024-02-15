@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\MentorModels;
+use App\Models\MentorModels;
 use DataTables;
 
 class MentorController extends Controller

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\SekolahKedinasanModels;
+use App\Models\SekolahKedinasanModels;
 use DataTables;
 use DB;
 

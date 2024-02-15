@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\MasterPaketModels;
+use App\Models\MasterPaketModels;
 use DataTables;
 
 class MasterPaketController extends Controller
