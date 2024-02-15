@@ -140,12 +140,14 @@
                     if (response) {
                         this.reset();
                         // alert('Image has been uploaded successfully');
+                        toastr.success('Kategori Soal', 'Sudah Dimasukkan');
                         $('#modal7').modal('hide');
                         table.ajax.reload(null, false);
                     }
                 },
                 error: function (response) {
                     console.log(response);
+                    toastr.error('Kategori Soal', 'Error');
                     $('#image-input-error').text(response.responseJSON.errors.file);
                 }
             });

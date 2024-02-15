@@ -190,6 +190,7 @@
                 success: (response) => {
                     if (response) {
                         this.reset();
+                        toastr.success('Paket', 'Sudah Dimasukkan');
                         $('#modal7').modal('hide');
                         table.ajax.reload(null, false);
                     }

@@ -140,6 +140,7 @@
                     if (response) {
                         this.reset();
                         // alert('Image has been uploaded successfully');
+                        toastr.success('Sekolah Kedinasan', 'Sudah Dimasukkan');
                         $('#modal7').modal('hide');
                         table.ajax.reload(null, false);
                     }

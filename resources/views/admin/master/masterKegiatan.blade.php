@@ -166,6 +166,7 @@
                     if (response) {
                         this.reset();
                         // alert('Image has been uploaded successfully');
+                        toastr.success('Kegiatan', 'Sudah Dimasukkan');
                         $('#modal7').modal('hide');
                         table.ajax.reload(null, false);
                     }

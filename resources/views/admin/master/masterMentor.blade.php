@@ -170,6 +170,7 @@
                     if (response) {
                         this.reset();
                         // alert('Image has been uploaded successfully');
+                        toastr.success('Mentor', 'Sudah Dimasukkan');
                         $('#modal7').modal('hide');
                         table.ajax.reload(null, false);
                     }

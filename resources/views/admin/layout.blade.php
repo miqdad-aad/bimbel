@@ -52,6 +52,7 @@ License: For each use you must have a valid license purchased only from above li
     <link href="{{ asset ('assetsAdmin/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
   
     <!--end::Global Stylesheets Bundle-->
 </head>
@@ -1034,6 +1035,7 @@ License: For each use you must have a valid license purchased only from above li
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/datetime/1.4.1/js/dataTables.dateTime.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/fileinput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Page Vendors Javascript(used by this page)-->
     <script src="{{ asset ('assetsAdmin/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
@@ -1056,6 +1058,24 @@ License: For each use you must have a valid license purchased only from above li
                 removeMaskOnSubmit: true
             });
         })
+    </script>
+    <script>
+        function error(message){
+                toastr.options =
+                {
+                    "closeButton" : true,
+                    "progressBar" : true
+                }
+                toastr.error(message);
+            }
+            function success(message){
+                toastr.options =
+                {
+                    "closeButton" : true,
+                    "progressBar" : true
+                }
+                toastr.success(message);
+            }
     </script>
     @yield('page-js')
     <!--end::Page Custom Javascript-->

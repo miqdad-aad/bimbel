@@ -81,9 +81,9 @@ class AuthController extends Controller
         if (Auth::attempt(['email' => $user->email, 'password' => $request->password]) ||
             Auth::attempt(['username' => $user->username, 'password' => $request->password])) {
             Auth::loginUsingId($user->id);
-            return redirect('/');
+            return redirect('/')->with('success', 'Login Sukses');
         } else {
-            return redirect()->back()->withErrors(['password' => 'Invalid login credentials']);
+            return back()->withInput($request->only('email', 'remember'))->with(['warning' => 'Login Gagal']);
         }
     }
 

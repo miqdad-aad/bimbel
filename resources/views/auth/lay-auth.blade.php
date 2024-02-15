@@ -37,6 +37,7 @@ License: For each use you must have a valid license purchased only from above li
     <!--begin::Global Stylesheets Bundle(used by all pages)-->
     <link href="{{ asset('assetsAdmin/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assetsAdmin/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
     <!--end::Global Stylesheets Bundle-->
 </head>
 <!--end::Head-->
@@ -46,9 +47,28 @@ License: For each use you must have a valid license purchased only from above li
     <!--begin::Main-->
     <!--begin::Root-->
     @yield('content')
+    <script>
+        function error(message){
+                toastr.options =
+                {
+                    "closeButton" : true,
+                    "progressBar" : true
+                }
+                toastr.error(message);
+            }
+            function success(message){
+                toastr.options =
+                {
+                    "closeButton" : true,
+                    "progressBar" : true
+                }
+                toastr.success(message);
+            }
+    </script>
     <!--begin::Global Javascript Bundle(used by all pages)-->
     <script src="{{ asset('assetsAdmin/assets/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('assetsAdmin/assets/js/scripts.bundle.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </body>
 <!--end::Body-->
 
