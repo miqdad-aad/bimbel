@@ -8,6 +8,7 @@ use App\Http\Controllers\SekolahKedinasanController;
 use App\Http\Controllers\SoalController;
 use App\Http\Controllers\MasterPaketController;
 use App\Http\Controllers\PembelajaranController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,15 @@ Route::get('/', function () {
     return view('admin.dashboard.dashboard');
 });
 
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/login', 'login')->name('login');
+    Route::post('/loginStore', 'loginStore')->name('loginStore');
+    Route::get('/registerMentor', 'registerMentor')->name('registerMentor');
+    Route::post('/registerMentorStore', 'registerMentorStore')->name('registerMentorStore');
+    Route::get('/registerSiswa', 'registerSiswa')->name('registerSiswa');
+    Route::post('/registerSiswaStore', 'registerSiswaStore')->name('registerSiswaStore');
+    Route::get('/logout', 'logout')->name('logout');
+});
 Route::controller(KategoriSoalController::class)->group(function () {
     Route::get('/masterKategoriSoal', 'index')->name('masterKategoriSoal');
     Route::post('/postKategoriSoal', 'store')->name('postKategoriSoal');
