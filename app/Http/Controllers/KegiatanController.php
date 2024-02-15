@@ -107,6 +107,7 @@ class KegiatanController extends Controller
      */
     public function destroy($id)
     {
+        
         KegiatanModels::where('id_kegiatan',$id)->delete();
         return response()->json(['status' => 200]);
     }

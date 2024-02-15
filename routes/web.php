@@ -55,7 +55,6 @@ Route::controller(KegiatanController::class)->group(function () {
 Route::controller(MasterPaketController::class)->group(function () {
     Route::get('/paketSoal', 'index')->name('masterPaket');
     Route::post('/addPaket', 'store')->name('addPaket');
-    Route::get('/deleteKegiatan/{hapus}', 'destroy')->name('deleteKegiatan');
 });
 
 Route::controller(SekolahKedinasanController::class)->group(function () {
