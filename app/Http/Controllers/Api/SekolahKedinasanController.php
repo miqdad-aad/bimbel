@@ -17,36 +17,8 @@ class SekolahKedinasanController extends Controller
     public function sekolahKedinasanApi(Request $request)
     {
         $data = SekolahKedinasanModels::with('detailSekolahKedinasan')->get();
-// $this->printJSON($data);
-        $datas = [];
-        if (!$data) {
-            $code = 400;
-            $data = array(
-                'status' => false,
-                'message' => 'Data Sekolah Kedinasan Tidak ditemukan',
-                'data' => '',
-            );
-        } else {
-            foreach ($data as $key => $value) {
-                $this->printJSON($value);
-                $arrays = array(
-                    'id_sekolah_kedinasan' => $value->id_sekolah_kedinasan,
-                    'nama_sekolah_kedinasan' => $value->nama_sekolah_kedinasan,
-                    'detail_sekolah_kedinasan' => $value->detail_sekolah_kedinasan,
-                );
-                array_push( $datas, $arrays);
-                
-            }
-            $code = 200;
-            $data = array(
-                'status' => true,
-                'message' => 'Data Sekolah Kedinasan ditemukan',
-                'data' => $datas,
-            );
-            $this->printJSON($data);
-        }
-
-        return response($data, $code);
+        if(!empty($data)) return response(array('total_data' => count($data), 'message' => 'data ditemukan', 'data' => $data), 200);
+        return response(array('total_data' => count($data), 'message' => 'data tidak ditemukan', 'data' => $data), 400);
         
     }
     function printJSON($v){
