@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 use Str;
+use Hash;
+use App\Models\User;
 use Illuminate\Support\Facades\File;
 
 class MentorModels extends Model
@@ -18,6 +20,7 @@ class MentorModels extends Model
     {
         DB::beginTransaction();
         try {
+            // dd($request);
             $file = $request->file('gambar');
             $filename = Str::slug($request->nama_mentor) . '.' . $file->getClientOriginalExtension();
             $file->move('public/mentor', $filename);
@@ -27,6 +30,15 @@ class MentorModels extends Model
                 'jabatan'=> $request->jabatan,
                 'deskripsi'=> $request->deskripsi,
                 'gambar'=> $filename,
+            ]);
+
+            User::create([
+                "name" => $request->name,
+                "username" => $request->username,
+                "email" => $request->email,
+                "password"=> Hash::make($request->password),
+                "role" => 2,
+                "is_active" => 1,
             ]);
 
             DB::commit();
@@ -40,16 +52,16 @@ class MentorModels extends Model
     {
         DB::beginTransaction();
         try {
+            // dd($request);
             $data = MentorModels::where('id_mentor', $request->id_mentor)->first();
 
             if($request->file('featured_img') == ""){
                 $filename=$data->gambar;
             }else{
-            }
-            
-                $file = $request->file('gambar');
+                $file = $request->file('gambar1');
                 $filename = Str::slug($request->nama_mentor) . '.' . $file->getClientOriginalExtension();
                 $file->move('public/mentor', $filename);
+            }
               MentorModels::where('id_mentor', $request->id_mentor)->update([
                 'nama_mentor' => $request->nama_mentor,
                 'jabatan'=> $request->jabatan,

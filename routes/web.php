@@ -21,25 +21,25 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.dashboard.dashboard');
-});
 
 Route::controller(AuthController::class)->group(function () {
-    Route::get('/login', 'login')->name('login');
-    Route::post('/loginStore', 'loginStore')->name('loginStore');
+    Route::get('/', 'login')->name('login');
+    Route::get('/homeAdmin', 'homeAdmin')->name('homeAdmin');
+    Route::get('/homeSiswa', 'homeSiswa')->name('homeSiswa')->middleware('isSiswa');
+    Route::get('/homeMentor', 'homeMentor')->name('homeMentor')->middleware('isMentor');
+    Route::post('/loginStore', 'loginStore')->name('loginStore')->middleware('cekstatus');
     Route::get('/registerMentor', 'registerMentor')->name('registerMentor');
     Route::post('/registerMentorStore', 'registerMentorStore')->name('registerMentorStore');
     Route::get('/registerSiswa', 'registerSiswa')->name('registerSiswa');
     Route::post('/registerSiswaStore', 'registerSiswaStore')->name('registerSiswaStore');
     Route::get('/logout', 'logout')->name('logout');
 });
-Route::controller(KategoriSoalController::class)->group(function () {
+Route::controller(KategoriSoalController::class)->middleware('isAdmin')->group(function () {
     Route::get('/masterKategoriSoal', 'index')->name('masterKategoriSoal');
     Route::post('/postKategoriSoal', 'store')->name('postKategoriSoal');
     Route::post('/updateKategoriSoal', 'update')->name('updateKategoriSoal');
 });
-Route::controller(MentorController::class)->group(function () {
+Route::controller(MentorController::class)->middleware('isAdmin')->group(function () {
     Route::get('/dataTentor', 'index')->name('dataTentor');
     Route::post('/addMentor', 'store')->name('addMentor');
     Route::post('/updateMentor', 'update')->name('updateMentor');
@@ -72,6 +72,7 @@ Route::controller(SoalController::class)->group(function () {
     Route::get('/tambah/soal', 'create')->name('soal.create');
     Route::post('/addSoal', 'store')->name('addSoal.store');
     Route::get('/deleteMentor/{hapus}', 'destroy')->name('deleteMentor');
+    Route::get('/downloadTemplateSoal', 'downloadTemplateSoal')->name('downloadTemplateSoal');
 });
 
 Route::controller(PembelajaranController::class)->group(function () {

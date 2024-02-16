@@ -10,6 +10,19 @@ use Auth;
 
 class AuthController extends Controller
 {
+    public function homeAdmin(Request $request)
+    {
+        return view('admin.dashboard.dashboard');
+    }
+    public function homeSiswa(Request $request)
+    {
+        return view('welcome');
+    }
+    public function homeMentor(Request $request)
+    {
+        return view('welcome');
+    }
+
     public function registerMentor(Request $request)
     {
         return view('auth.registerMentor');
@@ -51,11 +64,12 @@ class AuthController extends Controller
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
                 'role' => 2,
+                'is_active' => 0,
             ]);
 
-            return view('auth.login');
+            return redirect()->intended('login');
         }else {
-            return view('auth.registerMentor');
+            return redirect()->back();
         }
     }
 
@@ -68,20 +82,31 @@ class AuthController extends Controller
     public function loginStore(Request $request)
     {
         $login = $request->input('email');
-        $user = User::where('email', $login)->orWhere('username', $login)->first();
+        $user = User::where('email', $login)->orWhere('username', $login)
+        ->where('is_active', 1)
+        ->first();
     
         if (!$user) {
             return redirect()->back()->withErrors(['email' => 'Invalid login credentials']);
         }
     
-        $request->validate([
+        $credentials = $request->validate([
             'password' => 'required|min:8',
         ]);
     
+       
+
         if (Auth::attempt(['email' => $user->email, 'password' => $request->password]) ||
             Auth::attempt(['username' => $user->username, 'password' => $request->password])) {
             Auth::loginUsingId($user->id);
-            return redirect('/')->with('success', 'Login Sukses');
+            if (auth()->user()->role == 1) {
+                return redirect('/homeAdmin')->with('success', 'Login Sukses');
+            }if (auth()->user()->role == 2) {
+                return redirect('/homeMentor')->with('success', 'Login Sukses');
+            }if(auth()->user()->role == 3) {
+                return redirect('/homeSiswa')->with('success', 'Login Sukses');
+            }
+            
         } else {
             return back()->withInput($request->only('email', 'remember'))->with(['warning' => 'Login Gagal']);
         }
@@ -95,7 +120,7 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/');
     }
 
     public function registerSiswa(Request $request)
@@ -142,9 +167,10 @@ class AuthController extends Controller
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
                 'role' => 3,
+                'is_active' => 1,
             ]);
 
-            return view('auth.login');
+            return redirect()->intended('login');
         }else {
             return redirect()->back();
         }

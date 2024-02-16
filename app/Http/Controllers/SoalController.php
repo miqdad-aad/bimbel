@@ -170,4 +170,10 @@ class SoalController extends Controller
     {
         //
     }
+
+    
+    public function downloadTemplateSoal(){
+        $file="template/template_soal.xlsx";
+        return response()->download(public_path($file));
+    }
 }

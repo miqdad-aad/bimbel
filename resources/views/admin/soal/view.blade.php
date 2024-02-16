@@ -27,14 +27,21 @@
         <div class="card card-xl-stretch mb-5 mb-xl-8">
             <div class="card-body py-3">
                 <div class="row">
-                    <div class="col-xl-6">
+                    <div class="col-xl-10">
                         <div class="btn-group">
-                            <a class="btn btn-primary" href="{{ route('soal.create', ['id_materi' => isset($_GET['id_materi']) ? $_GET['id_materi'] : '' ]) }}"><i class="fas fa-plus"></i></a>
+                            <a class="btn btn-primary"
+                                href="{{ route('soal.create', ['id_materi' => isset($_GET['id_materi']) ? $_GET['id_materi'] : '' ]) }}"><i
+                                    class="fas fa-plus"></i></a>
                             <a href="" class="btn btn-sm btn-light text-muted"><i
                                     class="fas fa-sync-alt"></i></a>&nbsp;&nbsp;
+                            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal7"><i
+                                    class="fas fa-plus"></i>Excel</a>
                         </div>
                     </div>
-                    
+                    <div class="col-xl-2">
+                        <a class="btn btn-info" href="{{route('downloadTemplateSoal')}}"><i class="fas fa-download"></i>Template Excel</a>
+
+                    </div>
                 </div>
                 <div class="table-responsive mt-3">
                     <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4 fs-9"
@@ -58,15 +65,42 @@
         </div>
     </div>
 </div>
- 
+<div class="modal fade " id="modal7" aria-modal="true" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="addkategori">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title">Masukkan Excel</h5><button type="button"
+                        class="btn btn-label-danger btn-icon" data-bs-dismiss="modal"><i
+                            class="fa fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="file"
+                                accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary " id="btn-close"
+                        data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary btn-tambah">Simpan</button>
+                    <button type="button" style="display:none" class="btn btn-primary btn-update">perbarui</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection
 @section('page-js')
 <script>
-    
-    </script>
+
+</script>
 <script>
-    function renderForm(i = null){
-        if(i == null){
+    function renderForm(i = null) {
+        if (i == null) {
             document.getElementById("addmentor").reset();
             $('#addmentor').find('.id_paket').remove();
             $(".input-file").fileinput('destroy');
@@ -74,14 +108,15 @@
                 'showUpload': false,
                 'previewFileType': 'any',
             });
-        }else{
+        } else {
             $('#addmentor').append(`<input type="hidden" class="id_paket" name="id_paket" value="${i.id_paket}" />`);
             $(".input-file").fileinput('destroy');
             $(".input-file").fileinput({
                 'showUpload': false,
                 'previewFileType': 'any',
                 initialPreview: [
-                    "<img src='"+ i.url_gambar +"' class='file-preview-image' alt='Desert' title='Desert'>"
+                    "<img src='" + i.url_gambar +
+                    "' class='file-preview-image' alt='Desert' title='Desert'>"
                 ]
             });
         }
@@ -95,13 +130,13 @@
             serverSide: true,
             "searching": true,
             filter: true,
-            ajax  : {
+            ajax: {
                 url: "{{ route('soal.view') }}",
                 data: function (d) {
                     d.id_materi = "{{ isset($_GET['id_materi']) ? $_GET['id_materi'] : '' }}"
                     return d;
                 }
-                
+
             },
             columns: [{
                     data: 'DT_RowIndex',
@@ -123,7 +158,7 @@
                     name: 'name',
                     className: 'text-center'
                 },
-                
+
                 {
                     data: 'action',
                     name: 'action',
@@ -169,12 +204,12 @@
             $('.nama_paket').val(params.nama_paket);
             $('.deskripsi').val(params.deskripsi);
             $('.harga').val(params.harga);
-            if(params.gambar != null){
+            if (params.gambar != null) {
                 renderForm(params)
             }
             $('#modal7').modal('show');
         });
-       
+
 
         $(document).on('click', '.btn-hapus',
             function () {
