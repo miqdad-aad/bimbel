@@ -16,35 +16,8 @@ class MentorController extends Controller
     public function mentor()
     {
         $data = MentorModels::all();
-        $datas = [];
-        if (!$data) {
-            $code = 400;
-            $data = array(
-                'status' => false,
-                'message' => 'Data Mentor Tidak ditemukan',
-                'data' => '',
-            );
-        } else {
-            foreach ($data as $key => $value) {
-                // dd($value);
-                $arrays = array(
-                    'id_mentor' => $value->id_mentor,
-                    'nama_mentor' => $value->nama_mentor,
-                    'jabatan' => $value->jabatan,
-                    'deskripsi' => $value->deskripsi,
-                    'gambar' => $value->gambar,
-                );
-                array_push( $datas, $arrays);
-            }
-            $code = 200;
-            $data = array(
-                'status' => true,
-                'message' => 'Data Mentor ditemukan',
-                'data' => $datas,
-            );
-        }
-
-        return response($data, $code);
+        if(!empty($data)) return response(array('total_data' => count($data), 'message' => 'data ditemukan', 'data' => $data), 200);
+        return response(array('total_data' => count($data), 'message' => 'data tidak ditemukan', 'data' => $data), 400);
     }
 
     /**

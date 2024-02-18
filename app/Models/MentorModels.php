@@ -15,6 +15,7 @@ class MentorModels extends Model
     use HasFactory;
     protected $table ="m_mentor";
     protected $guarded = ['id'];
+    protected $appends = ['url_gambar'];
 
     public function addMentor($request)
     {
@@ -76,5 +77,12 @@ class MentorModels extends Model
         } catch (\Exception $e) {
             dd($e->getMessage());
         }
+    }
+
+    public function getUrlGambarAttribute()
+    {
+        if(empty($this->gambar)) return "https://isobarscience-1bfd8.kxcdn.com/wp-content/uploads/2020/09/default-profile-picture1.jpg";
+        return asset('public/mentor/'. $this->gambar);
+
     }
 }
