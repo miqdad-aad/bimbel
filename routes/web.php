@@ -79,6 +79,7 @@ Route::controller(SekolahKedinasanController::class)->group(function () {
 Route::controller(SoalController::class)->group(function () {
     Route::get('/soal', 'index')->name('soal.view');
     Route::get('/edit/soal/{id}', 'edit')->name('soal.edit');
+    Route::post('/update/soal', 'update')->name('soal.update');
     Route::get('/tambah/soal', 'create')->name('soal.create');
     Route::post('/addSoal', 'store')->name('addSoal.store');
     Route::get('/deleteMentor/{hapus}', 'destroy')->name('deleteMentor');

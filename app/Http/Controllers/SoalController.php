@@ -31,7 +31,7 @@ class SoalController extends Controller
              return DataTables::of($data)
                      ->addIndexColumn()
                      ->addColumn('action', function($row){
-                       $btn = '  <a href="'. url('edit/soal/'. $row->id_soal) .'" class="edit btn btn-info btn-sm btn-edit">Edit</a>';
+                       $btn = '  <a href="'. url('edit/soal/'. $row->id_soal) .'" class="edit btn btn-info btn-sm ">Edit</a>';
                        $btn .= ' <a type="button"  class="delete btn btn-danger btn-sm btn-hapus">Delete</a>';
    
                         return $btn;
@@ -155,9 +155,54 @@ class SoalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        // dd($request);
+        DB::beginTransaction();
+        try {
+            $data = SoalModels::where('id_soal', $request->id_soal)->first();
+            $filename = '';
+            if($request->file('file_tambahan_soal') == ""){
+                $filename=$data->file_tambahan;
+            }else{
+                $file = $request->file('file_tambahan_soal');
+                $filename = Str::slug($request->file_tambahan_soal) . '.' . $file->getClientOriginalExtension();
+                $file->move('public/soal', $filename);    
+            }
+            // dd($filename);
+            SoalModels::where('id_soal', $request->id_soal)->update([
+                'pertanyaan' => $request->pertanyaan,
+                'score' => $request->score,
+                'id_paket' => $request->id_paket,
+                'id_materi' => $request->id_materi,
+                'file_tambahan' => $filename,
+                'id_kategori_soal' => isset($request->id_kategori_soal) ? $request->id_kategori_soal : 0
+            ]);
+            JawabanSoalModels::where('id_soal', $request->id_soal)->delete();
+            foreach($request->kode_jawaban as $i => $k){
+
+                $filename = '';
+                if(!empty($request->file_tambahan[$i])){
+                    $file = $request->file_tambahan[$i];
+                    $filename = Str::slug($request->file_tambahan_soal) . '.' . $file->getClientOriginalExtension();
+                    $file->move('public/jawaban', $filename);    
+                }
+
+                JawabanSoalModels::insert([
+                    'kode_jawaban' => $k,
+                    'id_soal' => $request->id_soal,
+                    'keterangan' => $request->keterangan[$i],
+                    'is_true' => isset($request->is_true[$i]) ? 1 : 0,
+                    'file_tambahan' => $filename,
+                ]);
+
+
+            }
+            DB::commit();
+            return redirect('soal?id_materi='. (isset($request->id_materi) ? $request->id_materi : ''));
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
     }
 
     /**

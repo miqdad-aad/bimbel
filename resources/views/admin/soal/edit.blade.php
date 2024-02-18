@@ -25,8 +25,9 @@
 <div class="row gy-5 g-xl-8">
     <div class="col-xl-12">
         <div class="card card-xl-stretch mb-5 mb-xl-8">
-            <form action="{{ route('addSoal.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('soal.update') }}" method="post" enctype="multipart/form-data">
                 @csrf
+                <input type="text" value="{{ $soal->id_soal }}" name="id_soal" hidden>
                 <div class="card-body py-3">
                     <div class="row form-group">
                         <div class="col-sm-12 form-group">
