@@ -29,8 +29,7 @@
                 <div class="row">
                     <div class="col-xl-6">
                         <div class="btn-group">
-                            <a onclick="renderForm()" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#modal7"><i class="fas fa-plus"></i></a>
+                            <a href="{{ route('addPaketBimbel') }}" class="btn btn-primary" ><i class="fas fa-plus"></i></a>
                             <a href="" class="btn btn-sm btn-light text-muted"><i
                                     class="fas fa-sync-alt"></i></a>&nbsp;&nbsp;
                         </div>
