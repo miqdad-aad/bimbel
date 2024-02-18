@@ -11,4 +11,9 @@ class PaketBimbelModels extends Model
     protected $table ="m_paket_bimbel";
     protected $guard = '*';
 
+    public function detailPaket()
+    {
+        return $this->hasMany(DetailPaketBimbel::class,'id_paket_bimbel','id_paket_bimbel');
+    }
+
 }

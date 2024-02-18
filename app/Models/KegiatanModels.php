@@ -37,7 +37,6 @@ class KegiatanModels extends Model
 
     public function getUrlGambarAttribute()
     {
-        if(empty($this->gambar)) return "https://isobarscience-1bfd8.kxcdn.com/wp-content/uploads/2020/09/default-profile-picture1.jpg";
         return asset('public/kegiatan/'. $this->gambar);
 
     }
