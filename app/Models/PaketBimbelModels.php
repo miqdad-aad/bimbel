@@ -9,6 +9,17 @@ class PaketBimbelModels extends Model
 {
     use HasFactory;
     protected $table ="m_paket_bimbel";
-    protected $guard = '*';
+    protected $guard = 'id_paket_bimbel';
+
+    public function paketBimbel()
+    {
+        return $this->belongsTo(PaketBimbelModels::class,'id_paket_bimbel','id_paket_bimbel');
+    }
+    
+    public function detailPaket()
+    {
+        return $this->belongsTo(DetailPaketBimbel::class,'id_paket_bimbel','id_paket_bimbel');
+
+    }
 
 }

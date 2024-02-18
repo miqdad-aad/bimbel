@@ -7,6 +7,7 @@ use App\Models\MasterPaketModels;
 use App\Models\KategoriSoalModels;
 use App\Models\PaketBimbelModels;
 use App\Models\DetailPaketBimbel;
+use App\Models\Pembelajaran;
 use DataTables;
 use DB;
 
@@ -24,7 +25,7 @@ class PaketBimbelController extends Controller
              return DataTables::of($data)
                      ->addIndexColumn()
                      ->addColumn('action', function($row){
-                       $btn = '  <a href="javascript:void(0)" data-id="'. $row->id_kategori_soal .'" class="edit btn btn-info btn-sm btn-edit">Edit</a>';
+                        $btn = '  <a href="'. url('editPaketBimbel/'. $row->id_paket_bimbel) .'" class="edit btn btn-info btn-sm">Edit</a>';
    
                         return $btn;
                      })
@@ -42,7 +43,7 @@ class PaketBimbelController extends Controller
     public function create()
     {
         
-        $kategori = KategoriSoalModels::all();
+        $kategori = Pembelajaran::all();
        return view('admin.master.addMasterPaket', compact('kategori'));
     }
 
@@ -100,7 +101,13 @@ class PaketBimbelController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = PaketBimbelModels::with('detailPaket')->where('id_paket_bimbel', $id)->first();
+        $detail = DetailPaketBimbel::where('id_paket_bimbel', $id)
+        ->leftjoin('m_pembelajaran', 'detail_paket_bimbel.id_materi', 'm_pembelajaran.id_materi')
+        ->get();
+        $kategori = Pembelajaran::all();
+        // dd($detail);
+        return view('admin.master.editMasterPaketBimbel', compact('data', 'detail', 'kategori'));
     }
 
     /**
@@ -110,9 +117,34 @@ class PaketBimbelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        // dd($request);
+        DB::beginTransaction();
+        try {
+            PaketBimbelModels::where('id_paket_bimbel', $request->id_paket_bimbel)->update([
+                'nama_paket_bimbel' => $request->nama_paket,
+                'deskripsi_paket' => $request->deskripsi_paket,
+                'harga_paket_bimbel' => $request->harga,
+                'kuota_peserta' => $request->kuota,
+                'status_aktif' => 1,
+                'tanggal_mulai' => $request->tanggal_mulai,
+                'tanggal_selesai' => $request->tanggal_selesai,
+            ]);
+            DetailPaketBimbel::where('id_paket_bimbel', $request->id_paket_bimbel)->delete();
+
+            for ($i=0; $i < count($request->id_kategori_soal) ; $i++) { 
+                
+                DetailPaketBimbel::insert([
+                    'id_paket_bimbel' => $request->id_paket_bimbel,
+                    'id_materi' => $request->id_kategori_soal[$i],
+                ]); 
+            }
+            DB::commit();
+            return redirect('homeAdmin');
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
     }
 
     /**

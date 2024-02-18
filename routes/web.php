@@ -63,6 +63,8 @@ Route::controller(PaketBimbelController::class)->group(function () {
     Route::get('/paketBimbel', 'index')->name('paketBimbel');
     Route::get('/addPaketBimbel', 'create')->name('addPaketBimbel');
     Route::post('/storePaketBimbel', 'store')->name('storePaketBimbel');
+    Route::get('/editPaketBimbel/{id}', 'edit')->name('editPaketBimbel');
+    Route::post('/updatePaketBimbel', 'update')->name('updatePaketBimbel');
 });
 
 Route::controller(SekolahKedinasanController::class)->group(function () {

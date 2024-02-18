@@ -25,32 +25,60 @@
 <div class="row gy-5 g-xl-8">
     <div class="col-xl-12">
         <div class="card card-xl-stretch mb-5 mb-xl-8">
-            <form action="{{ route('storePaketBimbel') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('updatePaketBimbel') }}" method="post" enctype="multipart/form-data">
                 @csrf
+                <input type="text" hidden name="id_paket_bimbel" value="{{ $data->id_paket_bimbel }}">
                 <div class="card-body py-3">
                     <div class="row form-group">
                         <div class="col-sm-12 form-group">
-                            <label for=""><p><h3>Nama Paket Bimbel</h3></p></label>
-                            <input type="text" name="nama_paket" class="form-control">
+                            <label for="">
+                                <p>
+                                    <h3>Nama Paket Bimbel</h3>
+                                </p>
+                            </label>
+                            <input type="text" name="nama_paket" class="form-control"
+                                value="{{ $data->nama_paket_bimbel }}">
                         </div>
                         <div class="col-sm-12 form-group">
-                            <label for=""><p><h3>Deskripsi Paket</h3></p></label>
-                            <textarea name="deskripsi_paket" cols="10" class="form-control" rows="10"></textarea>
+                            <label for="">
+                                <p>
+                                    <h3>Deskripsi Paket</h3>
+                                </p>
+                            </label>
+                            <textarea name="deskripsi_paket" cols="10" class="form-control"
+                                rows="10">{{ $data->deskripsi_paket }}</textarea>
                         </div>
                         <div class="col-sm-3 form-group">
-                            <label for=""><p><h3>Harga</h3></p></label>
-                            <input type="number" name="harga" class="form-control">
+                            <label for="">
+                                <p>
+                                    <h3>Harga</h3>
+                                </p>
+                            </label>
+                            <input type="number" name="harga" class="form-control"
+                                value="{{ $data->harga_paket_bimbel }}">
                         </div>
                         <div class="col-sm-3 form-group">
-                            <label for=""><p><h3>Kuota Peserta</h3></p></label>
-                            <input type="number" name="kuota" class="form-control">
+                            <label for="">
+                                <p>
+                                    <h3>Kuota Peserta</h3>
+                                </p>
+                            </label>
+                            <input type="number" name="kuota" class="form-control" value="{{ $data->kuota_peserta }}">
                         </div>
                         <div class="col-sm-3 form-group">
-                            <label for=""><p><h3>Tanggal Mulai</h3></p></label>
+                            <label for="">
+                                <p>
+                                    <h3>Tanggal Mulai</h3>
+                                </p>
+                            </label>
                             <input type="date" name="tanggal_mulai" class="form-control">
                         </div>
                         <div class="col-sm-3 form-group">
-                            <label for=""><p><h3>Tanggal Selesai</h3></p></label>
+                            <label for="">
+                                <p>
+                                    <h3>Tanggal Selesai</h3>
+                                </p>
+                            </label>
                             <input type="date" name="tanggal_selesai" class="form-control">
                         </div>
                     </div>
@@ -65,11 +93,25 @@
                                     <tr class="text-center">
                                         <th>Nama Materi</th>
                                         <th>
-                                            <button class="btn btn-sm btn-success add-jawaban" type="button"><i class="fa fa-plus-circle"></i></button>
+                                            <button class="btn btn-sm btn-success add-jawaban" type="button"><i
+                                                    class="fa fa-plus-circle"></i></button>
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody class="body-jawaban">
+                                    @foreach($detail as $t)
+                                    <tr class="text-center">
+                                        <td class="text-center"><select class="select2class form-control" name="id_kategori_soal[]">
+                                            <option value="{{ $t->id_materi }}">{{ $t->judul_materi }}</option>
+                                            @foreach($kategori as $h)
+                                                <option value="{{ $h->id_materi }}">{{ $h->judul_materi }}</option>
+                                            @endforeach
+                                        </select></td>
+                                        </td>
+                                        <td><button class="btn btn-sm btn-danger" type="button"><i
+                                                    class="fa fa-trash"></i></button></td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -87,11 +129,11 @@
 @endsection
 @section('page-js')
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#summernote').summernote();
         $('.select2class').select2({});
-        
-        $(document).on('click','.add-jawaban', function(){
+
+        $(document).on('click', '.add-jawaban', function () {
             $('.body-jawaban').append(`<tr class="text-center">
                 <td class="text-center"><select class="select2class form-control" name="id_kategori_soal[]">
                                 @foreach($kategori as $h)
@@ -105,12 +147,12 @@
         });
 
         $(".input-file").fileinput({
-                'showUpload': false,
-                'previewFileType': 'any',
-            });
+            'showUpload': false,
+            'previewFileType': 'any',
+        });
     });
 
-    function generateCodeJawaban(){
+    function generateCodeJawaban() {
         let i = 0;
         let alphabetArray = [];
 
@@ -118,12 +160,13 @@
             alphabetArray.push(String.fromCharCode(i));
         }
 
-        $('.body-jawaban').find('tr').each(function(){
+        $('.body-jawaban').find('tr').each(function () {
             var kode = alphabetArray[i];
             $(this).find('.kode-jawaban').val(kode);
             i++;
         })
     }
+
 </script>
 
 @endsection
