@@ -22,4 +22,9 @@ class PaketBimbelModels extends Model
 
     }
 
+    public function detailPaket()
+    {
+        return $this->hasMany(DetailPaketBimbel::class,'id_paket_bimbel','id_paket_bimbel');
+    }
+
 }

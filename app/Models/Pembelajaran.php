@@ -74,5 +74,5 @@ class Pembelajaran extends Model
         } catch (\Exception $e) {
             dd($e->getMessage());
         }
-    }
+    } 
 }
