@@ -32,13 +32,14 @@ License: For each use you must have a valid license purchased only from above li
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="url" content="{{ url('') }}" />
 
-    
+
     <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
     <link rel="shortcut icon" href="{{ asset ('assetsAdmin/assets/media/logos/favicon.ico') }}" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/css/fileinput.min.css" media="all"
+        rel="stylesheet" type="text/css" />
     <!--end::Fonts-->
     <!--begin::Page Vendor Stylesheets(used by this page)-->
     <link href="{{ asset ('assetsAdmin/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet"
@@ -53,7 +54,7 @@ License: For each use you must have a valid license purchased only from above li
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
-  
+
     <!--end::Global Stylesheets Bundle-->
 </head>
 
@@ -171,11 +172,11 @@ License: For each use you must have a valid license purchased only from above li
                                         </a>
                                     </div>
                                     <div class="menu-item">
-                                        <a class="menu-link" href="../../demo1/dist/pages/team.html">
+                                        <a class="menu-link" href="{{ url('paketBimbel') }}">
                                             <span class="menu-bullet">
                                                 <span class="bullet bullet-dot"></span>
                                             </span>
-                                            <span class="menu-title">Master data Paket</span>
+                                            <span class="menu-title">Master data Paket Bimbel</span>
                                         </a>
                                     </div>
                                     <div class="menu-item">
@@ -252,7 +253,7 @@ License: For each use you must have a valid license purchased only from above li
                                             <span class="menu-title">Master Soal</span>
                                         </a>
                                     </div>
-                                   
+
                                 </div>
                                 <div class="menu-sub menu-sub-accordion menu-active-bg">
                                     <div class="menu-item">
@@ -263,7 +264,7 @@ License: For each use you must have a valid license purchased only from above li
                                             <span class="menu-title">Pembelajaran</span>
                                         </a>
                                     </div>
-                                   
+
                                 </div>
                             </div>
                             <div class="menu-item">
@@ -340,7 +341,7 @@ License: For each use you must have a valid license purchased only from above li
                             <div class="d-flex align-items-stretch" id="kt_header_nav">
                             </div>
                             <div class="d-flex align-items-stretch flex-shrink-0">
-                                
+
                                 <div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
                                     <!--begin::Menu wrapper-->
                                     <div class="cursor-pointer symbol symbol-30px symbol-md-40px"
@@ -540,8 +541,7 @@ License: For each use you must have a valid license purchased only from above li
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-5">
-                                            <a href="{{ route('logout') }}"
-                                                class="menu-link px-5">Sign Out</a>
+                                            <a href="{{ route('logout') }}" class="menu-link px-5">Sign Out</a>
                                         </div>
                                         <!--end::Menu item-->
                                         <!--begin::Menu separator-->
@@ -728,7 +728,7 @@ License: For each use you must have a valid license purchased only from above li
                             </div>
                         </div>
                         <!--end::License-->
-                     
+
                         <!--end::Demos-->
                     </div>
                     <!--end::Wrapper-->
@@ -1053,29 +1053,30 @@ License: For each use you must have a valid license purchased only from above li
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             $(".input-mask").inputmask({
                 removeMaskOnSubmit: true
             });
         })
+
     </script>
     <script>
-        function error(message){
-                toastr.options =
-                {
-                    "closeButton" : true,
-                    "progressBar" : true
-                }
-                toastr.error(message);
+        function error(message) {
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true
             }
-            function success(message){
-                toastr.options =
-                {
-                    "closeButton" : true,
-                    "progressBar" : true
-                }
-                toastr.success(message);
+            toastr.error(message);
+        }
+
+        function success(message) {
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true
             }
+            toastr.success(message);
+        }
+
     </script>
     @yield('page-js')
     <!--end::Page Custom Javascript-->
