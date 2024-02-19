@@ -180,7 +180,7 @@ class SoalController extends Controller
             ]);
             JawabanSoalModels::where('id_soal', $request->id_soal)->delete();
             foreach($request->kode_jawaban as $i => $k){
-
+                // dd($k);
                 $filename = '';
                 if(!empty($request->file_tambahan[$i])){
                     $file = $request->file_tambahan[$i];

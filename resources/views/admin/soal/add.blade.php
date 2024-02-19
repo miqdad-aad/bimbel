@@ -98,7 +98,7 @@
                 <td class="text-center"><input type="radio" name="is_true[]" /></td>
                 <td style="width:50%"> <textarea name="keterangan[]"  cols="30" class="form-control summernote-jawaban" rows="2"></textarea></td>
                 <td><input type="file"  name="file_tambahan[]" class="form-control form-control-sm" /></td>
-                <td><button class="btn btn-sm btn-danger" type="button"><i class="fa fa-trash"></i></button></td>
+                <td><button class="btn btn-sm btn-danger remove-input-field" type="button"><i class="fa fa-trash"></i></button></td>
             </tr>`);
 
             generateCodeJawaban()
@@ -108,6 +108,10 @@
                 'showUpload': false,
                 'previewFileType': 'any',
             });
+    });
+
+    $(document).on('click', '.remove-input-field', function () {
+        $(this).parents('tr').remove();
     });
 
     function generateCodeJawaban(){

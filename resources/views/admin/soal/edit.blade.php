@@ -82,7 +82,7 @@
                                             <a href="{{ asset('public/jawaban/'. $t->file_tambahan) }}" download>Download File</a>
                                             @endif
                                         </td>
-                                        <td><button class="btn btn-sm btn-danger" type="button"><i class="fa fa-trash"></i></button></td>
+                                        <td><button class="btn btn-sm btn-danger remove-input-field" type="button"><i class="fa fa-trash"></i></button></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -125,6 +125,10 @@
 
             generateCodeJawaban()
         })
+    });
+
+    $(document).on('click', '.remove-input-field', function () {
+        $(this).parents('tr').remove();
     });
 
     function generateCodeJawaban(){
