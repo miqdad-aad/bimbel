@@ -31,22 +31,40 @@
                 <div class="card-body py-3">
                     <div class="row form-group">
                         <div class="col-sm-12 form-group">
-                            <label for=""><p><h3>Uraian Soal</h3></p></label>
-                            <textarea name="pertanyaan"  cols="30" class="form-control" rows="10">{{ $soal->pertanyaan }}</textarea>
+                            <label for="">
+                                <p>
+                                    <h3>Uraian Soal</h3>
+                                </p>
+                            </label>
+                            <textarea name="pertanyaan" cols="30" class="form-control"
+                                rows="10">{{ $soal->pertanyaan }}</textarea>
                         </div>
                         <div class="col-sm-6 form-group">
-                            <label for=""><p><h3>File tambahan</h3></p></label>
+                            <label for="">
+                                <p>
+                                    <h3>File tambahan</h3>
+                                </p>
+                            </label>
                             <input type="file" name="file_tambahan_soal" class="form-control input-file">
                         </div>
                         <div class="col-sm-3 form-group">
-                            <label for=""><p><h3>Score</h3></p></label>
+                            <label for="">
+                                <p>
+                                    <h3>Score</h3>
+                                </p>
+                            </label>
                             <input type="number" name="score" class="form-control" value="{{ $soal->score }}">
                         </div>
                         <div class="col-sm-3 form-group">
-                            <label for=""><p><h3>Paket</h3></p></label>
+                            <label for="">
+                                <p>
+                                    <h3>Paket</h3>
+                                </p>
+                            </label>
                             <select class="select2class" name="id_paket">
                                 @foreach($paket as $h)
-                                    <option <?= $h->id_paket == $soal->id_paket ?> value="{{ $h->id_paket }}">{{ $h->nama_paket }}</option>
+                                <option <?= $h->id_paket == $soal->id_paket ?> value="{{ $h->id_paket }}">
+                                    {{ $h->nama_paket }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -66,23 +84,32 @@
                                         <th>File tambahan</th>
                                         <th>
 
-                                            <button class="btn btn-sm btn-success add-jawaban" type="button"><i class="fa fa-plus-circle"></i></button>
+                                            <button class="btn btn-sm btn-success add-jawaban" type="button"><i
+                                                    class="fa fa-plus-circle"></i></button>
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody class="body-jawaban">
                                     @foreach($jawab as $t)
                                     <tr class="text-center">
-                                        <td style="width:50px;" class="text-center"><input name="kode_jawaban[]" value="{{ $t->kode_jawaban }}" class="form-control form-control-sm kode-jawaban" /></td>
-                                        <td class="text-center"><input type="radio" name="is_true[]" <?= $t->is_true == 1 ? 'checked' : '' ?> /></td>
-                                        <td style="width:50%"> <textarea name="keterangan[]"  cols="30" class="form-control summernote-jawaban" rows="2">{{ $t->keterangan }}</textarea></td>
+                                        <td style="width:50px;" class="text-center"><input name="kode_jawaban[]"
+                                                value="{{ $t->kode_jawaban }}"
+                                                class="form-control form-control-sm kode-jawaban" /></td>
+                                        <td class="text-center"><input type="radio" id="r1" name="is_true[]"
+                                                <?= $t->is_true == 1 ? 'checked' : '' ?> /></td>
+                                        <td style="width:50%"> <textarea name="keterangan[]" cols="30"
+                                                class="form-control summernote-jawaban"
+                                                rows="2">{{ $t->keterangan }}</textarea></td>
                                         <td>
-                                            <input type="file"  name="file_tambahan[]" class="form-control form-control-sm" />
+                                            <input type="file" name="file_tambahan[]"
+                                                class="form-control form-control-sm" />
                                             @if(!empty($t->file_tambahan))
-                                            <a href="{{ asset('public/jawaban/'. $t->file_tambahan) }}" download>Download File</a>
+                                            <a href="{{ asset('public/jawaban/'. $t->file_tambahan) }}"
+                                                download>Download File</a>
                                             @endif
                                         </td>
-                                        <td><button class="btn btn-sm btn-danger remove-input-field" type="button"><i class="fa fa-trash"></i></button></td>
+                                        <td><button class="btn btn-sm btn-danger remove-input-field" type="button"><i
+                                                    class="fa fa-trash"></i></button></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -102,20 +129,27 @@
 @endsection
 @section('page-js')
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
+
+        if (document.getElementById('r1').checked) {
+            rate_value = document.getElementById('r1').value;
+        }
+        console.log(rate_value);
+        $("input[type='radio'][name='is_true']:checked").val();
+
         $(".input-file").fileinput({
-                'showUpload': false,
-                'previewFileType': 'any',
-                initialPreview: [
-                    "<img src='<?= asset('public/soal/'. $soal->file_tambahan) ?>' class='file-preview-image' alt='Desert' title='Desert'>"
-                ]
-            });
+            'showUpload': false,
+            'previewFileType': 'any',
+            initialPreview: [
+                "<img src='<?= asset('public/soal/'. $soal->file_tambahan) ?>' class='file-preview-image' alt='Desert' title='Desert'>"
+            ]
+        });
         $('#summernote').summernote();
         $('.select2class').select2({});
-        
-        $(document).on('click','.add-jawaban', function(){
+
+        $(document).on('click', '.add-jawaban', function () {
             $('.body-jawaban').append(
-            `<tr class="text-center">
+                `<tr class="text-center">
                 <td style="width:50px;" class="text-center"><input name="kode_jawaban[]" class="form-control form-control-sm kode-jawaban" /></td>
                 <td class="text-center"><input type="radio" name="is_true[]" /></td>
                 <td style="width:50%"> <textarea name="keterangan[]"  cols="30" class="form-control summernote-jawaban" rows="2"></textarea></td>
@@ -131,7 +165,7 @@
         $(this).parents('tr').remove();
     });
 
-    function generateCodeJawaban(){
+    function generateCodeJawaban() {
         let i = 0;
         let alphabetArray = [];
 
@@ -139,12 +173,13 @@
             alphabetArray.push(String.fromCharCode(i));
         }
 
-        $('.body-jawaban').find('tr').each(function(){
+        $('.body-jawaban').find('tr').each(function () {
             var kode = alphabetArray[i];
             $(this).find('.kode-jawaban').val(kode);
             i++;
         })
     }
+
 </script>
 
 @endsection

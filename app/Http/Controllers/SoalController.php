@@ -157,7 +157,7 @@ class SoalController extends Controller
      */
     public function update(Request $request)
     {
-        // dd($request);
+        dd($request);
         DB::beginTransaction();
         try {
             $data = SoalModels::where('id_soal', $request->id_soal)->first();
