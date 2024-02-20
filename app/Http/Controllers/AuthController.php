@@ -20,7 +20,7 @@ class AuthController extends Controller
     }
     public function homeMentor(Request $request)
     {
-        return view('welcome');
+        return view('mentor.dashboard.homeMentor');
     }
 
     public function registerMentor(Request $request)

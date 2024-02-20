@@ -59,6 +59,14 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="col-sm-6 form-group">
+                                    <label for=""><p><h3>Nama Mentor</h3></p></label>
+                                    <select class="select2class form-control" name="id_mentor">
+                                        @foreach($mentor as $m)
+                                            <option <?= isset($data->id) && $data->id == $m->id ?'selected' : '' ?> value="{{ $m->id }}">{{ $m->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <div class="col-sm-6">
                                     <label for=""><p><h3>Kategori Pembelajaran</h3></p></label><br>
                                     <select class="select2class form-control" name="id_kategori_pembelajaran">

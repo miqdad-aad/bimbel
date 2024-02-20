@@ -32,7 +32,7 @@ class MentorModels extends Model
                 'deskripsi'=> $request->deskripsi,
                 'gambar'=> $filename,
             ]);
-
+            $id = DB::getPdo()->lastInsertId();
             User::create([
                 "name" => $request->name,
                 "username" => $request->username,
@@ -40,8 +40,10 @@ class MentorModels extends Model
                 "password"=> Hash::make($request->password),
                 "role" => 2,
                 "is_active" => 1,
+                "id_user" => $id,
             ]);
-
+            
+            
             DB::commit();
             return true;
         } catch (\Exception $e) {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\MentorModels;
+use App\Models\User;
 use DataTables;
 
 class MentorController extends Controller
@@ -22,11 +23,12 @@ class MentorController extends Controller
     public function index(Request $request)
     {
         if($request->ajax() ){
-            $data = MentorModels::all();
+            $data = MentorModels::leftjoin('users as a', 'a.id_user', 'm_mentor.id_mentor')->where('role', 2)->get();
              return DataTables::of($data)
                      ->addIndexColumn()
                      ->addColumn('action', function($row){
                        $btn = '  <a href="javascript:void(0)" data-id="'. $row->id_mentor .'" class="edit btn btn-info btn-sm btn-edit">Edit</a>';
+                       $btn .= '  <a href="javascript:void(0)" data-id="'. $row->id .'" class="edit btn btn-success btn-sm btn-active">aktifkan</a>';
                        $btn .= ' <a type="button"  class="delete btn btn-danger btn-sm btn-hapus">Delete</a>';
    
                         return $btn;
@@ -103,6 +105,16 @@ class MentorController extends Controller
             return response()->json(['status' => 400]);
         }
     }
+
+    public function updateStatusMentor(Request $request)
+    {
+        User::where('id', $request->id)->update([
+            'is_active' => $request->is_active,
+        ]);
+
+        return response()->json(['status' => 200]);
+    }
+
 
     /**
      * Remove the specified resource from storage.

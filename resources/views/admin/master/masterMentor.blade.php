@@ -47,6 +47,7 @@
                                 <th>Nama Tentor</th>
                                 <th>Jabatan</th>
                                 <th>Gambar</th>
+                                <th>Active</th>
                                 <th width="250">Action</th>
                             </tr>
                         </thead>
@@ -155,6 +156,34 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="modal9" aria-modal="true" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="editAktif">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title">Aktivasi Mentor</h5><button type="button" class="btn btn-label-danger btn-icon"
+                        data-bs-dismiss="modal"><i class="fa fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-12">
+                        <label class="form-label">Status Mentor</label>
+                        <select name="is_active" class="form-control is_active">
+                            <option>Select</option>
+                            <option value="1">Active</option>
+                            <option value="0">Non Active</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btn-close"
+                        data-bs-dismiss="modal">Close</button>
+                    <button type="button" style="display:none" class="btn btn-primary btn-update-status">perbarui</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection
 @section('page-js')
 <script>
@@ -197,8 +226,21 @@
                     className: 'text-center',
                     render: function (meta, data, row, type) {
                         return '<img style="max-width: 100px;" src="' + url + '/' + row.gambar +
-                            '" />';
+                        '" />';
                     },
+                },
+                {
+                    data: 'is_active',
+                    name: 'name',
+                    className: 'text-center',
+                    render : function(meta,data,row){
+                        console.log(row);
+                        if(row.is_active == 1){
+                            return "<span class='badge badge-success'>Aktif</span>"
+                        }else{
+                            return "<span class='badge badge-danger'>Non Aktif</span>"
+                        }
+                    }
                 },
                 {
                     data: 'action',
@@ -253,6 +295,7 @@
             $('#modal8').modal('show');
 
         });
+
         $(document).on('click', '.btn-update', function () {
             var nama_mentor = $('.nama_mentor1').val();
             var gambar = $('.gambar1').val();
@@ -284,6 +327,40 @@
             });
             $('.btn-save').show()
             $('.btn-update').hide()
+        });
+
+        let = id = 0
+        $(document).on('click', '.btn-active', function () {
+            params = table.row($(this).closest('tr')).data();
+            id = params.id;
+            $('.is_active').val(params.is_active);
+            $('.btn-update-status').show()
+            $('#modal9').modal('show');
+
+        });
+
+        $(document).on('click', '.btn-update-status', function () {
+            var is_active = $('.is_active').val();
+            $('#modal9').modal('show');
+            $.ajax({
+                url: "{{ route('updateStatusMentor') }}",
+                type: "POST",
+                data: {
+                    is_active: is_active,
+                    id: id,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function (data) {
+                    toastr.success('Status Mentor berhasil di perbarui', 'Berhasil !!!');
+                    table.ajax.reload(null, false)
+                    $('#modal9').modal('hide');
+                },
+                error: function (data) {
+                    toastr.error(data.responseJSON.message, 'Error !!!');
+                    $('#modal9').modal('hide');
+                },
+            });
+            $('.btn-update-status').hide()
         });
 
         $(document).on('click', '.btn-hapus',
