@@ -29,7 +29,7 @@ class Pembelajaran extends Model
     {
         DB::beginTransaction();
         try {
-
+            // dd($request);
             if(isset($request->id_materi)){
                $oldData = Pembelajaran::where('id_materi', $request->id_materi)->first();
                $filename = $oldData->gambar;
@@ -47,6 +47,7 @@ class Pembelajaran extends Model
                     'typeMateri' => $request->typeMateri,
                     'id_kategori_soal' => $request->id_soal,
                     'gambar' => $filename,
+                    'id_mentor' => $request->id_mentor,
                 ]);
 
             }else{
@@ -65,6 +66,7 @@ class Pembelajaran extends Model
                     'typeMateri' => $request->typeMateri,
                     'id_kategori_soal' => $request->id_soal,
                     'gambar' => $filename,
+                    'id_mentor' => $request->id_mentor,
                 ]);
             }
 

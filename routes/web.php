@@ -44,6 +44,7 @@ Route::controller(MentorController::class)->group(function () {
     Route::get('/dataTentor', 'index')->name('dataTentor');
     Route::post('/addMentor', 'store')->name('addMentor');
     Route::post('/updateMentor', 'update')->name('updateMentor');
+    Route::post('/updateStatusMentor', 'updateStatusMentor')->name('updateStatusMentor');
     Route::get('/deleteMentor/{hapus}', 'destroy')->name('deleteMentor');
 });
 

@@ -244,7 +244,7 @@ License: For each use you must have a valid license purchased only from above li
                                     <span class="menu-title">Academy</span>
                                     <span class="menu-arrow"></span>
                                 </span>
-                                <div class="menu-sub menu-sub-accordion menu-active-bg">
+                                {{-- <div class="menu-sub menu-sub-accordion menu-active-bg">
                                     <div class="menu-item">
                                         <a class="menu-link" href="{{ route('soal.view') }}">
                                             <span class="menu-bullet">
@@ -253,8 +253,7 @@ License: For each use you must have a valid license purchased only from above li
                                             <span class="menu-title">Master Soal</span>
                                         </a>
                                     </div>
-
-                                </div>
+                                </div> --}}
                                 <div class="menu-sub menu-sub-accordion menu-active-bg">
                                     <div class="menu-item">
                                         <a class="menu-link" href="{{ route('pembelajaran.view') }}">

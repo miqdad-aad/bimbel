@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\MasterPaketModels;
 use App\Models\KategoriSoalModels;
 use App\Models\Pembelajaran;
+use App\Models\User;
 use DB;
 use Str;
 use DataTables;
@@ -63,7 +64,9 @@ class PembelajaranController extends Controller
     public function create()
     {
         $paket = KategoriSoalModels::all();
-        return view('admin.pembelajaran.create', compact('paket'));
+        $mentor = User::where('role','=','2')->get();
+        // dd($mentor);
+        return view('admin.pembelajaran.create', compact('paket', 'mentor'));
     }
     public function edit($id)
     {
