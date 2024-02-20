@@ -31,7 +31,7 @@ class PembelajaranController extends Controller
                      ->addIndexColumn()
                      ->addColumn('action', function($row){
                        $btn = '  <a href="'. url('pembelajaran/edit/'. $row->id_materi) .'" class="edit btn btn-info btn-sm btn-edit">Edit</a>';
-                       $btn .= ' <a target="_blank" href="'. url('soal?id_materi='.$row->id_materi) .'" class=" btn btn-success btn-sm ">Manajemen Soal</a>';
+                       $btn .= ' <a target="_blank" href="'. url('soal?materi='.$row->slug) .'" class=" btn btn-success btn-sm ">Manajemen Soal</a>';
                        $btn .= ' <a type="button"  class="delete btn btn-danger btn-sm btn-hapus">Delete</a>';
    
                         return $btn;
@@ -63,12 +63,15 @@ class PembelajaranController extends Controller
     public function create()
     {
         $paket = KategoriSoalModels::all();
-        return view('admin.pembelajaran.create', compact('paket'));
+        $kategoriPembelajaran = DB::table('m_kategori_pembelajaran')->get();
+        // $this->printJSON($kategoriPembelajaran);
+        return view('admin.pembelajaran.create', compact('paket','kategoriPembelajaran'));
     }
     public function edit($id)
     {
         $data = Pembelajaran::with(['paketSoal','kategoriSoal'])->where('id_materi', $id)->first();
         $paket = KategoriSoalModels::all();
+        $kategoriPembelajaran = DB::table('m_kategori_pembelajaran')->get();
         return view('admin.pembelajaran.create', compact('paket','data'));
     }
 

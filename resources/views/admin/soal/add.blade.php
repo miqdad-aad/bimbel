@@ -27,7 +27,7 @@
         <div class="card card-xl-stretch mb-5 mb-xl-8">
             <form action="{{ route('addSoal.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="id_materi" value='{{ $id_materi }}' class="form-control input-file">
+                <input type="hidden" name="materi" value='{{ $materi }}' class="form-control input-file">
                 <div class="card-body py-3">
                     <div class="row form-group">
                         <div class="col-sm-12 form-group">
@@ -41,14 +41,6 @@
                         <div class="col-sm-3 form-group">
                             <label for=""><p><h3>Score</h3></p></label>
                             <input type="number" name="score" class="form-control">
-                        </div>
-                        <div class="col-sm-3 form-group">
-                            <label for=""><p><h3>Paket</h3></p></label>
-                            <select class="select2class" name="id_paket">
-                                @foreach($paket as $h)
-                                    <option value="{{ $h->id_paket }}">{{ $h->nama_paket }}</option>
-                                @endforeach
-                            </select>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -77,7 +69,10 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <button class="btn btn-success">Simpan Soal</button>
+                            <br>
+                            <br>
+                            <button class="btn btn-sm btn-success" type="submit">Simpan Soal</button>
+                            <a class="btn btn-sm btn-danger" href="{{ url('soal?materi='.isset($_GET['materi']) ? $_GET['materi'] : '') }}">Halaman Sebelumnya</a>
                         </div>
                     </div>
                 </div>
@@ -92,10 +87,18 @@
         $('#summernote').summernote();
         $('.select2class').select2({});
         
+        $(document).on('change','.nilai-benar', function(){
+            $('.is-true-selected').val(0);
+            $(this).closest('tr').find('.is-true-selected').val(1);
+        })
         $(document).on('click','.add-jawaban', function(){
             $('.body-jawaban').append(`<tr class="text-center">
                 <td style="width:50px;" class="text-center"><input name="kode_jawaban[]" class="form-control form-control-sm kode-jawaban" /></td>
-                <td class="text-center"><input type="radio" name="is_true[]" /></td>
+                <td class="text-center">
+                    <input type="radio" name="jawaban_benar" class="nilai-benar" />
+                    <input type="hidden" name="is_true[]" value="0" class="is-true-selected" />
+                    
+                </td>
                 <td style="width:50%"> <textarea name="keterangan[]"  cols="30" class="form-control summernote-jawaban" rows="2"></textarea></td>
                 <td><input type="file"  name="file_tambahan[]" class="form-control form-control-sm" /></td>
                 <td><button class="btn btn-sm btn-danger remove-input-field" type="button"><i class="fa fa-trash"></i></button></td>

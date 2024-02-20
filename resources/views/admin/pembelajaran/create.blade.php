@@ -13,7 +13,7 @@
             data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
             class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
             <!--begin::Title-->
-            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">{{ isset($data) ? 'Edit ' : 'Tambah ' }} Materi
+            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">{{ isset($data) ? 'Edit ' : 'Tambah ' }} Pembelajaran
 
                 <span class="h-20px border-gray-200 border-start ms-3 mx-2"></span>
 
@@ -38,11 +38,11 @@
                 <div class="card-body py-3">
                     <div class="row form-group">
                         <div class="col-sm-12 form-group">
-                            <label for=""><p><h3>Judul Materi</h3></p></label>
+                            <label for=""><p><h3>Judul Pembelajaran</h3></p></label>
                             <input type="text" name="judul_materi" class="form-control" value="{{ isset($data->judul_materi) ? $data->judul_materi : '' }}">
                         </div>
                         <div class="col-sm-12 form-group">
-                            <label for=""><p><h3>Uraian Materi</h3></p></label>
+                            <label for=""><p><h3>Uraian Pembelajaran</h3></p></label>
                             <textarea name="uraian_materi"  cols="30" class="form-control" rows="10">{{ isset($data->uraian_materi) ? $data->uraian_materi : '' }}</textarea>
                         </div>
                         <div class="col-sm-6 form-group">
@@ -60,21 +60,18 @@
                                     </select>
                                 </div>
                                 <div class="col-sm-6">
-                                    <label for=""><p><h3>Kategori Materi</h3></p></label><br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" <?= isset($data) && $data->typeMateri == 'tryout' ? 'checked' : '' ?> checked name="typeMateri" id="inlineRadio1" value="tryout">
-                                        <label class="form-check-label" for="inlineRadio1">Try Out</label>
-                                      </div>
-                                      <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" <?= isset($data) && $data->typeMateri == 'umum' ? 'checked' : '' ?> name="typeMateri" id="inlineRadio2" value="umum">
-                                        <label class="form-check-label" for="inlineRadio2">Umum</label>
-                                      </div> 
+                                    <label for=""><p><h3>Kategori Pembelajaran</h3></p></label><br>
+                                    <select class="select2class form-control" name="id_kategori_pembelajaran">
+                                        @foreach($kategoriPembelajaran as $h)
+                                            <option <?= isset($data->id_kategori_pembelajaran) && $data->id_kategori_pembelajaran == $h->id_kategori_pembelajaran ?'selected' : '' ?> value="{{ $h->id_kategori_pembelajaran }}">{{ $h->nama_kategori_pembelajaran }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <div class="col-sm-12 form-group umum-sec <?= isset($data) && $data->typeMateri == 'umum' ? '' : ' d-none' ?> ">
+                                <div class="col-sm-12 form-group umum-sec ">
                                     <label for=""><p><h3>Link Materi</h3></p></label>
                                     <input name="link_materi"  value="{{ isset($data->link_materi) ? $data->link_materi : '' }}" class="form-control" >
                                 </div>
-                                <div class="col-sm-12 form-group umum-sec <?= isset($data) && $data->typeMateri == 'umum' ? '' : ' d-none' ?> ">
+                                <div class="col-sm-12 form-group umum-sec ">
                                     <label for=""><p><h3>Link Video</h3></p></label>
                                     <input name="link_video"  value="{{ isset($data->link_video) ? $data->link_video : '' }}" class="form-control" >
                                 </div>

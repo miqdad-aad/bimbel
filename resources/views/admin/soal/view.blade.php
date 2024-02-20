@@ -8,7 +8,7 @@
             data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
             class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
             <!--begin::Title-->
-            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Tambah Paket
+            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Manajemen Soal
 
                 <span class="h-20px border-gray-200 border-start ms-3 mx-2"></span>
 
@@ -30,7 +30,7 @@
                     <div class="col-xl-10">
                         <div class="btn-group">
                             <a class="btn btn-primary"
-                                href="{{ route('soal.create', ['id_materi' => isset($_GET['id_materi']) ? $_GET['id_materi'] : '' ]) }}"><i
+                                href="{{ route('soal.create', ['materi' => isset($_GET['materi']) ? $_GET['materi'] : '' ]) }}"><i
                                     class="fas fa-plus"></i></a>
                             <a href="" class="btn btn-sm btn-light text-muted"><i
                                     class="fas fa-sync-alt"></i></a>&nbsp;&nbsp;
@@ -50,7 +50,6 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Paket</th>
                                 <th>Deskripsi Soal</th>
                                 <th>Score</th>
                                 <th width="250">Action</th>
@@ -133,7 +132,7 @@
             ajax: {
                 url: "{{ route('soal.view') }}",
                 data: function (d) {
-                    d.id_materi = "{{ isset($_GET['id_materi']) ? $_GET['id_materi'] : '' }}"
+                    d.materi = "{{ isset($_GET['materi']) ? $_GET['materi'] : '' }}"
                     return d;
                 }
 
@@ -142,16 +141,11 @@
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',
                     className: 'text-center'
-                },
-                {
-                    data: 'paket_soal.nama_paket',
-                    name: 'name',
-                    className: 'text-center'
-                },
+                }, 
                 {
                     data: 'pertanyaan',
                     name: 'name',
-                    className: 'text-center'
+                    className: 'text-left'
                 },
                 {
                     data: 'score',

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\MasterPaketModels;
 use App\Models\SoalModels;
 use App\Models\JawabanSoalModels;
+use App\Models\Pembelajaran;
 use DB;
 use Str;
 use DataTables;
@@ -24,6 +25,10 @@ class SoalController extends Controller
             $data = SoalModels::with('paketSoal');
             if(!empty($request->id_materi)){
                 $data->where('id_materi', $request->id_materi);
+            }
+            if(!empty($request->materi)){
+                $pembelajaran = Pembelajaran::where('slug', $request->materi)->first();
+                $data->where('id_materi', $pembelajaran->id_materi);
             }
             $data->get();
             $data = $data->get();
@@ -49,13 +54,9 @@ class SoalController extends Controller
      */
     public function create(Request $request)
     {
-
-        $id_materi = 0;
-        if(!empty($request->id_materi)){
-            $id_materi = $request->id_materi;
-        }
+        $materi = $request->materi;
         $paket = MasterPaketModels::all();
-        return view('admin.soal.add',compact('paket','id_materi'));
+        return view('admin.soal.add',compact('paket','materi'));
     }
 
     /**
@@ -69,6 +70,9 @@ class SoalController extends Controller
         DB::beginTransaction();
         try {
             
+            $pembelajaran = Pembelajaran::where('slug', $request->materi)->first();
+            
+            
             $filename = '';
             if(!empty($request->file_tambahan_soal)){
                 $file = $request->file('file_tambahan_soal');
@@ -79,7 +83,7 @@ class SoalController extends Controller
                 'pertanyaan' => $request->pertanyaan,
                 'score' => $request->score,
                 'id_paket' => $request->id_paket,
-                'id_materi' => $request->id_materi,
+                'id_materi' => $pembelajaran->id_materi,
                 'file_tambahan' => $filename,
                 'id_kategori_soal' => isset($request->id_kategori_soal) ? $request->id_kategori_soal : 0
             ]);
@@ -97,14 +101,14 @@ class SoalController extends Controller
                     'kode_jawaban' => $k,
                     'id_soal' => $id,
                     'keterangan' => $request->keterangan[$i],
-                    'is_true' => isset($request->is_true[$i]) ? 1 : 0,
+                    'is_true' => $request->is_true[$i],
                     'file_tambahan' => $filename,
                 ]);
 
 
             }
             DB::commit();
-            return redirect('soal?id_materi='. (isset($request->id_materi) ? $request->id_materi : ''));
+            return redirect('soal?materi='. $request->materi);
         } catch (\Exception $e) {
             dd($e->getMessage());
         }
@@ -143,8 +147,11 @@ class SoalController extends Controller
         $soal =SoalModels::with('paketSoal')->where('id_soal', $id)->first();
         $jawab = JawabanSoalModels::where('id_soal', $id)->get();
         $paket = MasterPaketModels::all();
+        $pembelajaran = Pembelajaran::where('id_materi', $soal->id_materi)->first();
+
         
-        return view('admin.soal.edit',compact('paket','soal','jawab'));
+        
+        return view('admin.soal.edit',compact('paket','soal','jawab','pembelajaran'));
 
     }
 
@@ -157,7 +164,7 @@ class SoalController extends Controller
      */
     public function update(Request $request)
     {
-        dd($request);
+        
         DB::beginTransaction();
         try {
             $data = SoalModels::where('id_soal', $request->id_soal)->first();
@@ -170,18 +177,18 @@ class SoalController extends Controller
                 $file->move('public/soal', $filename);    
             }
             // dd($filename);
+            $pembelajaran = Pembelajaran::where('slug', $request->materi)->first();
             SoalModels::where('id_soal', $request->id_soal)->update([
                 'pertanyaan' => $request->pertanyaan,
                 'score' => $request->score,
                 'id_paket' => $request->id_paket,
-                'id_materi' => $request->id_materi,
+                'id_materi' => $pembelajaran->id_materi,
                 'file_tambahan' => $filename,
                 'id_kategori_soal' => isset($request->id_kategori_soal) ? $request->id_kategori_soal : 0
             ]);
             JawabanSoalModels::where('id_soal', $request->id_soal)->delete();
             foreach($request->kode_jawaban as $i => $k){
-                // dd($k);
-                $filename = '';
+                $filename = isset($request->old_file[$i]) ? $request->old_file[$i] : '';
                 if(!empty($request->file_tambahan[$i])){
                     $file = $request->file_tambahan[$i];
                     $filename = Str::slug($request->file_tambahan_soal) . '.' . $file->getClientOriginalExtension();
@@ -192,14 +199,14 @@ class SoalController extends Controller
                     'kode_jawaban' => $k,
                     'id_soal' => $request->id_soal,
                     'keterangan' => $request->keterangan[$i],
-                    'is_true' => isset($request->is_true[$i]) ? 1 : 0,
+                    'is_true' => $request->is_true[$i],
                     'file_tambahan' => $filename,
                 ]);
 
 
             }
             DB::commit();
-            return redirect('soal?id_materi='. (isset($request->id_materi) ? $request->id_materi : ''));
+            return redirect('soal?materi='. $request->materi);
         } catch (\Exception $e) {
             dd($e->getMessage());
         }

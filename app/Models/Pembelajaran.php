@@ -41,6 +41,7 @@ class Pembelajaran extends Model
                
                Pembelajaran::where('id_materi', $request->id_materi)->update([
                     'judul_materi' => $request->judul_materi,
+                    'slug' => \Str::slug($request->judul_materi),
                     'uraian_materi' => $request->uraian_materi,
                     'link_video' => $request->link_video,
                     'link_materi' => $request->link_materi,
@@ -59,6 +60,7 @@ class Pembelajaran extends Model
     
                 Pembelajaran::create([
                     'judul_materi' => $request->judul_materi,
+                    'slug' => \Str::slug($request->judul_materi),
                     'uraian_materi' => $request->uraian_materi,
                     'link_video' => $request->link_video,
                     'link_materi' => $request->link_materi,
