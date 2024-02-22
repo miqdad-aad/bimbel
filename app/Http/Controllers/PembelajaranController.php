@@ -27,8 +27,7 @@ class PembelajaranController extends Controller
 
     public function index(Request $request)
     {
-        $data = Pembelajaran::with(['paketSoal','kategoriSoal'])->get();
-        // $this->printJSON($data);
+        $data = Pembelajaran::with(['jenis_tes','kategoriSoal','bab_tes','materi_tes','kategori_pembelajaran'])->get();
         if($request->ajax() ){
              return DataTables::of($data)
                      ->addIndexColumn()
@@ -68,15 +67,18 @@ class PembelajaranController extends Controller
         $paket = KategoriSoalModels::all();
         $mentor = MentorModels::all();
         $kategoriPembelajaran = DB::table('m_kategori_pembelajaran')->get();
-        // $this->printJSON($kategoriPembelajaran);
+        
+
         return view('admin.pembelajaran.create', compact('paket','kategoriPembelajaran', 'mentor'));
     }
     public function edit($id)
     {
-        $data = Pembelajaran::with(['paketSoal','kategoriSoal'])->where('id_materi', $id)->first();
+        $data =  Pembelajaran::with(['jenis_tes','kategoriSoal','bab_tes','materi_tes','kategori_pembelajaran'])->where('id_materi', $id)->first();
         $paket = KategoriSoalModels::all();
         $kategoriPembelajaran = DB::table('m_kategori_pembelajaran')->get();
-        return view('admin.pembelajaran.create', compact('paket','data'));
+        
+        $mentor = MentorModels::all();
+        return view('admin.pembelajaran.create', compact('paket','data','mentor','kategoriPembelajaran'));
     }
 
     /**

@@ -19,4 +19,9 @@ class MateriTesModels extends Model
     {
         return $this->belongsTo(JenisTesModels::class,'id_jenis_tes','id_jenis_tes');
     }
+
+    public function pembelajaran()
+    {
+        return $this->hasOne(Pembelajaran::class,'id_materi_tes','id_materi_tes');
+    }
 }

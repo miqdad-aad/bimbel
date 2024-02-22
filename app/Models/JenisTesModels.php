@@ -19,4 +19,9 @@ class JenisTesModels extends Model
     {
         return $this->belongsTo(Pembelajaran::class,'id_jenis_tes','id_jenis_tes');
     }
+
+    public function pembelajaran()
+    {
+        return $this->hasOne(Pembelajaran::class,'id_jenis_tes','id_jenis_tes');
+    }
 }

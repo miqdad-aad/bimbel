@@ -43,9 +43,11 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Judul Pembelajaran</th>
+                                <th>Jenis Tes</th>
+                                <th>Materi Tes</th>
+                                <th>Bab Tes</th>
+                                <th>Kategori Pembelajaran</th>
                                 <th>Uraian Pembelajaran</th>
-                                <th>Kategori</th>
                                 <th>Total Soal</th>
                                 <th width="250">Action</th>
                             </tr>
@@ -103,7 +105,22 @@
                     className: 'text-center'
                 },
                 {
-                    data: 'judul_materi',
+                    data: 'jenis_tes.jenis_tes',
+                    name: 'name',
+                    className: 'text-left'
+                },
+                {
+                    data: 'materi_tes.nama_materi_tes',
+                    name: 'name',
+                    className: 'text-left'
+                },
+                {
+                    data: 'bab_tes.bab',
+                    name: 'name',
+                    className: 'text-left'
+                },
+                {
+                    data: 'kategori_pembelajaran.nama_kategori_pembelajaran',
                     name: 'name',
                     className: 'text-left'
                 },
@@ -118,11 +135,7 @@
                         return row.uraian_materi;
                     }
                 },
-                {
-                    data: 'kategori_soal.uraian_kategori_soal',
-                    name: 'name',
-                    className: 'text-center'
-                },
+                
                 {
                     data: 'totalSoal',
                     name: 'name',

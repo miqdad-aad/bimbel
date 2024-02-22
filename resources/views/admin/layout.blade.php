@@ -1,15 +1,5 @@
 <!DOCTYPE html>
-<!--
-Author: Keenthemes
-Product Name: Metronic - Bootstrap 5 HTML, VueJS, React, Angular & Laravel Admin Dashboard Theme
-Purchase: https://1.envato.market/EA4JP
-Website: http://www.keenthemes.com
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
--->
+ 
 <html lang="en">
 <!--begin::Head-->
 
@@ -59,6 +49,7 @@ License: For each use you must have a valid license purchased only from above li
     <!--end::Global Stylesheets Bundle-->
 </head>
 
+
 <!--end::Head-->
 <!--begin::Body-->
 
@@ -66,6 +57,20 @@ License: For each use you must have a valid license purchased only from above li
     class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed"
     style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
     <!--begin::Main-->
+
+    <style>
+   .select2-selection__rendered {
+        margin-top: 1px !important;
+        color : black
+    }
+   .select2-selection__placeholder {
+        color : black !important;
+    }
+    .select2-selection--single {
+       color : black !important;
+    height: 100% !important;
+    }
+</style>
     <!--begin::Root-->
     <div class="d-flex flex-column flex-root">
         <!--begin::Page-->

@@ -24,12 +24,34 @@ class Pembelajaran extends Model
     {
         return $this->hasMany(SoalModels::class,'id_materi','id_materi');
     }
+
+
+    public function jenis_tes()
+    {
+        return $this->belongsTo(JenisTesModels::class,'id_jenis_tes','id_jenis_tes');
+    }
+    
+    public function bab_tes()
+    {
+        return $this->belongsTo(BabTesModels::class,'id_bab_tes','id_bab_tes');
+    }
+
+    public function materi_tes()
+    {
+        return $this->belongsTo(MateriTesModels::class,'id_materi_tes','id_materi_tes');
+    }
+
+    public function kategori_pembelajaran()
+    {
+        return $this->belongsTo(KategoriPembelajaranModels::class,'id_kategori_pembelajaran','id_kategori_pembelajaran');
+    }
+
     
     public function addPembelajaran($request)
     {
         DB::beginTransaction();
         try {
-            // dd($request);
+           
             if(isset($request->id_materi)){
                $oldData = Pembelajaran::where('id_materi', $request->id_materi)->first();
                $filename = $oldData->gambar;
@@ -44,11 +66,13 @@ class Pembelajaran extends Model
                     'slug' => \Str::slug($request->judul_materi),
                     'uraian_materi' => $request->uraian_materi,
                     'link_video' => $request->link_video,
-                    'link_materi' => $request->link_materi,
-                    'typeMateri' => $request->typeMateri,
-                    'id_kategori_soal' => $request->id_soal,
+                    'link_materi' => $request->link_materi, 
+                    'id_kategori_pembelajaran' => $request->id_kategori_pembelajaran,
                     'gambar' => $filename,
                     'id_mentor' => $request->id_mentor,
+                    'id_jenis_tes' => $request->id_jenis_tes,
+                    'id_bab_tes' => $request->id_bab_tes,
+                    'id_materi_tes' => $request->id_materi_tes,
                 ]);
 
             }else{
@@ -64,11 +88,13 @@ class Pembelajaran extends Model
                     'slug' => \Str::slug($request->judul_materi),
                     'uraian_materi' => $request->uraian_materi,
                     'link_video' => $request->link_video,
-                    'link_materi' => $request->link_materi,
-                    'typeMateri' => $request->typeMateri,
-                    'id_kategori_soal' => $request->id_soal,
+                    'link_materi' => $request->link_materi, 
+                    'id_kategori_pembelajaran' => $request->id_kategori_pembelajaran,
                     'gambar' => $filename,
                     'id_mentor' => $request->id_mentor,
+                    'id_jenis_tes' => $request->id_jenis_tes,
+                    'id_bab_tes' => $request->id_bab_tes,
+                    'id_materi_tes' => $request->id_materi_tes,
                 ]);
             }
 

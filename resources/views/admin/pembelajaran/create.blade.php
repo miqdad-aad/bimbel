@@ -1,11 +1,6 @@
 @extends('admin.layout')
 @section('content')
-<style>
-    .select2-selection__rendered {
-        margin-top: -6px !important;
-    }
 
-</style>
 <div class="toolbar" id="kt_toolbar">
     <!--begin::Container-->
     <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
@@ -45,8 +40,12 @@
                                     <h3>Jenis Tes</h3>
                                 </p>
                             </label>
-                            <select class="form-control form-control-sm //form-control-solid id_jenis_tes"
-                                name="materi">
+                            <select class="form-control form-control-sm id_jenis_tes"
+                                name="id_jenis_tes">
+                            
+                                @if(isset($data->jenis_tes))
+                                    <option value="{{ $data->jenis_tes->id_jenis_tes }}" selected>{{ $data->jenis_tes->jenis_tes }}</option>
+                                @endif
 
                             </select>
                         </div>
@@ -56,8 +55,10 @@
                                     <h3>Materi Tes</h3>
                                 </p>
                             </label>
-                            <select class="form-control form-control-sm //form-control-solid id_materi" name="materi">
-
+                            <select class="form-control form-control-sm id_materi" name="id_materi_tes">
+                                @if(isset($data->materi_tes))
+                                    <option value="{{ $data->materi_tes->id_materi_tes }}" selected>{{ $data->materi_tes->nama_materi_tes }}</option>
+                                @endif
                             </select>
                         </div>
                         <div class="col-sm-4 form-group">
@@ -66,18 +67,11 @@
                                     <h3>Bab Tes</h3>
                                 </p>
                             </label>
-                            <select class="form-control form-control-sm //form-control-solid id_bab" name="bab">
-
+                            <select class="form-control form-control-sm id_bab" name="id_bab_tes">
+                                @if(isset($data->bab_tes))
+                                    <option value="{{ $data->bab_tes->id_bab_tes }}" selected>{{ $data->bab_tes->bab }}</option>
+                                @endif
                             </select>
-                        </div>
-                        <div class="col-sm-12 form-group">
-                            <label for="">
-                                <p>
-                                    <h3>Judul Pembelajaran</h3>
-                                </p>
-                            </label>
-                            <input type="text" name="judul_materi" class="form-control"
-                                value="{{ isset($data->judul_materi) ? $data->judul_materi : '' }}">
                         </div>
                         <div class="col-sm-12 form-group">
                             <label for="">
@@ -98,30 +92,17 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="row">
-                                <div class="col-sm-6 form-group">
-                                    <label for="">
-                                        <p>
-                                            <h3>Kategori Soal</h3>
-                                        </p>
-                                    </label>
-                                    <select class="form-control" name="id_soal">
-                                        @foreach($paket as $h)
-                                        <option
-                                            <?= isset($data->id_kategori_soal) && $data->id_kategori_soal == $h->id_kategori_soal ?'selected' : '' ?>
-                                            value="{{ $h->id_kategori_soal }}">{{ $h->uraian_kategori_soal }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                 
                                 <div class="col-sm-6 form-group">
                                     <label for="">
                                         <p>
                                             <h3>Nama Mentor</h3>
                                         </p>
                                     </label>
-                                    <select class="form-control" name="id_mentor">
+                                    <select class="form-control select2class" name="id_mentor">
                                         @foreach($mentor as $m)
-                                        <option <?= isset($data->id) && $data->id == $m->id ?'selected' : '' ?>
-                                            value="{{ $m->id }}">{{ $m->name }}</option>
+                                        <option <?= isset($data->id_mentor) && $data->id_mentor == $m->id_mentor ?'selected' : '' ?>
+                                            value="{{ $m->id_mentor }}">{{ $m->nama_mentor }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -131,7 +112,7 @@
                                             <h3>Kategori Pembelajaran</h3>
                                         </p>
                                     </label><br>
-                                    <select class="form-control" name="id_kategori_pembelajaran">
+                                    <select class="form-control select2class" name="id_kategori_pembelajaran">
                                         @foreach($kategoriPembelajaran as $h)
                                         <option
                                             <?= isset($data->id_kategori_pembelajaran) && $data->id_kategori_pembelajaran == $h->id_kategori_pembelajaran ?'selected' : '' ?>
@@ -167,8 +148,8 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <hr>
-                            <button class="btn btn-success">Simpan Materi</button>
-                            <a href="{{ route('pembelajaran.view') }}" class="btn btn-danger">Kembali</a>
+                            <button class="btn btn-success btn-sm">Simpan Materi</button>
+                            <a href="{{ route('pembelajaran.view') }}" class="btn btn-danger btn-sm">Kembali</a>
                         </div>
                     </div>
                 </div>
@@ -181,8 +162,7 @@
 <script>
     $(document).ready(function () {
         $('#summernote').summernote();
-
-        $('.select2class').select2({});
+ 
         $('input[type=radio][name=typeMateri]').change(function () {
             $('.umum-sec').addClass('d-none');
             if ($(this).val() == 'umum') $('.umum-sec').removeClass('d-none');
@@ -206,7 +186,7 @@
 
         @endif
 
-        $('.select2').select2({})
+        $('.select2class').select2({})
         let jenis_tes_id = 1;
 
         var csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
