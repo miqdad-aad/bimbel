@@ -150,7 +150,7 @@
         let jenis_tes_id = 0;
         $(document).on('click', '.btn-edit', function () {
             params = table.row($(this).closest('tr')).data();
-            jenis_tes_id = params.id_m_jenis_tes;
+            jenis_tes_id = params.id_jenis_tes;
             $('.jenis_tes').val(params.jenis_tes);
             $('.btn-tambah').hide()
             $('.btn-update').show()

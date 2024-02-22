@@ -20,7 +20,7 @@ class BabTesController extends Controller
     {
         $materi = MateriTesModels::all();
         if($request->ajax() ){
-            $data = BabTesModels::leftjoin('m_materi_tes as a', 'a.id_m_materi_tes', 'm_bab_tes.id_m_materi_tes')->get();
+            $data = BabTesModels::leftjoin('m_materi_tes as a', 'a.id_materi_tes', 'm_bab_tes.id_materi_tes')->get();
              return DataTables::of($data)
                      ->addIndexColumn()
                      ->addColumn('action', function($row){
@@ -56,7 +56,7 @@ class BabTesController extends Controller
         DB::beginTransaction();
         try {
             BabTesModels::create([
-                'id_m_materi_tes' => $request->id_materi_tes,
+                'id_materi_tes' => $request->id_materi_tes,
                 'bab' => $request->nama_bab,
             ]);
             DB::commit();
@@ -100,15 +100,15 @@ class BabTesController extends Controller
         // dd($request);
         DB::beginTransaction();
         try {
-            $materi_tes = BabTesModels::where('id_m_bab_tes', $request->bab_tes_id)->first();
-            if ($request->jenis_tes == '') {
-                $id_materi_tes = $materi_tes->id_m_materi_tes;
+            $materi_tes = BabTesModels::where('id_bab_tes', $request->bab_tes_id)->first();
+            if ($request->id_materi_tes == '') {
+                $id_materi_tes = $materi_tes->id_materi_tes;
             }else {
-                $id_materi_tes = $request->id_m_materi_tes;
+                $id_materi_tes = $request->id_materi_tes;
             }
-            BabTesModels::where('id_m_bab_tes', $request->bab_tes_id)->update([
+            BabTesModels::where('id_bab_tes', $request->bab_tes_id)->update([
                 'bab' => $request->bab,
-                'id_m_materi_tes' => $id_materi_tes,
+                'id_materi_tes' => $id_materi_tes,
             ]);
             DB::commit();
             return response()->json(['status' => 200]);

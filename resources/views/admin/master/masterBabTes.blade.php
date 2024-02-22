@@ -71,10 +71,10 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <label class="form-label" for="text">Materi</label>
-                            <select name="id_materi_tes" class="form-control ip jenis_tes">
+                            <select name="id_materi_tes" class="form-control ip id_materi_tes">
                                 <option></option>
                                 @foreach ($materi as $item)
-                                <option value="{{ $item->id_m_materi_tes }}">{{ $item->kode_materi_tes }} - {{ $item->nama_materi_tes }}</option>
+                                <option value="{{ $item->id_materi_tes }}">{{ $item->kode_materi_tes }} - {{ $item->nama_materi_tes }}</option>
                                 @endforeach
                             </select>
                             <p class="text-danger">{{ $errors->first('category_id') }}</p>
@@ -166,11 +166,10 @@
         let bab_tes_id = 0;
         $(document).on('click', '.btn-edit', function () {
             params = table.row($(this).closest('tr')).data();
-            bab_tes_id = params.id_m_bab_tes;
-            console.log(bab_tes_id);
+            bab_tes_id = params.id_bab_tes;
             $('.nama_bab').val(params.bab);
-            $('.id_bab_tes').val(params.id_m_bab_tes);
-            $('.id_materi_tes').val(params.id_m_materi_tes);
+            $('.id_bab_tes').val(params.id_bab_tes);
+            $('.id_materi_tes').val(params.id_materi_tes);
             $('.btn-tambah').hide()
             $('.btn-update').show()
             $('#modal7').modal('show');
@@ -179,6 +178,7 @@
         $(document).on('click', '.btn-update', function () {
             var bab = $('.nama_bab').val();
             var id_materi_tes = $('.id_materi_tes').val();
+            console.log(id_materi_tes);
             var bab_tes_id = $('.id_bab_tes').val();
             $('#modal7').modal('show');
             $.ajax({

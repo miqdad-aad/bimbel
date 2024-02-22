@@ -70,7 +70,7 @@ Route::controller(JenisTesController::class)->group(function () {
 Route::controller(MateriTesController::class)->group(function () {
     Route::get('/materiTes', 'index')->name('materiTes');
     Route::post('/addMateriTes', 'store')->name('addMateriTes');
-    Route::post('/updateMateriTes', 'store')->name('updateMateriTes');
+    Route::post('/updateMateriTes', 'update')->name('updateMateriTes');
     Route::get('/deleteMateriTes/{hapus}', 'destroy')->name('deleteMateriTes');
 });
 

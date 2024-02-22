@@ -95,9 +95,10 @@ class JenisTesController extends Controller
      */
     public function update(Request $request)
     {
+        // dd($request);
         DB::beginTransaction();
         try {
-            JenisTesModels::where('id_m_jenis_tes', $request->id_jenis_tes)->update([
+            JenisTesModels::where('id_jenis_tes', $request->id_jenis_tes)->update([
                 'jenis_tes' => $request->jenis_tes,
             ]);
             DB::commit();
@@ -123,7 +124,7 @@ class JenisTesController extends Controller
         // dd($request);
         $input = $request->all();
         if ($request->term) {
-            $data = JenisTesModels::select(["id_m_jenis_tes", "jenis_tes"])
+            $data = JenisTesModels::select(["id_jenis_tes", "jenis_tes"])
                 ->where('jenis_tes', 'like', '%'. $request->term. '%')
                 ->get();
         } else {
@@ -139,15 +140,15 @@ class JenisTesController extends Controller
         // dd($request);
         $input = $request->all();
         if ($request->term) {
-            $data = MateriTesModels::select(["id_m_materi_tes", "kode_materi_tes", "nama_materi_tes"])
+            $data = MateriTesModels::select(["id_materi_tes", "kode_materi_tes", "nama_materi_tes"])
                 ->where('nama_materi_tes', 'like', '%'. $request->term. '%')
                 ->Orwhere('kode_materi_tes', 'like', '%'. $request->term. '%')
-                ->where('id_m_jenis_tes', $request->id)
+                ->where('id_jenis_tes', $request->id)
                 ->get();
                 // dd($data);
         } else {
             $data = MateriTesModels::select("*")
-            ->where('id_m_jenis_tes', $request->id)
+            ->where('id_jenis_tes', $request->id)
             ->get();
         }
         return response()->json($data, 200);
@@ -157,14 +158,14 @@ class JenisTesController extends Controller
     {
         // dd($request->term);
         if ($request->term) {
-            $data = BabTesModels::select(["id_m_bab_tes", "bab"])
+            $data = BabTesModels::select(["id_bab_tes", "bab"])
             ->where('bab', 'like', '%'. $request->term. '%')
-            ->where('id_m_materi_tes', $request->id)
+            ->where('id_materi_tes', $request->id)
             ->get();
             // dd($data);
         } else {
             $data = BabTesModels::select("*")
-            ->where('id_m_materi_tes', $request->id)
+            ->where('id_materi_tes', $request->id)
             ->get();
         }
         return response()->json($data, 200);

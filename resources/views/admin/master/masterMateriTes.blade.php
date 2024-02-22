@@ -74,7 +74,7 @@
                             <select name="id_jenis_tes" class="form-control ip jenis_tes">
                                 <option></option>
                                 @foreach ($materi as $item)
-                                <option value="{{ $item->id_m_jenis_tes }}">{{ $item->jenis_tes }}</option>
+                                <option value="{{ $item->id_jenis_tes }}">{{ $item->jenis_tes }}</option>
                                 @endforeach
                             </select>
                             <p class="text-danger">{{ $errors->first('category_id') }}</p>
@@ -170,11 +170,11 @@
         let materi_tes_id = 0;
         $(document).on('click', '.btn-edit', function () {
             params = table.row($(this).closest('tr')).data();
-            materi_tes_id = params.id_m_materi_tes;
+            materi_tes_id = params.id_materi_tes;
             $('.jenis_tes').val(params.jenis_tes);
             $('.kode_materi_tes').val(params.kode_materi_tes);
             $('.materi_tes').val(params.nama_materi_tes);
-            $('.id_materi_tes').val(params.id_m_materi_tes);
+            $('.id_materi_tes').val(params.id_materi_tes);
             $('.btn-tambah').hide()
             $('.btn-update').show()
             $('#modal7').modal('show');

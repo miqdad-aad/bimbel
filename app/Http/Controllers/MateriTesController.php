@@ -19,7 +19,7 @@ class MateriTesController extends Controller
     {
         $materi = JenisTesModels::all();
         if($request->ajax() ){
-            $data = MateriTesModels::leftjoin('m_jenis_tes as a','a.id_m_jenis_tes','m_materi_tes.id_m_jenis_tes')->get();
+            $data = MateriTesModels::leftjoin('m_jenis_tes as a','a.id_jenis_tes','m_materi_tes.id_jenis_tes')->get();
              return DataTables::of($data)
                      ->addIndexColumn()
                      ->addColumn('action', function($row){
@@ -56,7 +56,7 @@ class MateriTesController extends Controller
             MateriTesModels::create([
                 'kode_materi_tes' => $request->kode_materi_tes,
                 'nama_materi_tes' => $request->materi_tes,
-                'id_m_jenis_tes' => $request->id_jenis_tes,
+                'id_jenis_tes' => $request->id_jenis_tes,
             ]);
             DB::commit();
             return response()->json(['status' => 200]);
@@ -96,19 +96,20 @@ class MateriTesController extends Controller
      */
     public function update(Request $request)
     {
-       
+    //    dd($request);
         DB::beginTransaction();
         try {
-            $jenis_tes = MateriTesModels::where('id_m_materi_tes', $request->id_materi_tes)->first();
-            if ($request->jenis_tes == '') {
-                $id_jenis_tes = $jenis_tes->id_m_jenis_tes;
+            $jenis_tes = MateriTesModels::where('id_materi_tes', $request->id_materi_tes)->first();
+            if ($request->id_jenis_tes == '') {
+                $id_jenis_tes = $jenis_tes->id_jenis_tes;
             }else {
-                $id_jenis_tes = $request->id_m_jenis_tes;
+                $id_jenis_tes = $request->id_jenis_tes;
             }
-            MateriTesModels::where('id_m_materi_tes', $request->id_materi_tes)->update([
+            // dd($id_jenis_tes);
+            MateriTesModels::where('id_materi_tes', $request->id_materi_tes)->update([
                 'kode_materi_tes' => $request->kode_materi_tes,
                 'nama_materi_tes' => $request->materi_tes,
-                'id_m_jenis_tes' => $id_jenis_tes,
+                'id_jenis_tes' => $id_jenis_tes,
             ]);
             DB::commit();
             return response()->json(['status' => 200]);

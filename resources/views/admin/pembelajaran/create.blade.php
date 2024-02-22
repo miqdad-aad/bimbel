@@ -104,7 +104,7 @@
                                             <h3>Kategori Soal</h3>
                                         </p>
                                     </label>
-                                    <select class="select2class form-control" name="id_soal">
+                                    <select class="form-control" name="id_soal">
                                         @foreach($paket as $h)
                                         <option
                                             <?= isset($data->id_kategori_soal) && $data->id_kategori_soal == $h->id_kategori_soal ?'selected' : '' ?>
@@ -118,7 +118,7 @@
                                             <h3>Nama Mentor</h3>
                                         </p>
                                     </label>
-                                    <select class="select2class form-control" name="id_mentor">
+                                    <select class="form-control" name="id_mentor">
                                         @foreach($mentor as $m)
                                         <option <?= isset($data->id) && $data->id == $m->id ?'selected' : '' ?>
                                             value="{{ $m->id }}">{{ $m->name }}</option>
@@ -131,7 +131,7 @@
                                             <h3>Kategori Pembelajaran</h3>
                                         </p>
                                     </label><br>
-                                    <select class="select2class form-control" name="id_kategori_pembelajaran">
+                                    <select class="form-control" name="id_kategori_pembelajaran">
                                         @foreach($kategoriPembelajaran as $h)
                                         <option
                                             <?= isset($data->id_kategori_pembelajaran) && $data->id_kategori_pembelajaran == $h->id_kategori_pembelajaran ?'selected' : '' ?>
@@ -229,7 +229,7 @@
                 processResults: function (data) {
                     return {
                         results: data.map(function (item) {
-                            item.id = item.id_m_jenis_tes;
+                            item.id = item.id_jenis_tes;
                             item.text = item.jenis_tes;
                             return item;
                         })
@@ -257,7 +257,7 @@
                 processResults: function (data) {
                     return {
                         results: data.map(function (item) {
-                            item.id = item.id_m_materi_tes;
+                            item.id = item.id_materi_tes;
                             item.text = item.nama_materi_tes;
                             return item;
                         })
@@ -288,7 +288,7 @@
                 processResults: function (data) {
                     return {
                         results: data.map(function (item) {
-                            item.id = item.id_m_bab_tes;
+                            item.id = item.id_bab_tes;
                             item.text = item.bab;
                             return item;
                         })

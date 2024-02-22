@@ -9,5 +9,5 @@ class BabTesModels extends Model
 {
     use HasFactory;
     protected $table ="m_bab_tes";
-    protected $guarded = ['id_m_bab_tes'];
+    protected $guarded = ['id_bab_tes'];
 }
