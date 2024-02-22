@@ -58,12 +58,12 @@ class MentorModels extends Model
             // dd($request);
             $data = MentorModels::where('id_mentor', $request->id_mentor)->first();
 
-            if($request->file('featured_img') == ""){
+            if($request->file('gambar1') == ""){
                 $filename=$data->gambar;
             }else{
                 $file = $request->file('gambar1');
                 $filename = Str::slug($request->nama_mentor) . '.' . $file->getClientOriginalExtension();
-                $file->move('public/mentor', $filename);
+                $file->move(public_path().'/public/mentor', $fileName);
             }
               MentorModels::where('id_mentor', $request->id_mentor)->update([
                 'nama_mentor' => $request->nama_mentor,

@@ -31,6 +31,7 @@ License: For each use you must have a valid license purchased only from above li
     <meta property="og:site_name" content="Keenthemes | Metronic" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="url" content="{{ url('') }}" />
+    
 
 
     <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
@@ -217,6 +218,30 @@ License: For each use you must have a valid license purchased only from above li
                                                 <span class="bullet bullet-dot"></span>
                                             </span>
                                             <span class="menu-title">Master Paket Soal</span>
+                                        </a>
+                                    </div>
+                                    <div class="menu-item">
+                                        <a class="menu-link" href="{{ route('jenisTes') }}">
+                                            <span class="menu-bullet">
+                                                <span class="bullet bullet-dot"></span>
+                                            </span>
+                                            <span class="menu-title">Master jenis tes</span>
+                                        </a>
+                                    </div>
+                                    <div class="menu-item">
+                                        <a class="menu-link" href="{{ route('materiTes') }}">
+                                            <span class="menu-bullet">
+                                                <span class="bullet bullet-dot"></span>
+                                            </span>
+                                            <span class="menu-title">Master materi tes</span>
+                                        </a>
+                                    </div>
+                                    <div class="menu-item">
+                                        <a class="menu-link" href="{{ route('babTes') }}">
+                                            <span class="menu-bullet">
+                                                <span class="bullet bullet-dot"></span>
+                                            </span>
+                                            <span class="menu-title">Master bab tes</span>
                                         </a>
                                     </div>
                                 </div>

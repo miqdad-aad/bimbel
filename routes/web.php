@@ -10,6 +10,9 @@ use App\Http\Controllers\MasterPaketController;
 use App\Http\Controllers\PembelajaranController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PaketBimbelController;
+use App\Http\Controllers\MateriTesController;
+use App\Http\Controllers\JenisTesController;
+use App\Http\Controllers\BabTesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +57,30 @@ Route::controller(KegiatanController::class)->group(function () {
     Route::get('/deleteKegiatan/{hapus}', 'destroy')->name('deleteKegiatan');
 });
 
+Route::controller(JenisTesController::class)->group(function () {
+    Route::get('/jenisTes', 'index')->name('jenisTes');
+    Route::post('/addJenisTes', 'store')->name('addJenisTes');
+    Route::post('/updateJenisTes', 'update')->name('updateJenisTes');
+    Route::get('/deleteJenisTes/{hapus}', 'destroy')->name('deleteJenisTes');
+    Route::post('getJenisTes', 'getJenisTes')->name('getJenisTes');
+    Route::post('/getMateriTes', 'getMateriTes')->name('getMateriTes');
+    Route::post('/getBabTes', 'getBabTes')->name('getBabTes');
+});
+
+Route::controller(MateriTesController::class)->group(function () {
+    Route::get('/materiTes', 'index')->name('materiTes');
+    Route::post('/addMateriTes', 'store')->name('addMateriTes');
+    Route::post('/updateMateriTes', 'store')->name('updateMateriTes');
+    Route::get('/deleteMateriTes/{hapus}', 'destroy')->name('deleteMateriTes');
+});
+
+Route::controller(BabTesController::class)->group(function () {
+    Route::get('/babTes', 'index')->name('babTes');
+    Route::post('/addBabTes', 'store')->name('addBabTes');
+    Route::post('/updateBabTes', 'update')->name('updateBabTes');
+    Route::get('/deleteBabTes/{hapus}', 'destroy')->name('deleteBabTes');
+});
+
 Route::controller(MasterPaketController::class)->group(function () {
     Route::get('/paketSoal', 'index')->name('masterPaket');
     Route::get('/addPaket', 'create')->name('addPaket');
@@ -93,4 +120,5 @@ Route::controller(PembelajaranController::class)->group(function () {
     Route::get('/tambah/pembelajaran', 'create')->name('pembelajaran.create');
     Route::post('/addpembelajaran', 'store')->name('addpembelajaran.store');
     Route::get('/deletepembelajaran/{hapus}', 'destroy')->name('deletepembelajaran');
+    
 });

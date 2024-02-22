@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\MasterPaketModels;
 use App\Models\KategoriSoalModels;
 use App\Models\Pembelajaran;
+use App\Models\JenisTesModels;
+use App\Models\MentorModels;
 use App\Models\User;
 use DB;
 use Str;
@@ -64,9 +66,10 @@ class PembelajaranController extends Controller
     public function create()
     {
         $paket = KategoriSoalModels::all();
+        $mentor = MentorModels::all();
         $kategoriPembelajaran = DB::table('m_kategori_pembelajaran')->get();
         // $this->printJSON($kategoriPembelajaran);
-        return view('admin.pembelajaran.create', compact('paket','kategoriPembelajaran'));
+        return view('admin.pembelajaran.create', compact('paket','kategoriPembelajaran', 'mentor'));
     }
     public function edit($id)
     {
@@ -126,4 +129,6 @@ class PembelajaranController extends Controller
     {
         //
     }
+
+    
 }
