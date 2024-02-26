@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BookingUserModels;
+use Illuminate\Support\Facades\File;
 use App\Models\PaketBimbelModels;
 use Illuminate\Support\Facades\Validator;
+use Str;
 
 class RegisterController extends Controller
 {
@@ -17,6 +19,7 @@ class RegisterController extends Controller
      */
     public function index(Request $request)
     {
+        // dd($request);
         $validator = Validator::make($request->all(), [
             'nama'      => 'required',
             'asal_sekolah'      => 'required',
@@ -29,6 +32,14 @@ class RegisterController extends Controller
         }
         $paket = PaketBimbelModels::where('id_paket_bimbel', $request->id_paket)->first();
 
+        if($request->file('file_manual') == ""){
+            $filename= "";
+        }else{
+            $file = $request->file('file_manual');
+            $filename = Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path().'/public/user', $fileName);
+        }
+        // dd($filename);
         $booking = BookingUserModels::create([
             'nama'      => $request->nama,
             'asal_sekolah'      => $request->asal_sekolah,
@@ -36,6 +47,7 @@ class RegisterController extends Controller
             'harga'      => $paket->harga_paket_bimbel,
             'status_pembayaran'      => $request->status_pembayaran,
             'jenis_pembayaran'      => $request->jenis_pembayaran,
+            'file'      => $filename,
         ]);
 
         if($booking) {
