@@ -27,8 +27,9 @@ class PembelajaranController extends Controller
 
     public function index(Request $request)
     {
-        $data = Pembelajaran::with(['jenis_tes','kategoriSoal','bab_tes','materi_tes','kategori_pembelajaran'])->get();
+        // dd($data);
         if($request->ajax() ){
+            $data = Pembelajaran::with(['jenis_tes','kategoriSoal','bab_tes','materi_tes','kategori_pembelajaran'])->get();
              return DataTables::of($data)
                      ->addIndexColumn()
                      ->addColumn('action', function($row){
