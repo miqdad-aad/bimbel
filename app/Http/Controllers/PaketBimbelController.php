@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\MasterPaketModels;
+use App\Models\MateriTesModels;
 use App\Models\KategoriSoalModels;
 use App\Models\PaketBimbelModels;
 use App\Models\DetailPaketBimbel;
@@ -43,8 +44,8 @@ class PaketBimbelController extends Controller
     public function create()
     {
         
-        $kategori = Pembelajaran::all();
-       return view('admin.master.addMasterPaket', compact('kategori'));
+        $materi_tes = MateriTesModels::all();
+       return view('admin.master.addMasterPaket', compact('materi_tes'));
     }
 
     /**
@@ -68,15 +69,15 @@ class PaketBimbelController extends Controller
                 'tanggal_selesai' => $request->tanggal_selesai,
             ]);
             $id = DB::getPdo()->lastInsertId(); 
-            for ($i=0; $i < count($request->id_kategori_soal) ; $i++) { 
+            for ($i=0; $i < count($request->id_materi_tes) ; $i++) { 
                 
                 DetailPaketBimbel::insert([
                     'id_paket_bimbel' => $id,
-                    'id_materi' => $request->id_kategori_soal[$i],
+                    'id_materi_tes' => $request->id_materi_tes[$i],
                 ]); 
             }
             DB::commit();
-            return redirect('homeAdmin');
+            return redirect('paketBimbel');
         } catch (\Exception $e) {
             dd($e->getMessage());
         }
@@ -103,11 +104,11 @@ class PaketBimbelController extends Controller
     {
         $data = PaketBimbelModels::with('detailPaket')->where('id_paket_bimbel', $id)->first();
         $detail = DetailPaketBimbel::where('id_paket_bimbel', $id)
-        ->leftjoin('m_pembelajaran', 'detail_paket_bimbel.id_materi', 'm_pembelajaran.id_materi')
+        ->leftjoin('m_materi_tes', 'detail_paket_bimbel.id_materi_tes', 'm_materi_tes.id_materi_tes')
         ->get();
-        $kategori = Pembelajaran::all();
+        $materi_tes = MateriTesModels::all();
         // dd($detail);
-        return view('admin.master.editMasterPaketBimbel', compact('data', 'detail', 'kategori'));
+        return view('admin.master.editMasterPaketBimbel', compact('data', 'detail', 'materi_tes'));
     }
 
     /**
@@ -133,15 +134,15 @@ class PaketBimbelController extends Controller
             ]);
             DetailPaketBimbel::where('id_paket_bimbel', $request->id_paket_bimbel)->delete();
 
-            for ($i=0; $i < count($request->id_kategori_soal) ; $i++) { 
+            for ($i=0; $i < count($request->id_materi_tes) ; $i++) { 
                 
                 DetailPaketBimbel::insert([
                     'id_paket_bimbel' => $request->id_paket_bimbel,
-                    'id_materi' => $request->id_kategori_soal[$i],
+                    'id_materi_tes' => $request->id_materi_tes[$i],
                 ]); 
             }
             DB::commit();
-            return redirect('homeAdmin');
+            return redirect('paketBimbel');
         } catch (\Exception $e) {
             dd($e->getMessage());
         }

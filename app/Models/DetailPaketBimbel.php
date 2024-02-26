@@ -10,11 +10,11 @@ class DetailPaketBimbel extends Model
     use HasFactory;
     protected $table ="detail_paket_bimbel";
     protected $guard = '*';
-    protected $appends = ['pembelajaran'];
+    protected $appends = ['materi_tes'];
 
-    public function getPembelajaranAttribute()
+    public function getMateriTesAttribute()
     {
-        return Pembelajaran::where('id_materi',$this->id_materi)->first();
+        return MateriTesModels::where('id_materi_tes',$this->id_materi_tes)->first();
     }
     
     public function materi()
