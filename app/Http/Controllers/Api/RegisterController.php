@@ -40,6 +40,10 @@ class RegisterController extends Controller
             $file->move(public_path().'/public/user', $fileName);
         }
         // dd($filename);
+        $date = date('Ymd');
+        $no = BookingUserModels::count();
+        $kodeBooking = $date .  str_pad($no,2,"0", STR_PAD_LEFT);
+        
         $booking = BookingUserModels::create([
             'nama'      => $request->nama,
             'asal_sekolah'      => $request->asal_sekolah,
@@ -48,6 +52,7 @@ class RegisterController extends Controller
             'status_pembayaran'      => $request->status_pembayaran,
             'jenis_pembayaran'      => $request->jenis_pembayaran,
             'file'      => $filename,
+            'kode_booking'      => $kodeBooking,
         ]);
 
         if($booking) {
