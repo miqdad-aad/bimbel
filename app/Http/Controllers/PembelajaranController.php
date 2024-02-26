@@ -34,7 +34,7 @@ class PembelajaranController extends Controller
                      ->addIndexColumn()
                      ->addColumn('action', function($row){
                        $btn = '  <a href="'. url('pembelajaran/edit/'. $row->id_materi) .'" class="edit btn btn-info btn-sm btn-edit">Edit</a>';
-                       $btn .= ' <a target="_blank" href="'. url('soal?materi='.$row->slug) .'" class=" btn btn-success btn-sm ">Manajemen Soal</a>';
+                       $btn .= ' <a target="_blank" href="'. url('soal?id_materi='.$row->id_materi) .'" class=" btn btn-success btn-sm ">Manajemen Soal</a>';
                        $btn .= ' <a type="button"  class="delete btn btn-danger btn-sm btn-hapus">Delete</a>';
    
                         return $btn;

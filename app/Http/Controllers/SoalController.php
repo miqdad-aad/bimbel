@@ -54,9 +54,9 @@ class SoalController extends Controller
      */
     public function create(Request $request)
     {
-        $materi = $request->materi;
+        $id_materi = $request->id_materi;
         $paket = MasterPaketModels::all();
-        return view('admin.soal.add',compact('paket','materi'));
+        return view('admin.soal.add',compact('paket','id_materi'));
     }
 
     /**
@@ -83,7 +83,7 @@ class SoalController extends Controller
                 'pertanyaan' => $request->pertanyaan,
                 'score' => $request->score,
                 'id_paket' => $request->id_paket,
-                'id_materi' => $pembelajaran->id_materi,
+                'id_materi' => $request->id_materi,
                 'file_tambahan' => $filename,
                 'id_kategori_soal' => isset($request->id_kategori_soal) ? $request->id_kategori_soal : 0
             ]);
@@ -108,7 +108,7 @@ class SoalController extends Controller
 
             }
             DB::commit();
-            return redirect('soal?materi='. $request->materi);
+            return redirect('soal?id_materi='. $request->id_materi);
         } catch (\Exception $e) {
             dd($e->getMessage());
         }
@@ -182,7 +182,7 @@ class SoalController extends Controller
                 'pertanyaan' => $request->pertanyaan,
                 'score' => $request->score,
                 'id_paket' => $request->id_paket,
-                'id_materi' => $pembelajaran->id_materi,
+                'id_materi' => $request->id_materi,
                 'file_tambahan' => $filename,
                 'id_kategori_soal' => isset($request->id_kategori_soal) ? $request->id_kategori_soal : 0
             ]);
@@ -206,7 +206,7 @@ class SoalController extends Controller
 
             }
             DB::commit();
-            return redirect('soal?materi='. $request->materi);
+            return redirect('soal?id_materi='. $request->id_materi);
         } catch (\Exception $e) {
             dd($e->getMessage());
         }

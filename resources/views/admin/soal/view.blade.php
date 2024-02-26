@@ -30,7 +30,7 @@
                     <div class="col-xl-10">
                         <div class="btn-group">
                             <a class="btn btn-primary"
-                                href="{{ route('soal.create', ['materi' => isset($_GET['materi']) ? $_GET['materi'] : '' ]) }}"><i
+                                href="{{ route('soal.create', ['id_materi' => isset($_GET['id_materi']) ? $_GET['id_materi'] : '' ]) }}"><i
                                     class="fas fa-plus"></i></a>
                             <a href="" class="btn btn-sm btn-light text-muted"><i
                                     class="fas fa-sync-alt"></i></a>&nbsp;&nbsp;
@@ -132,7 +132,7 @@
             ajax: {
                 url: "{{ route('soal.view') }}",
                 data: function (d) {
-                    d.materi = "{{ isset($_GET['materi']) ? $_GET['materi'] : '' }}"
+                    d.id_materi  = "{{ isset($_GET['id_materi']) ? $_GET['id_materi'] : '' }}"
                     return d;
                 }
 

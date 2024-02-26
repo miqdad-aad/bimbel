@@ -27,7 +27,7 @@
         <div class="card card-xl-stretch mb-5 mb-xl-8">
             <form action="{{ route('addSoal.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="materi" value='{{ $materi }}' class="form-control input-file">
+                <input type="hidden" name="id_materi" value='{{ $id_materi }}' class="form-control input-file">
                 <div class="card-body py-3">
                     <div class="row form-group">
                         <div class="col-sm-12 form-group">
@@ -72,7 +72,7 @@
                             <br>
                             <br>
                             <button class="btn btn-sm btn-success" type="submit">Simpan Soal</button>
-                            <a class="btn btn-sm btn-danger" href="{{ url('soal?materi='.isset($_GET['materi']) ? $_GET['materi'] : '') }}">Halaman Sebelumnya</a>
+                            <a class="btn btn-sm btn-danger" href="{{ url('soal?id_materi='.isset($_GET['id_materi']) ? $_GET['id_materi'] : '') }}">Halaman Sebelumnya</a>
                         </div>
                     </div>
                 </div>
