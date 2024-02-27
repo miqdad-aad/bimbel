@@ -13,6 +13,7 @@ use App\Http\Controllers\PaketBimbelController;
 use App\Http\Controllers\MateriTesController;
 use App\Http\Controllers\JenisTesController;
 use App\Http\Controllers\BabTesController;
+use App\Http\Controllers\BookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -120,5 +121,10 @@ Route::controller(PembelajaranController::class)->group(function () {
     Route::get('/tambah/pembelajaran', 'create')->name('pembelajaran.create');
     Route::post('/addpembelajaran', 'store')->name('addpembelajaran.store');
     Route::get('/deletepembelajaran/{hapus}', 'destroy')->name('deletepembelajaran');
+    
+});
+
+Route::controller(BookingController::class)->group(function () {
+    Route::get('/bookingUser', 'index')->name('booking.view');
     
 });
