@@ -9,7 +9,7 @@ use App\Models\KategoriSoalModels;
 use App\Models\PaketBimbelModels;
 use App\Models\DetailPaketBimbel;
 use App\Models\Pembelajaran;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
 use DB;
 
 class PaketBimbelController extends Controller

@@ -11,7 +11,7 @@ use App\Models\MentorModels;
 use App\Models\User;
 use DB;
 use Str;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
 
 class PembelajaranController extends Controller
 {

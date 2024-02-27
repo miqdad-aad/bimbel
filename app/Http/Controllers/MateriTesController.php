@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MateriTesModels;
 use App\Models\JenisTesModels;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
 use DB;
 
 class MateriTesController extends Controller

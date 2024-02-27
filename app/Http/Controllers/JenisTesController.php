@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\JenisTesModels;
 use App\Models\MateriTesModels;
 use App\Models\BabTesModels;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
 use DB;
 
 class JenisTesController extends Controller

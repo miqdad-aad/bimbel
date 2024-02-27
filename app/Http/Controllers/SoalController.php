@@ -9,7 +9,7 @@ use App\Models\JawabanSoalModels;
 use App\Models\Pembelajaran;
 use DB;
 use Str;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
 
 class SoalController extends Controller
 {

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\KegiatanModels;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
 use DB;
 
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\KategoriSoalModels;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
 
 class KategoriSoalController extends Controller
 {

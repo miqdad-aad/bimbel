@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MentorModels;
 use App\Models\User;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
 
 class MentorController extends Controller
 {
