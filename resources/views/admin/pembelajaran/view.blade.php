@@ -44,8 +44,6 @@
                             <tr>
                                 <th>No</th>
                                 <th>Jenis Tes</th>
-                                <th>Materi Tes</th>
-                                <th>Bab Tes</th>
                                 <th>Kategori Pembelajaran</th>
                                 <th>Uraian Pembelajaran</th>
                                 <th>Total Soal</th>
@@ -106,16 +104,6 @@
                 },
                 {
                     data: 'jenis_tes.jenis_tes',
-                    name: 'name',
-                    className: 'text-left'
-                },
-                {
-                    data: 'materi_tes.nama_materi_tes',
-                    name: 'name',
-                    className: 'text-left'
-                },
-                {
-                    data: 'bab_tes.bab',
                     name: 'name',
                     className: 'text-left'
                 },

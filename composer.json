@@ -21,6 +21,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.4",
         "league/flysystem-aws-s3-v3": "^1.0",
+        "xendit/xendit-php": "^4.2",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
