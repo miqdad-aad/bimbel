@@ -82,7 +82,7 @@
                                         <td class="text-left"><select class="select2class form-control form-control-sm" name="id_materi_tes[]">
                                             
                                             @foreach($materi_tes as $h)
-                                                <option <?= $t->id_materi_tes ==  $h->id_materi_tes ? 'selected' : '' ?> value="{{ $h->id_materi_tes }}">{{ $h->nama_materi_tes }}</option>
+                                                <option <?= $t->id_materi ==  $h->id_materi ? 'selected' : '' ?> value="{{ $h->id_materi }}">{{ $h->uraian_materi }}</option>
                                             @endforeach
                                         </select></td>
                                         </td>

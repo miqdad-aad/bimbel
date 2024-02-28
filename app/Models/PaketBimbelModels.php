@@ -15,11 +15,18 @@ class PaketBimbelModels extends Model
     {
         return $this->belongsTo(PaketBimbelModels::class,'id_paket_bimbel','id_paket_bimbel');
     }
+
+    public function paket_booking()
+    {
+        return $this->hasMany(BookingUserModels::class,'id_paket_bimbel','id_paket');
+    }
     
 
     public function detailPaket()
     {
         return $this->hasMany(DetailPaketBimbel::class,'id_paket_bimbel','id_paket_bimbel');
     }
+
+
 
 }
