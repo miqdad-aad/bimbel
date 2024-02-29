@@ -34,7 +34,7 @@
                 @endif
                 <div class="card-body py-3">
                     <div class="row form-group">
-                        <div class="col-sm-4 form-group">
+                        <div class="col-sm-12 form-group">
                             <label for="">
                                 <p>
                                     <h3>Jenis Tes</h3>
@@ -49,7 +49,7 @@
 
                             </select>
                         </div>
-                        <div class="col-sm-4 form-group">
+                        {{-- <div class="col-sm-4 form-group">
                             <label for="">
                                 <p>
                                     <h3>Materi Tes</h3>
@@ -72,7 +72,7 @@
                                     <option value="{{ $data->bab_tes->id_bab_tes }}" selected>{{ $data->bab_tes->bab }}</option>
                                 @endif
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="col-sm-12 form-group">
                             <label for="">
                                 <p>

@@ -10,10 +10,21 @@ class PaketBimbelModels extends Model
     use HasFactory;
     protected $table ="m_paket_bimbel";
     protected $guard = 'id_paket_bimbel';
+    protected $appends = ['materi_tes'];
 
     public function paketBimbel()
     {
         return $this->belongsTo(PaketBimbelModels::class,'id_paket_bimbel','id_paket_bimbel');
+    }
+
+    public function paket_booking()
+    {
+        return $this->hasMany(BookingUserModels::class,'id_paket_bimbel','id_paket');
+    }
+
+    public function paket_bimbel()
+    {
+        return $this->belongsTo(Pembelajaran::class,'id_materi_tes','id_materi');
     }
     
 
@@ -21,5 +32,7 @@ class PaketBimbelModels extends Model
     {
         return $this->hasMany(DetailPaketBimbel::class,'id_paket_bimbel','id_paket_bimbel');
     }
+
+
 
 }

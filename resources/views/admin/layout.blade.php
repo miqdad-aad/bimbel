@@ -233,7 +233,7 @@
                                             <span class="menu-title">Master jenis tes</span>
                                         </a>
                                     </div>
-                                    <div class="menu-item">
+                                    {{-- <div class="menu-item">
                                         <a class="menu-link" href="{{ route('materiTes') }}">
                                             <span class="menu-bullet">
                                                 <span class="bullet bullet-dot"></span>
@@ -248,7 +248,7 @@
                                             </span>
                                             <span class="menu-title">Master bab tes</span>
                                         </a>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
@@ -331,7 +331,7 @@
                                 </div> --}}
                                 <div class="menu-sub menu-sub-accordion menu-active-bg">
                                     <div class="menu-item">
-                                        <a class="menu-link" href="{{ '' }}">
+                                        <a class="menu-link" href="{{ route('booking.view') }}">
                                             <span class="menu-bullet">
                                                 <span class="bullet bullet-dot"></span>
                                             </span>

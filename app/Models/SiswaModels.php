@@ -11,4 +11,8 @@ class SiswaModels extends Model
     protected $table ="m_siswa";
     protected $guarded = ['id_siswa'];
 
+    public function siswa_booking()
+    {
+        return $this->hasMany(BookingUserModels::class,'id_siswa','id_siswa');
+    }
 }

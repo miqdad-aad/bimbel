@@ -126,5 +126,6 @@ Route::controller(PembelajaranController::class)->group(function () {
 
 Route::controller(BookingController::class)->group(function () {
     Route::get('/bookingUser', 'index')->name('booking.view');
+    Route::post('/bookingUpdate', 'update')->name('booking.update');
     
 });

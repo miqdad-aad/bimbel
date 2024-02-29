@@ -20,6 +20,11 @@ class Pembelajaran extends Model
         return $this->belongsTo(KategoriSoalModels::class,'id_kategori_soal','id_kategori_soal');
     }
 
+    public function paket_bimbel()
+    {
+        return $this->hasMany(DetailPaketBimbel::class,'id_materi','id_materi_tes');
+    }
+
     public function paketSoal()
     {
         return $this->hasMany(SoalModels::class,'id_materi','id_materi');

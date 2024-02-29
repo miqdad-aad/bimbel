@@ -44,7 +44,7 @@ class PaketBimbelController extends Controller
     public function create()
     {
         
-        $materi_tes = MateriTesModels::all();
+        $materi_tes = Pembelajaran::all();
        return view('admin.master.addMasterPaket', compact('materi_tes'));
     }
 
@@ -102,12 +102,15 @@ class PaketBimbelController extends Controller
      */
     public function edit($id)
     {
+        // dd($id);
         $data = PaketBimbelModels::with('detailPaket')->where('id_paket_bimbel', $id)->first();
-        $detail = DetailPaketBimbel::where('id_paket_bimbel', $id)
-        ->leftjoin('m_materi_tes', 'detail_paket_bimbel.id_materi_tes', 'm_materi_tes.id_materi_tes')
+        $detail = DB::table('detail_paket_bimbel as a')
+        ->leftjoin('m_pembelajaran as b', 'a.id_materi_tes', 'b.id_materi')
+        ->where('a.id_paket_bimbel', $id)
         ->get();
-        $materi_tes = MateriTesModels::all();
         // dd($detail);
+        $materi_tes = Pembelajaran::all();
+        // dd($materi_tes);
         return view('admin.master.editMasterPaketBimbel', compact('data', 'detail', 'materi_tes'));
     }
 

@@ -21,4 +21,9 @@ class DetailPaketBimbel extends Model
     {
         return $this->belongsTo(PaketBimbelModels::class,'id_paket_bimbel','id_paket_bimbel');
     }
+
+    public function paket_bimbel()
+    {
+        return $this->belongsTo(Pembelajaran::class,'id_materi','id_materi_tes');
+    }
 }

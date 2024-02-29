@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\BookingUserModels;
+use Yajra\DataTables\Facades\DataTables;
+use DB;
+
 
 class BookingController extends Controller
 {
@@ -11,8 +15,21 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        // dd($data);
+        if($request->ajax() ){
+            $data = BookingUserModels::with(['siswa_booking','paket_booking'])->get();
+             return DataTables::of($data)
+                     ->addIndexColumn()
+                     ->addColumn('action', function($row){
+                       $btn = '  <a href="javascript:void(0)" data-id="'. $row->id_kategori_soal .'" class="edit btn btn-info btn-sm btn-edit">Approve</a>';
+   
+                        return $btn;
+                     })
+                     ->rawColumns(['action'])
+                     ->make(true);
+           }
         return view('admin.booking.index');
     }
 
@@ -66,9 +83,19 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        // dd($request);
+        DB::beginTransaction();
+        try {
+            BookingUserModels::where('id', $request->booking_id)->update([
+                'status_pembayaran' => $request->approve,
+            ]);
+            DB::commit();
+            return response()->json(['status' => 200]);
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
     }
 
     /**
