@@ -10,6 +10,7 @@ class PaketBimbelModels extends Model
     use HasFactory;
     protected $table ="m_paket_bimbel";
     protected $guard = 'id_paket_bimbel';
+    protected $appends = ['materi_tes'];
 
     public function paketBimbel()
     {
@@ -19,6 +20,11 @@ class PaketBimbelModels extends Model
     public function paket_booking()
     {
         return $this->hasMany(BookingUserModels::class,'id_paket_bimbel','id_paket');
+    }
+
+    public function paket_bimbel()
+    {
+        return $this->belongsTo(Pembelajaran::class,'id_materi_tes','id_materi');
     }
     
 
