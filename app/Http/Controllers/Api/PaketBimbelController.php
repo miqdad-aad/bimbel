@@ -11,8 +11,7 @@ class PaketBimbelController extends Controller
     
     public function paket_bimbel()
     {
-        $data = PaketBimbelModels::with(['detailPaket','paket_bimbel'])->get();
-        printJSON($data);
+        $data = PaketBimbelModels::with(['detailPaket'])->get(); 
         if(!empty($data)) return response(array('total_data' => count($data), 'message' => 'data ditemukan', 'data' => $data), 200);
         return response(array('total_data' => count($data), 'message' => 'data tidak ditemukan', 'data' => $data), 400);
     }
