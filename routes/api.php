@@ -24,3 +24,4 @@ Route::get('kegiatan', [App\Http\Controllers\Api\KegiatanController::class, 'keg
 Route::get('paket_bimbel', [App\Http\Controllers\Api\PaketBimbelController::class, 'paket_bimbel']);
 Route::post('register_user', [App\Http\Controllers\Api\RegisterController::class, 'index']);
 Route::post('booking', [App\Http\Controllers\Api\BookingController::class, 'store']);
+Route::get('soal_coba', [App\Http\Controllers\Api\PaketBimbelController::class, 'soal_coba']);

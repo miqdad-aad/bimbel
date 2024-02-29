@@ -28,7 +28,7 @@
             <form action="{{ route('soal.update') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="text" value="{{ $soal->id_soal }}" name="id_soal" hidden>
-                <input type="text" value="{{ $pembelajaran->slug }}" name="materi" hidden>
+                <input type="hidden" value="{{ $pembelajaran->id_materi }}" name="id_materi" >
                 <div class="card-body py-3">
                     <div class="row form-group">
                         <div class="col-sm-12 form-group">
