@@ -18,7 +18,7 @@ class PaketBimbelController extends Controller
     }
     public function soal_coba()
     {
-        $data = SoalModels::with('jawabanSoal')->whereNull('file_tambahan')->inRandomOrder()->limit(5)->get();
+        $data = SoalModels::with('jawabanSoal')->whereNull('file_tambahan')->inRandomOrder()->limit(1)->get();
         if(!empty($data)) return response(array('total_data' => count($data), 'message' => 'data ditemukan', 'data' => $data), 200);
         return response(array('total_data' => count($data), 'message' => 'data tidak ditemukan', 'data' => $data), 400);
     }
