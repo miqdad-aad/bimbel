@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Pembelajaran;
 
 class DetailPaketBimbel extends Model
 {
@@ -12,11 +13,7 @@ class DetailPaketBimbel extends Model
     protected $guard = '*';
     protected $appends = ['materi_tes'];
 
-    public function getMateriTesAttribute()
-    {
-        return MateriTesModels::where('id_materi_tes',$this->id_materi_tes)->first();
-    }
-    
+  
     public function materi()
     {
         return $this->belongsTo(PaketBimbelModels::class,'id_paket_bimbel','id_paket_bimbel');
@@ -25,5 +22,8 @@ class DetailPaketBimbel extends Model
     public function paket_bimbel()
     {
         return $this->belongsTo(Pembelajaran::class,'id_materi','id_materi_tes');
+    }
+    public function getMateriTesAttribute(){
+        return Pembelajaran::where("id_materi", $this->id_materi_tes)->first();
     }
 }

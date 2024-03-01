@@ -8,6 +8,7 @@ use App\Models\SiswaModels;
 use App\Models\BookingUserModels;
 use App\Models\PaketBimbelModels;
 use DB;
+use File;
 use Str; 
 use Http;
 
@@ -87,6 +88,7 @@ class BookingController extends Controller
                     ],
                 ]);
                 $response = $data_request->object();  
+                // printJSON($response);
                 $payment_link = '';
                 $payment_status = '';
                 
@@ -109,6 +111,7 @@ class BookingController extends Controller
             DB::commit();
             return response(array('link_payment' => $payment_link, 'message' => 'pendaftaran berhasil'), 200);
         } catch (\Exception $e) {
+            printJSON($e->getMessage());
             DB::rollback(); 
             return response(array('link_payment' => '', 'message' => 'pendaftaran gagal'), 400);
         }

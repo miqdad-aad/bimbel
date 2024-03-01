@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Pembelajaran;
 
 class PaketBimbelModels extends Model
 {
     use HasFactory;
     protected $table ="m_paket_bimbel";
-    protected $guard = 'id_paket_bimbel';
-    protected $appends = ['materi_tes'];
+    protected $guard = 'id_paket_bimbel'; 
 
     public function paketBimbel()
     {
@@ -32,6 +32,8 @@ class PaketBimbelModels extends Model
     {
         return $this->hasMany(DetailPaketBimbel::class,'id_paket_bimbel','id_paket_bimbel');
     }
+
+  
 
 
 
