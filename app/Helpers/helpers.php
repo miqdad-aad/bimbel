@@ -13,3 +13,10 @@ function printJSON($v){
 	echo json_encode($v, JSON_PRETTY_PRINT);
 	exit;
 }
+
+function encryptJawaban($text) {
+$key = "yourSecretKey123";
+$iv = "yourIV1234567890";
+  $cipherText = openssl_encrypt($text, 'aes-256-cbc', $key, 0, $iv);
+  return $cipherText;
+}

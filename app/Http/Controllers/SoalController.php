@@ -9,6 +9,7 @@ use App\Models\JawabanSoalModels;
 use App\Models\Pembelajaran;
 use DB;
 use Str;
+use Auth;
 use Yajra\DataTables\Facades\DataTables;
 
 class SoalController extends Controller
@@ -36,8 +37,11 @@ class SoalController extends Controller
              return DataTables::of($data)
                      ->addIndexColumn()
                      ->addColumn('action', function($row){
-                       $btn = '  <a href="'. url('edit/soal/'. $row->id_soal) .'" class="edit btn btn-info btn-sm ">Edit</a>';
-                       $btn .= ' <a type="button"  class="delete btn btn-danger btn-sm btn-hapus">Delete</a>';
+                        $btn = '';
+                        if(Auth::user()->role != 3){
+                            $btn = '  <a href="'. url('edit/soal/'. $row->id_soal) .'" class="edit btn btn-info btn-sm ">Edit</a>';
+                            $btn .= ' <a type="button"  class="delete btn btn-danger btn-sm btn-hapus">Delete</a>';
+                        }
    
                         return $btn;
                      })

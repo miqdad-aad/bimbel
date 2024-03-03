@@ -8,9 +8,12 @@ use App\Models\KategoriSoalModels;
 use App\Models\Pembelajaran;
 use App\Models\JenisTesModels;
 use App\Models\MentorModels;
+use App\Models\BookingUserModels;
+use App\Models\DetailPaketBimbel;
 use App\Models\User;
 use DB;
 use Str;
+use Auth;
 use Yajra\DataTables\Facades\DataTables;
 
 class PembelajaranController extends Controller
@@ -29,13 +32,24 @@ class PembelajaranController extends Controller
     {
         // dd($data);
         if($request->ajax() ){
-            $data = Pembelajaran::with(['jenis_tes','kategoriSoal','bab_tes','materi_tes','kategori_pembelajaran'])->get();
+            $data = Pembelajaran::with(['jenis_tes','kategoriSoal','bab_tes','materi_tes','kategori_pembelajaran']);
+            if(Auth::user()->role == 3){
+                $booking = BookingUserModels::with('paket_booking')->where('id_siswa', Auth::user()->id_siswa)->first();
+                $detailPaket = DetailPaketBimbel::where('id_paket_bimbel', $booking->paket_booking->id_paket_bimbel)->pluck('id_materi_tes')->toArray();
+                $data->whereIn('id_materi', $detailPaket);
+
+            }
+            $data->get();
+            $data = $data->get();
              return DataTables::of($data)
                      ->addIndexColumn()
                      ->addColumn('action', function($row){
-                       $btn = '  <a href="'. url('pembelajaran/edit/'. $row->id_materi) .'" class="edit btn btn-info btn-sm btn-edit">Edit</a>';
-                       $btn .= ' <a target="_blank" href="'. url('soal?id_materi='.$row->id_materi) .'" class=" btn btn-success btn-sm ">Manajemen Soal</a>';
-                       $btn .= ' <a type="button"  class="delete btn btn-danger btn-sm btn-hapus">Delete</a>';
+                        $btn = '';
+                         if(Auth::user()->role != 3){
+                           $btn = '  <a href="'. url('pembelajaran/edit/'. $row->id_materi) .'" class="edit btn btn-info btn-sm btn-edit">Edit</a>';
+                           $btn .= ' <a type="button"  class="delete btn btn-danger btn-sm btn-hapus">Delete</a>';
+                         }
+                         $btn .= ' <a target="_blank" href="'. url('soal?id_materi='.$row->id_materi) .'" class=" btn btn-success btn-sm ">Manajemen Soal</a>';
    
                         return $btn;
                      })

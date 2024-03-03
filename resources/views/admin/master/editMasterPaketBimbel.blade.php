@@ -117,8 +117,8 @@
         $(document).on('click', '.add-jawaban', function () {
             $('.body-jawaban').append(`<tr class="text-center">
                 <td class="text-left"><select class="select2class form-control form-control-sm" name="id_materi_tes[]">
-                                @foreach($materi_tes as $h)
-                                    <option value="{{ $h->id_materi_tes }}">{{ $h->nama_materi_tes }}</option>
+                @foreach($materi_tes as $h)
+                                    <option value="{{ $h->id_materi }}">{{ $h->uraian_materi }}</option>
                                 @endforeach
                             </select></td>
                 <td><button class="btn btn-sm btn-danger btn-hapus" type="button"><i class="fa fa-trash"></i></button></td>

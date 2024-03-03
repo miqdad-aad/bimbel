@@ -145,6 +145,7 @@
                                     <span class="menu-section text-muted text-uppercase fs-8 ls-1">Crafted</span>
                                 </div>
                             </div>
+                            @if(Auth::user()->role == 1)
                             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                                 <span class="menu-link">
                                     <span class="menu-icon">
@@ -168,21 +169,23 @@
                                     <span class="menu-title">Master</span>
                                     <span class="menu-arrow"></span>
                                 </span>
+                        
                                 <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                    <div class="menu-item">
-                                        <a class="menu-link" href="{{ route('masterKategoriSoal') }}">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Master data kategori soal</span>
-                                        </a>
-                                    </div>
+                                  
                                     <div class="menu-item">
                                         <a class="menu-link" href="{{ url('paketBimbel') }}">
                                             <span class="menu-bullet">
                                                 <span class="bullet bullet-dot"></span>
                                             </span>
                                             <span class="menu-title">Master data Paket Bimbel</span>
+                                        </a>
+                                    </div>
+                                    <div class="menu-item">
+                                        <a class="menu-link" href="{{ url('masterStrukturOrganisasi') }}">
+                                            <span class="menu-bullet">
+                                                <span class="bullet bullet-dot"></span>
+                                            </span>
+                                            <span class="menu-title">Master Struktur Organisasi</span>
                                         </a>
                                     </div>
                                     <div class="menu-item">
@@ -217,14 +220,14 @@
                                             <span class="menu-title">Master Foto Sekolah Kedinasan</span>
                                         </a>
                                     </div>
-                                    <div class="menu-item">
+                                    <!-- <div class="menu-item">
                                         <a class="menu-link" href="{{ route('masterPaket') }}">
                                             <span class="menu-bullet">
                                                 <span class="bullet bullet-dot"></span>
                                             </span>
                                             <span class="menu-title">Master Paket Soal</span>
                                         </a>
-                                    </div>
+                                    </div> -->
                                     <div class="menu-item">
                                         <a class="menu-link" href="{{ route('jenisTes') }}">
                                             <span class="menu-bullet">
@@ -251,6 +254,7 @@
                                     </div> --}}
                                 </div>
                             </div>
+                            @endif
                             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                                 <span class="menu-link">
                                     <span class="menu-icon">
@@ -284,6 +288,20 @@
                                         </a>
                                     </div>
                                 </div> --}}
+                                @if(Auth::user()->role == 3)
+                                <div class="menu-sub menu-sub-accordion menu-active-bg">
+                                    <div class="menu-item">
+                                        <a class="menu-link" href="{{ url('exam') }}">
+                                            <span class="menu-bullet">
+                                                <span class="bullet bullet-dot"></span>
+                                            </span>
+                                            <span class="menu-title">Exam</span>
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                                @endif
                                 <div class="menu-sub menu-sub-accordion menu-active-bg">
                                     <div class="menu-item">
                                         <a class="menu-link" href="{{ route('pembelajaran.view') }}">
@@ -296,6 +314,7 @@
 
                                 </div>
                             </div>
+                            @if(Auth::user()->role == 1)
                             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                                 <span class="menu-link">
                                     <span class="menu-icon">
@@ -341,6 +360,8 @@
 
                                 </div>
                             </div>
+                            @endif
+
                             <div class="menu-item">
                                 <div class="menu-content">
                                     <div class="separator mx-1 my-4"></div>
@@ -1152,6 +1173,8 @@
         }
 
     </script>
+       <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     @yield('page-js')
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->

@@ -11,7 +11,7 @@ use DB;
 use File;
 use Str; 
 use Http;
-
+use Hash;
 
 class BookingController extends Controller
 {
@@ -56,6 +56,8 @@ class BookingController extends Controller
             $paket = PaketBimbelModels::where('id_paket_bimbel', $request->id_paket)->first();
 
             $data = SiswaModels::create([
+                'username' => $request->username,
+                'password' => Hash::make($request->password),
                 'nama' => $request->nama,
                 'email' => $request->email,
                 'alamat' => $request->alamat,
@@ -66,13 +68,20 @@ class BookingController extends Controller
 
             
 
+
             $secret_key = 'Basic '.config('xendit.key_auth');
             
+            $idBooking = uniqid();
             
-            $data_request = Http::withHeaders([
+            $payment_link = '';
+            $payment_status = '';
+            $foto_pembayaran = '';
+
+            if($request->jenis_pembayaran == 'ONLINE'){
+                $data_request = Http::withHeaders([
                 'Authorization' => $secret_key
                 ])->post('https://api.xendit.co/v2/invoices', [
-                    'external_id' => uniqid(),
+                    'external_id' => $idBooking,
                     // 'customer_id' => $customerId,
                     'amount' => 1000,
                     'payer_email' => $request->email,
@@ -89,8 +98,6 @@ class BookingController extends Controller
                 ]);
                 $response = $data_request->object();  
                 // printJSON($response);
-                $payment_link = '';
-                $payment_status = '';
                 
                 if(empty($response->status)){
                     return array('status' => 'error');
@@ -98,22 +105,38 @@ class BookingController extends Controller
                     $payment_link = $response->invoice_url;
                     $payment_status = $response->status;
                 }
-                
-                BookingUserModels::insert([
-                    'id_siswa' => $data->id,
-                    'harga' => $paket->harga_paket_bimbel,
-                    'id_paket' => $request->id_paket,
-                    'status_pembayaran' => $payment_status,
-                    'link_pembayaran' => $payment_link
-                ]);
+
+            }else{
+
+                if(!empty($request->foto_pembayaran)){
+                    $file = $request->file('foto_pembayaran');
+                    $foto_pembayaran = Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
+                    $file->move('bukti_bayar', $foto_pembayaran);
+    
+                }
+                $payment_status = 'PENDING';
+
+            }
+            
+            BookingUserModels::insert([
+                'id_siswa' => $data->id,
+                'kode_booking' => $idBooking,
+                'harga' => $paket->harga_paket_bimbel,
+                'id_paket' => $request->id_paket,
+                'jenis_pembayaran' => $request->jenis_pembayaran,
+                'status_pembayaran' => $payment_status,
+                'link_pembayaran' => $payment_link,
+                'foto_pembayaran' => $foto_pembayaran,
+                'created_at'    => date('Y-m-d H:i:s'),
+                'updated_at'    => date('Y-m-d H:i:s'),
+            ]);
 
 
             DB::commit();
-            return response(array('link_payment' => $payment_link, 'message' => 'pendaftaran berhasil'), 200);
+            return response(array('link_payment' => $payment_link, 'message' => 'berhasil'), 200);
         } catch (\Exception $e) {
-            printJSON($e->getMessage());
             DB::rollback(); 
-            return response(array('link_payment' => '', 'message' => 'pendaftaran gagal'), 400);
+            return response(array('link_payment' => '', 'message' => 'gagal', 'noted' => $e->getMessage()), 400);
         }
     }
 

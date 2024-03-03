@@ -13,6 +13,7 @@ class SoalModels extends Model
     use HasFactory;
     protected $table = 'm_soal';
     protected $guard = '*';
+    protected $appends = ['url_path_soal_gambar'];
 
     public function paketSoal()
     {
@@ -27,6 +28,13 @@ class SoalModels extends Model
     public function jawabanSoal()
     {
         return $this->hasMany(JawabanSoalModels::class,'id_soal','id_soal');
+    }
+
+    public function getUrlPathSoalGambarAttribute(){
+        if(!empty($this->file_tambahan)){
+            return asset('public/soal/'. $this->file_tambahan);
+        }
+        return '';
     }
 
 

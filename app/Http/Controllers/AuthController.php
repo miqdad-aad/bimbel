@@ -10,17 +10,9 @@ use Auth;
 
 class AuthController extends Controller
 {
-    public function homeAdmin(Request $request)
+    public function dashboard(Request $request)
     {
         return view('admin.dashboard.dashboard');
-    }
-    public function homeSiswa(Request $request)
-    {
-        return view('welcome');
-    }
-    public function homeMentor(Request $request)
-    {
-        return view('mentor.dashboard.homeMentor');
     }
 
     public function registerMentor(Request $request)
@@ -99,14 +91,7 @@ class AuthController extends Controller
         if (Auth::attempt(['email' => $user->email, 'password' => $request->password]) ||
             Auth::attempt(['username' => $user->username, 'password' => $request->password])) {
             Auth::loginUsingId($user->id);
-            if (auth()->user()->role == 1) {
-                return redirect('/homeAdmin')->with('success', 'Login Sukses');
-            }if (auth()->user()->role == 2) {
-                return redirect('/homeMentor')->with('success', 'Login Sukses');
-            }if(auth()->user()->role == 3) {
-                return redirect('/homeSiswa')->with('success', 'Login Sukses');
-            }
-            
+            return redirect('/dashboard')->with('success', 'Login Sukses');
         } else {
             return back()->withInput($request->only('email', 'remember'))->with(['warning' => 'Login Gagal']);
         }

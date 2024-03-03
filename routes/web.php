@@ -14,6 +14,8 @@ use App\Http\Controllers\MateriTesController;
 use App\Http\Controllers\JenisTesController;
 use App\Http\Controllers\BabTesController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\MasterOrganisasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,11 +29,16 @@ use App\Http\Controllers\BookingController;
 */
 
 
+Route::controller(SiswaController::class)->group(function () {
+    Route::get('/exam', 'exam')->name('exam');
+});
+Route::controller(MasterOrganisasiController::class)->group(function () {
+    Route::get('/masterStrukturOrganisasi', 'create')->name('masterStrukturOrganisasi');
+    Route::post('/masterStrukturOrganisasi/store', 'store')->name('masterStrukturOrganisasi.store');
+});
 Route::controller(AuthController::class)->group(function () {
     Route::get('/', 'login')->name('login');
-    Route::get('/homeAdmin', 'homeAdmin')->name('homeAdmin');
-    Route::get('/homeSiswa', 'homeSiswa')->name('homeSiswa');
-    Route::get('/homeMentor', 'homeMentor')->name('homeMentor');
+    Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::post('/loginStore', 'loginStore')->name('loginStore')->middleware('cekstatus');
     Route::get('/registerMentor', 'registerMentor')->name('registerMentor');
     Route::post('/registerMentorStore', 'registerMentorStore')->name('registerMentorStore');
@@ -127,5 +134,6 @@ Route::controller(PembelajaranController::class)->group(function () {
 Route::controller(BookingController::class)->group(function () {
     Route::get('/bookingUser', 'index')->name('booking.view');
     Route::post('/bookingUpdate', 'update')->name('booking.update');
+    Route::post('/flagApprove', 'flagApprove')->name('booking.flagApprove');
     
 });

@@ -16,15 +16,6 @@ class CekStatus
      */
     public function handle(Request $request, Closure $next)
     {
-        $user = \App\Models\User::where('email', $request->email)->orWhere('username', $request->email)->first();
-        if ($user->role == '1') {
-            return redirect('homeAdmin');
-        } elseif ($user->role == '2') {
-            return redirect('homeMentor');
-        }elseif($user->role == '3'){
-            return redirect('homeSiswa');
-
-        }
         return $next($request);
     }
 }

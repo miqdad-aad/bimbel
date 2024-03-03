@@ -46,7 +46,9 @@
                                 <th>Nama</th>
                                 <th>Asal Sekolah</th>
                                 <th>Paket</th>
+                                <th>Jenis Pembayaran</th>
                                 <th>Status Pembayaran</th>
+                                <th>Status Approve</th>
                                 <th>Tanggal Booking</th>
                                 <th>Action</th>
                             </tr>
@@ -66,15 +68,15 @@
             <form id="addkategori">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title">Form Approve Booking</h5><button type="button" class="btn btn-label-danger btn-icon"
+                    <h5 class="modal-title">Status Pembayaran</h5><button type="button" class="btn btn-label-danger btn-icon"
                         data-bs-dismiss="modal"><i class="fa fa-times"></i></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <input type="text" hidden class="id_booking" name="id_booking" id="id_booking">
                         <div class="col-sm-12 id-100">
-                            <label class="form-label" for="text">Approve</label>
-                            <select name="approve" id="approve" class="form-control ip approve">
+                            <label class="form-label" for="text">Status Pembayaran</label>
+                            <select name="status_pembayaran" id="status_pembayaran" class="form-control ip status_pembayaran">
                                 <option value="SUKSES">Sukses</option>
                                 <option value="PENDING">Pending</option>
                                 <option value="GAGAL">Gagal</option>
@@ -85,7 +87,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary " id="btn-close"
                         data-bs-dismiss="modal">Close</button>
-                    <button type="button" style="display:none" class="btn btn-primary btn-update">Approve</button>
+                    <button type="button" style="display:none" class="btn btn-primary btn-update">Update Status</button>
                 </div>
             </form>
         </div>
@@ -131,7 +133,17 @@
                     className: 'text-center'
                 },
                 {
+                    data: 'jenis_pembayaran',
+                    name: 'name',
+                    className: 'text-center'
+                },
+                {
                     data: 'status_pembayaran',
+                    name: 'name',
+                    className: 'text-center'
+                },
+                {
+                    data: 'status_approve',
                     name: 'name',
                     className: 'text-center'
                 },
@@ -162,14 +174,14 @@
 
         });
         $(document).on('click', '.btn-update', function () {
-            var approve = $('.approve').val();
+            var status_pembayaran = $('.status_pembayaran').val();
             var booking_id = $('.id_booking').val();
             $('#modal7').modal('show');
             $.ajax({
                 url: "{{ route('booking.update') }}",
                 type: "POST",
                 data: {
-                    approve: approve,
+                    status_pembayaran: status_pembayaran,
                     booking_id: booking_id,
                     _token: "{{ csrf_token() }}"
                 },
@@ -187,6 +199,29 @@
             });
             $('.btn-save').show()
             $('.btn-update').hide()
+        });
+        $(document).on('click', '.btn-approve', function () {
+            var booking_id = $(this).attr('data-id');
+            $.ajax({
+                url: "{{ route('booking.flagApprove') }}",
+                type: "POST",
+                data: {
+                    approve: $(this).attr('status-approve'),
+                    booking_id: booking_id,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function (data) {
+                  
+                    toastr.success('Proses Data ' + 
+                        ' berhasil di perbarui', 'Berhasil !!!');
+                    table.ajax.reload(null, false)
+                  
+                },
+                error: function (data) {
+                    toastr.error(data.responseJSON.message, 'Error !!!');
+                  
+                },
+            }); 
         });
 
     });

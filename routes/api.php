@@ -19,9 +19,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('sekolahKedinasanApi', [App\Http\Controllers\Api\SekolahKedinasanController::class, 'sekolahKedinasanApi']);
+Route::get('struktur_organisasi', [App\Http\Controllers\Api\MasterOrganisasiController::class, 'index']);
 Route::get('mentor', [App\Http\Controllers\Api\MentorController::class, 'mentor']);
 Route::get('kegiatan', [App\Http\Controllers\Api\KegiatanController::class, 'kegiatan']);
 Route::get('paket_bimbel', [App\Http\Controllers\Api\PaketBimbelController::class, 'paket_bimbel']);
 Route::post('register_user', [App\Http\Controllers\Api\RegisterController::class, 'index']);
 Route::post('booking', [App\Http\Controllers\Api\BookingController::class, 'store']);
 Route::get('soal_coba', [App\Http\Controllers\Api\PaketBimbelController::class, 'soal_coba']);
+Route::post('jawaban_soal', [App\Http\Controllers\Api\PaketBimbelController::class, 'jawaban_soal']);
+Route::get('soal_exam/{id_siswa}', [App\Http\Controllers\Api\PaketBimbelController::class, 'soal_exam']);

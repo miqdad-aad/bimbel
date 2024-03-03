@@ -25,6 +25,8 @@ class User extends Authenticatable
         'role',
         'is_active',
         'id_user',
+        'id_siswa',
+        'foto_profil',
     ];
 
     /**
