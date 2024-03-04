@@ -30,7 +30,6 @@ use App\Http\Controllers\MasterAkunController;
 |
 */
 
-
 Route::controller(SiswaController::class)->group(function () {
     Route::get('/exam', 'exam')->name('exam');
     Route::get('/soal_exam', 'soal_exam')->name('soal_exam');
