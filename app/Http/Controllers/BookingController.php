@@ -7,6 +7,7 @@ use App\Models\BookingUserModels;
 use App\Models\User;
 use Yajra\DataTables\Facades\DataTables;
 use DB;
+use Auth;
 
 
 class BookingController extends Controller
@@ -18,7 +19,7 @@ class BookingController extends Controller
      */
     public function index(Request $request)
     {
-        // dd($data);
+        
         if($request->ajax() ){
             $data = BookingUserModels::with(['siswa_booking','paket_booking'])->get();
              return DataTables::of($data)
@@ -32,8 +33,9 @@ class BookingController extends Controller
                      ->addColumn('action', function($row){
                         $btn = '';
                         if($row->approved == 0){
-                       $btn .= '  <a href="javascript:void(0)" data-id="'. $row->id .'" class="edit btn btn-info btn-sm btn-edit">Update Status</a>';
+                       $btn .= '  <a href="javascript:void(0)" data-id="'. $row->id .'" class="edit btn btn-info btn-sm btn-edit-status">Update Status</a>';
                        $btn .= '  <a href="javascript:void(0)" data-id="'. $row->id .'" class="btn btn-success btn-sm btn-approve" status-approve="1">Approve</a>';
+                       $btn .= '  <a href="'. url('detailBookingUser/'. $row->id) .'" class="btn btn-primary btn-sm btn-detail">Detail</a>';
                         }else{
                             $btn .= '  <a href="javascript:void(0)" data-id="'. $row->id .'" class="btn btn-danger  btn-sm btn-approve" status-approve="0">Unapprove</a>';
 
@@ -76,7 +78,10 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        //
+        // dd($id);
+        $data = BookingUserModels::with(['siswa_booking','paket_booking'])->where('id', $id)->first();
+        // printJSON($data);
+        return view('admin.booking.detail', compact('data'));
     }
 
     /**

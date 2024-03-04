@@ -16,6 +16,7 @@ use App\Http\Controllers\BabTesController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\MasterOrganisasiController;
+use App\Http\Controllers\MasterAkunController;
 
 /*
 |--------------------------------------------------------------------------
@@ -135,7 +136,16 @@ Route::controller(PembelajaranController::class)->group(function () {
 
 Route::controller(BookingController::class)->group(function () {
     Route::get('/bookingUser', 'index')->name('booking.view');
+    Route::get('/detailBookingUser/{id}', 'show')->name('booking.detail');
     Route::post('/bookingUpdate', 'update')->name('booking.update');
     Route::post('/flagApprove', 'flagApprove')->name('booking.flagApprove');
     
+});
+
+Route::controller(MasterAkunController::class)->group(function () {
+    Route::get('/listAkun', 'index')->name('akun.view');
+    Route::get('/editAkun/{id}', 'edit')->name('akun.edit');
+    Route::get('/editProfile/{id}', 'editProfile')->name('akun.editProfile');
+    Route::post('/updateProfile', 'updateProfile')->name('akun.updateProfile');
+    Route::post('/updateAkun', 'update')->name('akun.update');
 });

@@ -18,11 +18,11 @@
                     <!--begin::Heading-->
                     <div class="text-center mb-10">
                         <!--begin::Title-->
-                        <h1 class="text-dark mb-3">Sign In to Metronic</h1>
+                        <h1 class="text-dark mb-3">Sign In to Bimbel Military In Forces</h1>
                         <!--end::Title-->
                         <!--begin::Link-->
                         <div class="text-gray-400 fw-bold fs-4">New Here?
-                        <a href="{{ route('registerSiswa') }}" class="link-primary fw-bolder">Create an Account</a></div>
+                        <a href="https://www.bimbel-militaryinforces.com/registrasi" class="link-primary fw-bolder">Create an Account</a></div>
                         <!--end::Link-->
                     </div>
                     <!--begin::Heading-->
