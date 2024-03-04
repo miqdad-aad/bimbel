@@ -18,6 +18,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\MasterOrganisasiController;
 use App\Http\Controllers\MasterAkunController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
