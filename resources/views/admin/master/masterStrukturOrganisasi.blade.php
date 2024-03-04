@@ -25,26 +25,25 @@
 <div class="row gy-5 g-xl-8">
     <div class="col-xl-12">
         <form method="post" enctype="multipart/form-data" action="{{ route('masterStrukturOrganisasi.store') }}">
-        <div class="card card-xl-stretch mb-5 mb-xl-8">
-            <div class="card-body py-3">
-                <div class="row">
-                    <div class="col-xl-12">
+            <div class="card card-xl-stretch mb-5 mb-xl-8">
+                <div class="card-body py-3">
+                    <div class="row">
+                        <div class="col-xl-12">
                             @csrf
                             <label class="form-label" for="text">File Struktur Organisasi</label>
-                            <input name="file_struktur" class="form-control file-input-struktur"
-                                type="file">    
-                        </form>
-                    </div>
-
-                </div>
-
-            </div>
-            <div class="card-footer">
-                <button type="submit" class="btn btn-sm btn-success">Simpan Perubahan</button>
-            </div>
-        </div>
-</form>
+                            <input name="file_struktur" class="form-control file-input-struktur" type="file">
+        </form>
     </div>
+
+</div>
+
+</div>
+<div class="card-footer">
+    <button type="submit" class="btn btn-sm btn-success">Simpan Perubahan</button>
+</div>
+</div>
+</form>
+</div>
 </div>
 @endsection
 @section('page-js')
@@ -53,13 +52,13 @@
         'showUpload': false,
         'previewFileType': 'any',
         initialPreview: [
-                "<img src='<?= isset($data->url_gambar) ? $data->url_gambar : '' ?>' class='file-preview-image' alt='Desert' title='Desert'>"
-            ]
+            "<img src='<?= isset($data->foto_pembayaran) ? $data->foto_pembayaran : '' ?>' class='file-preview-image' alt='Desert' title='Desert'>"
+        ]
     });
 
 </script>
 <script>
-    
+
 
 </script>
 @endsection

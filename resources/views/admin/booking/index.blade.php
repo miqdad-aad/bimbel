@@ -163,7 +163,7 @@
         });
 
         let booking_id = 0;
-        $(document).on('click', '.btn-edit', function () {
+        $(document).on('click', '.btn-edit-status', function () {
             params = table.row($(this).closest('tr')).data();
             booking_id = params.id_bab_tes;
             $('.approve').val(params.status_pembayaran);

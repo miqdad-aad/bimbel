@@ -20,4 +20,8 @@ class BookingUserModels extends Model
     {
         return $this->belongsTo(PaketBimbelModels::class,'id_paket','id_paket_bimbel');
     }
+
+    function getUrlGambarAttribute(){
+        return asset('bukti_bayar/'. $this->file_struktur);
+    }
 }
