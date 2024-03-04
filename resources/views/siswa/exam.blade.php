@@ -115,7 +115,7 @@
                 let soalRow = this.dataSoal[0];
                 var jawabanSelected = e.target.getAttribute('keykode');;
 
-                const apiUrl = 'http://localhost:8000/jawaban_soal';
+                const apiUrl = 'https://site.bimbel-militaryinforces.com/jawaban_soal';
                 axios.post(apiUrl, {
                         soal_id: soalRow.id_soal,
                         jawaban: jawabanSelected
@@ -146,7 +146,7 @@
                 this.kode_salah = null;
                 this.kode_non_selected = null;
                 this.notifTextAnswer = null;
-                const apiUrl = 'http://localhost:8000/soal_exam/';
+                const apiUrl = 'https://site.bimbel-militaryinforces.com/soal_exam/';
 
                 axios.get(apiUrl)
                     .then(response => {
