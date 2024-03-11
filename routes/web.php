@@ -18,6 +18,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\MasterOrganisasiController;
 use App\Http\Controllers\MasterAkunController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,9 +30,10 @@ use App\Http\Controllers\MasterAkunController;
 |
 */
 
-
 Route::controller(SiswaController::class)->group(function () {
     Route::get('/exam', 'exam')->name('exam');
+    Route::get('/soal_exam', 'soal_exam')->name('soal_exam');
+    Route::post('/jawaban_soal', 'jawaban_soal')->name('jawaban_soal');
 });
 Route::controller(MasterOrganisasiController::class)->group(function () {
     Route::get('/masterStrukturOrganisasi', 'create')->name('masterStrukturOrganisasi');

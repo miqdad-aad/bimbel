@@ -74,7 +74,7 @@
             serverSide: true,
             searching: true,
             filter: true,
-            ajax: "{{ route('akun.view') }}",
+            ajax: "{{ url('/listAkun') }}",
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',

@@ -8,7 +8,7 @@
                   
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 form-group">
                         <div class="card">
-                            <div v-if="count_soal <= 5">
+                            <div v-if="count_soal <= <?= $totalSoalTersedia ?>">
                                 <div class="card-header">
                                     <h3>Soal @{{ count_soal }}</h3>
                                 </div>
@@ -24,7 +24,7 @@
                                                 'btn btn-answer btn-success': kode_pilih == jawaban.kode_jawaban,
                                                 'btn btn-answer btn-danger':  kode_salah == jawaban.kode_jawaban ,
                                                 'btn btn-answer btn-secondary' : kode_non_selected == null
-                                                }" :keypk="index+'-'+jawaban.kode_jawaban"
+                                                }" :keyindex="soal.id_soal" :keykode="jawaban.kode_jawaban"
                                                 @click="actionRespon">
                                                     <img :src="jawaban.url_file_tambahan" style="width:40%; margin-bottom:50px;" alt="" v-if="jawaban.url_file_tambahan">
                                                     <span v-if="!jawaban.url_file_tambahan">@{{ jawaban.kode_jawaban }} - @{{ jawaban.keterangan }}</span>
@@ -111,12 +111,11 @@
         },
         methods: {
             actionRespon(e) {
-                let pk = e.target.getAttribute('keypk').split("-");
-                let index = pk[0];
-                let soalRow = this.dataSoal[index];
-                var jawabanSelected = pk[1];
+            
+                let soalRow = this.dataSoal[0];
+                var jawabanSelected = e.target.getAttribute('keykode');;
 
-                const apiUrl = 'http://localhost:8000/api/jawaban_soal';
+                const apiUrl = 'https://site.bimbel-militaryinforces.com/jawaban_soal';
                 axios.post(apiUrl, {
                         soal_id: soalRow.id_soal,
                         jawaban: jawabanSelected
@@ -147,7 +146,7 @@
                 this.kode_salah = null;
                 this.kode_non_selected = null;
                 this.notifTextAnswer = null;
-                const apiUrl = 'http://localhost:8000/api/soal_exam/' + "{{ Auth::user()->id_siswa }}";
+                const apiUrl = 'https://site.bimbel-militaryinforces.com/soal_exam/';
 
                 axios.get(apiUrl)
                     .then(response => {
