@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Pembelajaran;
+use App\Models\JenisTesModels;
 
 class DetailPaketBimbel extends Model
 {
