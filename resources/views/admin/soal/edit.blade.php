@@ -48,13 +48,13 @@
                             </label>
                             <input type="file" name="file_tambahan_soal" class="form-control input-file">
                         </div>
-                        <div class="col-sm-3 form-group">
+                        <div class="col-sm-6 form-group">
                             <label for="">
                                 <p>
-                                    <h3>Score</h3>
+                                    <h3>Penjelasan / Keterangan</h3>
                                 </p>
                             </label>
-                            <input type="number" name="score" class="form-control" value="{{ $soal->score }}">
+                            <textarea name="penjelasan" id="" cols="30" rows="10" class="form-control">{{ $soal->penjelasan }}</textarea>
                         </div>
                         
                     </div>

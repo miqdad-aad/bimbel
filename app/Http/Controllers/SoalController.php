@@ -84,6 +84,7 @@ class SoalController extends Controller
                 $file->move('public/soal', $filename);    
             }
             SoalModels::insert([
+                'penjelasan' => $request->penjelasan,
                 'pertanyaan' => $request->pertanyaan,
                 'score' => $request->score,
                 'id_paket' => $request->id_paket,
@@ -114,7 +115,8 @@ class SoalController extends Controller
             DB::commit();
             return redirect('soal?id_materi='. $request->id_materi);
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            DB::rollback(); 
+            return redirect()->back();
         }
        
     }
@@ -178,6 +180,7 @@ class SoalController extends Controller
             // dd($filename);
             $pembelajaran = Pembelajaran::where('slug', $request->materi)->first();
             SoalModels::where('id_soal', $request->id_soal)->update([
+                'penjelasan' => $request->penjelasan,
                 'pertanyaan' => $request->pertanyaan,
                 'score' => $request->score,
                 'id_paket' => $request->id_paket,

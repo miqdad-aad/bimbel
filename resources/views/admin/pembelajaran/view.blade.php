@@ -27,12 +27,16 @@
         <div class="card card-xl-stretch mb-5 mb-xl-8">
             <div class="card-body py-3">
                 <div class="row">
-                    <div class="col-xl-6">
+                    <div class="col-xl-3">
                         <div class="btn-group">
                             <a class="btn btn-primary" href="{{ route('pembelajaran.create') }}"><i class="fas fa-plus"></i></a>
                             <a href="" class="btn btn-sm btn-light text-muted"><i
                                     class="fas fa-sync-alt"></i></a>&nbsp;&nbsp;
                         </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <label>Kategori Pembelajaran</label>
+                        <select class="select2 form-control"></select>
                     </div>
                     
                 </div>
