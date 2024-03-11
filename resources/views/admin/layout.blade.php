@@ -1,5 +1,5 @@
 <!DOCTYPE html>
- 
+
 <html lang="en">
 <!--begin::Head-->
 
@@ -21,7 +21,7 @@
     <meta property="og:site_name" content="Keenthemes | Metronic" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="url" content="{{ url('') }}" />
-    
+
 
 
     <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
@@ -59,18 +59,21 @@
     <!--begin::Main-->
 
     <style>
-   .select2-selection__rendered {
-        margin-top: 1px !important;
-        color : black
-    }
-   .select2-selection__placeholder {
-        color : black !important;
-    }
-    .select2-selection--single {
-       color : black !important;
-    height: 100% !important;
-    }
-</style>
+        .select2-selection__rendered {
+            margin-top: 1px !important;
+            color: black
+        }
+
+        .select2-selection__placeholder {
+            color: black !important;
+        }
+
+        .select2-selection--single {
+            color: black !important;
+            height: 100% !important;
+        }
+
+    </style>
     <!--begin::Root-->
     <div class="d-flex flex-column flex-root">
         <!--begin::Page-->
@@ -120,25 +123,27 @@
                         <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500"
                             id="#kt_aside_menu" data-kt-menu="true" data-kt-menu-expand="false">
                             <div data-kt-menu-trigger="click" class="menu-item here show menu-accordion">
-                                <span class="menu-link">
-                                    <span class="menu-icon">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg') }}-->
-                                        <span class="svg-icon svg-icon-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <rect x="2" y="2" width="9" height="9" rx="2" fill="black" />
-                                                <rect opacity="0.3" x="13" y="2" width="9" height="9" rx="2"
-                                                    fill="black" />
-                                                <rect opacity="0.3" x="13" y="13" width="9" height="9" rx="2"
-                                                    fill="black" />
-                                                <rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2"
-                                                    fill="black" />
-                                            </svg>
+                                <a href="{{ url('dashboard') }}">
+                                    <span class="menu-link">
+                                        <span class="menu-icon">
+                                            <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg') }}-->
+                                            <span class="svg-icon svg-icon-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none">
+                                                    <rect x="2" y="2" width="9" height="9" rx="2" fill="black" />
+                                                    <rect opacity="0.3" x="13" y="2" width="9" height="9" rx="2"
+                                                        fill="black" />
+                                                    <rect opacity="0.3" x="13" y="13" width="9" height="9" rx="2"
+                                                        fill="black" />
+                                                    <rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2"
+                                                        fill="black" />
+                                                </svg>
+                                            </span>
+                                            <!--end::Svg Icon-->
                                         </span>
-                                        <!--end::Svg Icon-->
+                                        <span class="menu-title">Dashboards</span>
                                     </span>
-                                    <span class="menu-title">Dashboards</span>
-                                </span>
+                                </a>
                             </div>
                             <div class="menu-item">
                                 <div class="menu-content pt-8 pb-2">
@@ -169,9 +174,9 @@
                                     <span class="menu-title">Master</span>
                                     <span class="menu-arrow"></span>
                                 </span>
-                        
+
                                 <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                  
+
                                     <div class="menu-item">
                                         <a class="menu-link" href="{{ url('paketBimbel') }}">
                                             <span class="menu-bullet">
@@ -238,499 +243,489 @@
                                     </div>
                                     {{-- <div class="menu-item">
                                         <a class="menu-link" href="{{ route('materiTes') }}">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Master materi tes</span>
-                                        </a>
-                                    </div>
-                                    <div class="menu-item">
-                                        <a class="menu-link" href="{{ route('babTes') }}">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Master bab tes</span>
-                                        </a>
-                                    </div> --}}
-                                </div>
-                            </div>
-                            @endif
-                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                                <span class="menu-link">
-                                    <span class="menu-icon">
-                                        <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm007.svg') }}-->
-                                        <span class="svg-icon svg-icon-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <path
-                                                    d="M21 9V11C21 11.6 20.6 12 20 12H14V8H20C20.6 8 21 8.4 21 9ZM10 8H4C3.4 8 3 8.4 3 9V11C3 11.6 3.4 12 4 12H10V8Z"
-                                                    fill="black" />
-                                                <path
-                                                    d="M15 2C13.3 2 12 3.3 12 5V8H15C16.7 8 18 6.7 18 5C18 3.3 16.7 2 15 2Z"
-                                                    fill="black" />
-                                                <path opacity="0.3"
-                                                    d="M9 2C10.7 2 12 3.3 12 5V8H9C7.3 8 6 6.7 6 5C6 3.3 7.3 2 9 2ZM4 12V21C4 21.6 4.4 22 5 22H10V12H4ZM20 12V21C20 21.6 19.6 22 19 22H14V12H20Z"
-                                                    fill="black" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
                                     </span>
-                                    <span class="menu-title">Academy</span>
-                                    <span class="menu-arrow"></span>
-                                </span>
-                                {{-- <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                    <div class="menu-item">
-                                        <a class="menu-link" href="{{ route('soal.view') }}">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Master Soal</span>
-                                        </a>
-                                    </div>
-                                </div> --}}
-                                @if(Auth::user()->role == 3)
-                                <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                    <div class="menu-item">
-                                        <a class="menu-link" href="{{ url('exam') }}">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Exam</span>
-                                        </a>
-                                    </div>
-
+                                    <span class="menu-title">Master materi tes</span>
+                                    </a>
                                 </div>
-
-                                @endif
-                                <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                    <div class="menu-item">
-                                        <a class="menu-link" href="{{ route('pembelajaran.view') }}">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Pembelajaran</span>
-                                        </a>
-                                    </div>
-
-                                </div>
-                            </div>
-                            @if(Auth::user()->role == 1)
-                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                                <span class="menu-link">
-                                    <span class="menu-icon">
-                                        <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm007.svg') }}-->
-                                        <span class="svg-icon svg-icon-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <path
-                                                    d="M21 9V11C21 11.6 20.6 12 20 12H14V8H20C20.6 8 21 8.4 21 9ZM10 8H4C3.4 8 3 8.4 3 9V11C3 11.6 3.4 12 4 12H10V8Z"
-                                                    fill="black" />
-                                                <path
-                                                    d="M15 2C13.3 2 12 3.3 12 5V8H15C16.7 8 18 6.7 18 5C18 3.3 16.7 2 15 2Z"
-                                                    fill="black" />
-                                                <path opacity="0.3"
-                                                    d="M9 2C10.7 2 12 3.3 12 5V8H9C7.3 8 6 6.7 6 5C6 3.3 7.3 2 9 2ZM4 12V21C4 21.6 4.4 22 5 22H10V12H4ZM20 12V21C20 21.6 19.6 22 19 22H14V12H20Z"
-                                                    fill="black" />
-                                            </svg>
+                                <div class="menu-item">
+                                    <a class="menu-link" href="{{ route('babTes') }}">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <!--end::Svg Icon-->
-                                    </span>
-                                    <span class="menu-title">Manajemen</span>
-                                    <span class="menu-arrow"></span>
-                                </span>
-                                {{-- <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                    <div class="menu-item">
-                                        <a class="menu-link" href="{{ route('soal.view') }}">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Master Soal</span>
-                                        </a>
-                                    </div>
+                                        <span class="menu-title">Master bab tes</span>
+                                    </a>
                                 </div> --}}
-                                <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                    <div class="menu-item">
-                                        <a class="menu-link" href="{{ route('booking.view') }}">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Booking</span>
-                                        </a>
-                                    </div>
-
-                                </div>
-                                <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                    <div class="menu-item">
-                                        <a class="menu-link" href="{{ url('/listAkun') }}">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Akun</span>
-                                        </a>
-                                    </div>
-
-                                </div>
-                            </div>
-                            @endif
-
-                            <div class="menu-item">
-                                <div class="menu-content">
-                                    <div class="separator mx-1 my-4"></div>
-                                </div>
                             </div>
                         </div>
-                        <!--end::Menu-->
+                        @endif
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                            <span class="menu-link">
+                                <span class="menu-icon">
+                                    <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm007.svg') }}-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <path
+                                                d="M21 9V11C21 11.6 20.6 12 20 12H14V8H20C20.6 8 21 8.4 21 9ZM10 8H4C3.4 8 3 8.4 3 9V11C3 11.6 3.4 12 4 12H10V8Z"
+                                                fill="black" />
+                                            <path
+                                                d="M15 2C13.3 2 12 3.3 12 5V8H15C16.7 8 18 6.7 18 5C18 3.3 16.7 2 15 2Z"
+                                                fill="black" />
+                                            <path opacity="0.3"
+                                                d="M9 2C10.7 2 12 3.3 12 5V8H9C7.3 8 6 6.7 6 5C6 3.3 7.3 2 9 2ZM4 12V21C4 21.6 4.4 22 5 22H10V12H4ZM20 12V21C20 21.6 19.6 22 19 22H14V12H20Z"
+                                                fill="black" />
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </span>
+                                <span class="menu-title">Academy</span>
+                                <span class="menu-arrow"></span>
+                            </span>
+                            {{-- <div class="menu-sub menu-sub-accordion menu-active-bg">
+                                    <div class="menu-item">
+                                        <a class="menu-link" href="{{ route('soal.view') }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Master Soal</span>
+                            </a>
+                        </div>
+                    </div> --}}
+                    @if(Auth::user()->role == 3)
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{ url('exam') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Exam</span>
+                            </a>
+                        </div>
+
                     </div>
-                    <!--end::Aside Menu-->
+
+                    @endif
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{ route('pembelajaran.view') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Pembelajaran</span>
+                            </a>
+                        </div>
+
+                    </div>
                 </div>
-                <!--end::Aside menu-->
-                <!--begin::Footer-->
-                <!--end::Footer-->
+                @if(Auth::user()->role == 1)
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm007.svg') }}-->
+                            <span class="svg-icon svg-icon-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none">
+                                    <path
+                                        d="M21 9V11C21 11.6 20.6 12 20 12H14V8H20C20.6 8 21 8.4 21 9ZM10 8H4C3.4 8 3 8.4 3 9V11C3 11.6 3.4 12 4 12H10V8Z"
+                                        fill="black" />
+                                    <path d="M15 2C13.3 2 12 3.3 12 5V8H15C16.7 8 18 6.7 18 5C18 3.3 16.7 2 15 2Z"
+                                        fill="black" />
+                                    <path opacity="0.3"
+                                        d="M9 2C10.7 2 12 3.3 12 5V8H9C7.3 8 6 6.7 6 5C6 3.3 7.3 2 9 2ZM4 12V21C4 21.6 4.4 22 5 22H10V12H4ZM20 12V21C20 21.6 19.6 22 19 22H14V12H20Z"
+                                        fill="black" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="menu-title">Manajemen</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    {{-- <div class="menu-sub menu-sub-accordion menu-active-bg">
+                                    <div class="menu-item">
+                                        <a class="menu-link" href="{{ route('soal.view') }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Master Soal</span>
+                    </a>
+                </div>
+            </div> --}}
+            <div class="menu-sub menu-sub-accordion menu-active-bg">
+                <div class="menu-item">
+                    <a class="menu-link" href="{{ route('booking.view') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Booking</span>
+                    </a>
+                </div>
+
             </div>
-            <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
-                <!--begin::Header-->
-                <div id="kt_header" style="" class="header align-items-stretch">
-                    <!--begin::Container-->
-                    <div class="container-fluid d-flex align-items-stretch justify-content-between">
-                        <!--begin::Aside mobile toggle-->
-                        <div class="d-flex align-items-center d-lg-none ms-n2 me-2" title="Show aside menu">
+            <div class="menu-sub menu-sub-accordion menu-active-bg">
+                <div class="menu-item">
+                    <a class="menu-link" href="{{ url('/listAkun') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Akun</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        @endif
+
+        <div class="menu-item">
+            <div class="menu-content">
+                <div class="separator mx-1 my-4"></div>
+            </div>
+        </div>
+    </div>
+    <!--end::Menu-->
+    </div>
+    <!--end::Aside Menu-->
+    </div>
+    <!--end::Aside menu-->
+    <!--begin::Footer-->
+    <!--end::Footer-->
+    </div>
+    <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+        <!--begin::Header-->
+        <div id="kt_header" style="" class="header align-items-stretch">
+            <!--begin::Container-->
+            <div class="container-fluid d-flex align-items-stretch justify-content-between">
+                <!--begin::Aside mobile toggle-->
+                <div class="d-flex align-items-center d-lg-none ms-n2 me-2" title="Show aside menu">
+                    <div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px"
+                        id="kt_aside_mobile_toggle">
+                        <!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg') }}-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <path
+                                    d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z"
+                                    fill="black" />
+                                <path opacity="0.3"
+                                    d="M21 14H3C2.4 14 2 13.6 2 13V11C2 10.4 2.4 10 3 10H21C21.6 10 22 10.4 22 11V13C22 13.6 21.6 14 21 14ZM22 20V18C22 17.4 21.6 17 21 17H3C2.4 17 2 17.4 2 18V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20Z"
+                                    fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                </div>
+                <!--end::Aside mobile toggle-->
+                <!--begin::Mobile logo-->
+                <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
+                    <a href="../../demo1/dist/index.html" class="d-lg-none">
+                        <img alt="Logo" src="{{ asset ('assetsAdmin/assets/media/logos/logo-2.svg') }}"
+                            class="h-30px" />
+                    </a>
+                </div>
+                <!--end::Mobile logo-->
+                <!--begin::Wrapper-->
+                <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
+                    <!--begin::Navbar-->
+                    <div class="d-flex align-items-stretch" id="kt_header_nav">
+                    </div>
+                    <div class="d-flex align-items-stretch flex-shrink-0">
+
+                        <div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
+                            <!--begin::Menu wrapper-->
+                            <div class="cursor-pointer symbol symbol-30px symbol-md-40px" data-kt-menu-trigger="click"
+                                data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+                                @php
+                                $foto = Auth::user()->foto_profil;
+                                @endphp
+                                <img src="{{asset('foto_siswa/'. $foto)  }}" alt="user" />
+                            </div>
+                            <!--begin::User account menu-->
+                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px"
+                                data-kt-menu="true">
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-3">
+                                    <div class="menu-content d-flex align-items-center px-3">
+                                        <!--begin::Avatar-->
+                                        <div class="symbol symbol-50px me-5">
+                                            <img alt="Logo" src="{{asset('foto_siswa/'. $foto)  }}" />
+                                        </div>
+                                        <!--end::Avatar-->
+                                        <!--begin::Username-->
+                                        <div class="d-flex flex-column">
+                                            <div class="fw-bolder d-flex align-items-center fs-5">Max Smith
+                                                <span
+                                                    class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Pro</span>
+                                            </div>
+                                            <a href="#"
+                                                class="fw-bold text-muted text-hover-primary fs-7">max@kt.com</a>
+                                        </div>
+                                        <!--end::Username-->
+                                    </div>
+                                </div>
+                                <!--end::Menu item-->
+                                <!--begin::Menu separator-->
+                                <div class="separator my-2"></div>
+                                <!--end::Menu separator-->
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-5">
+                                    <a href="{{ url('editProfile', Auth::user()->id)  }}" class="menu-link px-5">My
+                                        Profile</a>
+                                </div>
+                                <!--end::Menu item-->
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-5">
+                                    <a href="../../demo1/dist/apps/projects/list.html" class="menu-link px-5">
+                                        <span class="menu-text">My Projects</span>
+                                        <span class="menu-badge">
+                                            <span class="badge badge-light-danger badge-circle fw-bolder fs-7">3</span>
+                                        </span>
+                                    </a>
+                                </div>
+                                <!--end::Menu item-->
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-5" data-kt-menu-trigger="hover"
+                                    data-kt-menu-placement="left-start">
+                                    <a href="#" class="menu-link px-5">
+                                        <span class="menu-title">My Subscription</span>
+                                        <span class="menu-arrow"></span>
+                                    </a>
+                                    <!--begin::Menu sub-->
+                                    <div class="menu-sub menu-sub-dropdown w-175px py-4">
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="../../demo1/dist/account/referrals.html"
+                                                class="menu-link px-5">Referrals</a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="../../demo1/dist/account/billing.html"
+                                                class="menu-link px-5">Billing</a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="../../demo1/dist/account/statements.html"
+                                                class="menu-link px-5">Payments</a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="../../demo1/dist/account/statements.html"
+                                                class="menu-link d-flex flex-stack px-5">Statements
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="View your statements"></i></a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu separator-->
+                                        <div class="separator my-2"></div>
+                                        <!--end::Menu separator-->
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <div class="menu-content px-3">
+                                                <label
+                                                    class="form-check form-switch form-check-custom form-check-solid">
+                                                    <input class="form-check-input w-30px h-20px" type="checkbox"
+                                                        value="1" checked="checked" name="notifications" />
+                                                    <span class="form-check-label text-muted fs-7">Notifications</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!--end::Menu item-->
+                                    </div>
+                                    <!--end::Menu sub-->
+                                </div>
+                                <!--end::Menu item-->
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-5">
+                                    <a href="../../demo1/dist/account/statements.html" class="menu-link px-5">My
+                                        Statements</a>
+                                </div>
+                                <!--end::Menu item-->
+                                <!--begin::Menu separator-->
+                                <div class="separator my-2"></div>
+                                <!--end::Menu separator-->
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-5" data-kt-menu-trigger="hover"
+                                    data-kt-menu-placement="left-start">
+                                    <a href="#" class="menu-link px-5">
+                                        <span class="menu-title position-relative">Language
+                                            <span
+                                                class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">English
+                                                <img class="w-15px h-15px rounded-1 ms-2"
+                                                    src="{{ asset ('assetsAdmin/assets/media/flags/united-states.svg') }}"
+                                                    alt="" /></span></span>
+                                    </a>
+                                    <!--begin::Menu sub-->
+                                    <div class="menu-sub menu-sub-dropdown w-175px py-4">
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="../../demo1/dist/account/settings.html"
+                                                class="menu-link d-flex px-5 active">
+                                                <span class="symbol symbol-20px me-4">
+                                                    <img class="rounded-1"
+                                                        src="{{ asset ('assetsAdmin/assets/media/flags/united-states.svg') }}"
+                                                        alt="" />
+                                                </span>English</a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="../../demo1/dist/account/settings.html"
+                                                class="menu-link d-flex px-5">
+                                                <span class="symbol symbol-20px me-4">
+                                                    <img class="rounded-1"
+                                                        src="{{ asset ('assetsAdmin/assets/media/flags/spain.svg') }}"
+                                                        alt="" />
+                                                </span>Spanish</a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="../../demo1/dist/account/settings.html"
+                                                class="menu-link d-flex px-5">
+                                                <span class="symbol symbol-20px me-4">
+                                                    <img class="rounded-1"
+                                                        src="{{ asset ('assetsAdmin/assets/media/flags/germany.svg') }}"
+                                                        alt="" />
+                                                </span>German</a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="../../demo1/dist/account/settings.html"
+                                                class="menu-link d-flex px-5">
+                                                <span class="symbol symbol-20px me-4">
+                                                    <img class="rounded-1"
+                                                        src="{{ asset ('assetsAdmin/assets/media/flags/japan.svg') }}"
+                                                        alt="" />
+                                                </span>Japanese</a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="../../demo1/dist/account/settings.html"
+                                                class="menu-link d-flex px-5">
+                                                <span class="symbol symbol-20px me-4">
+                                                    <img class="rounded-1"
+                                                        src="{{ asset ('assetsAdmin/assets/media/flags/france.svg') }}"
+                                                        alt="" />
+                                                </span>French</a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                    </div>
+                                    <!--end::Menu sub-->
+                                </div>
+                                <!--end::Menu item-->
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-5 my-1">
+                                    <a href="../../demo1/dist/account/settings.html" class="menu-link px-5">Account
+                                        Settings</a>
+                                </div>
+                                <!--end::Menu item-->
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-5">
+                                    <a href="{{ route('logout') }}" class="menu-link px-5">Sign Out</a>
+                                </div>
+                                <!--end::Menu item-->
+                                <!--begin::Menu separator-->
+                                <div class="separator my-2"></div>
+                                <!--end::Menu separator-->
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-5">
+                                    <div class="menu-content px-5">
+                                        <label
+                                            class="form-check form-switch form-check-custom form-check-solid pulse pulse-success"
+                                            for="kt_user_menu_dark_mode_toggle">
+                                            <input class="form-check-input w-30px h-20px" type="checkbox" value="1"
+                                                name="mode" id="kt_user_menu_dark_mode_toggle"
+                                                data-kt-url="../../demo1/dist/index.html" />
+                                            <span class="pulse-ring ms-n1"></span>
+                                            <span class="form-check-label text-gray-600 fs-7">Dark Mode</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <!--end::Menu item-->
+                            </div>
+                            <!--end::User account menu-->
+                            <!--end::Menu wrapper-->
+                        </div>
+                        <!--end::User menu-->
+                        <!--begin::Header menu toggle-->
+                        <div class="d-flex align-items-center d-lg-none ms-2 me-n3" title="Show header menu">
                             <div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px"
-                                id="kt_aside_mobile_toggle">
-                                <!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg') }}-->
+                                id="kt_header_menu_mobile_toggle">
+                                <!--begin::Svg Icon | path: icons/duotune/text/txt001.svg') }}-->
                                 <span class="svg-icon svg-icon-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none">
                                         <path
-                                            d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z"
+                                            d="M13 11H3C2.4 11 2 10.6 2 10V9C2 8.4 2.4 8 3 8H13C13.6 8 14 8.4 14 9V10C14 10.6 13.6 11 13 11ZM22 5V4C22 3.4 21.6 3 21 3H3C2.4 3 2 3.4 2 4V5C2 5.6 2.4 6 3 6H21C21.6 6 22 5.6 22 5Z"
                                             fill="black" />
                                         <path opacity="0.3"
-                                            d="M21 14H3C2.4 14 2 13.6 2 13V11C2 10.4 2.4 10 3 10H21C21.6 10 22 10.4 22 11V13C22 13.6 21.6 14 21 14ZM22 20V18C22 17.4 21.6 17 21 17H3C2.4 17 2 17.4 2 18V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20Z"
+                                            d="M21 16H3C2.4 16 2 15.6 2 15V14C2 13.4 2.4 13 3 13H21C21.6 13 22 13.4 22 14V15C22 15.6 21.6 16 21 16ZM14 20V19C14 18.4 13.6 18 13 18H3C2.4 18 2 18.4 2 19V20C2 20.6 2.4 21 3 21H13C13.6 21 14 20.6 14 20Z"
                                             fill="black" />
                                     </svg>
                                 </span>
                                 <!--end::Svg Icon-->
                             </div>
                         </div>
-                        <!--end::Aside mobile toggle-->
-                        <!--begin::Mobile logo-->
-                        <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-                            <a href="../../demo1/dist/index.html" class="d-lg-none">
-                                <img alt="Logo" src="{{ asset ('assetsAdmin/assets/media/logos/logo-2.svg') }}"
-                                    class="h-30px" />
-                            </a>
-                        </div>
-                        <!--end::Mobile logo-->
-                        <!--begin::Wrapper-->
-                        <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
-                            <!--begin::Navbar-->
-                            <div class="d-flex align-items-stretch" id="kt_header_nav">
-                            </div>
-                            <div class="d-flex align-items-stretch flex-shrink-0">
-
-                                <div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
-                                    <!--begin::Menu wrapper-->
-                                    <div class="cursor-pointer symbol symbol-30px symbol-md-40px"
-                                        data-kt-menu-trigger="click" data-kt-menu-attach="parent"
-                                        data-kt-menu-placement="bottom-end">
-                                    @php
-                                        $foto = Auth::user()->foto_profil;
-                                    @endphp
-                                        <img src="{{asset('foto_siswa/'. $foto)  }}"
-                                            alt="user" />
-                                    </div>
-                                    <!--begin::User account menu-->
-                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px"
-                                        data-kt-menu="true">
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <div class="menu-content d-flex align-items-center px-3">
-                                                <!--begin::Avatar-->
-                                                <div class="symbol symbol-50px me-5">
-                                                    <img alt="Logo"
-                                                        src="{{asset('foto_siswa/'. $foto)  }}" />
-                                                </div>
-                                                <!--end::Avatar-->
-                                                <!--begin::Username-->
-                                                <div class="d-flex flex-column">
-                                                    <div class="fw-bolder d-flex align-items-center fs-5">Max Smith
-                                                        <span
-                                                            class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Pro</span>
-                                                    </div>
-                                                    <a href="#"
-                                                        class="fw-bold text-muted text-hover-primary fs-7">max@kt.com</a>
-                                                </div>
-                                                <!--end::Username-->
-                                            </div>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu separator-->
-                                        <div class="separator my-2"></div>
-                                        <!--end::Menu separator-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-5">
-                                            <a href="{{ url('editProfile', Auth::user()->id)  }}" class="menu-link px-5">My
-                                                Profile</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-5">
-                                            <a href="../../demo1/dist/apps/projects/list.html" class="menu-link px-5">
-                                                <span class="menu-text">My Projects</span>
-                                                <span class="menu-badge">
-                                                    <span
-                                                        class="badge badge-light-danger badge-circle fw-bolder fs-7">3</span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-5" data-kt-menu-trigger="hover"
-                                            data-kt-menu-placement="left-start">
-                                            <a href="#" class="menu-link px-5">
-                                                <span class="menu-title">My Subscription</span>
-                                                <span class="menu-arrow"></span>
-                                            </a>
-                                            <!--begin::Menu sub-->
-                                            <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="../../demo1/dist/account/referrals.html"
-                                                        class="menu-link px-5">Referrals</a>
-                                                </div>
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="../../demo1/dist/account/billing.html"
-                                                        class="menu-link px-5">Billing</a>
-                                                </div>
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="../../demo1/dist/account/statements.html"
-                                                        class="menu-link px-5">Payments</a>
-                                                </div>
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="../../demo1/dist/account/statements.html"
-                                                        class="menu-link d-flex flex-stack px-5">Statements
-                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
-                                                            data-bs-toggle="tooltip"
-                                                            title="View your statements"></i></a>
-                                                </div>
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu separator-->
-                                                <div class="separator my-2"></div>
-                                                <!--end::Menu separator-->
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <div class="menu-content px-3">
-                                                        <label
-                                                            class="form-check form-switch form-check-custom form-check-solid">
-                                                            <input class="form-check-input w-30px h-20px"
-                                                                type="checkbox" value="1" checked="checked"
-                                                                name="notifications" />
-                                                            <span
-                                                                class="form-check-label text-muted fs-7">Notifications</span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <!--end::Menu item-->
-                                            </div>
-                                            <!--end::Menu sub-->
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-5">
-                                            <a href="../../demo1/dist/account/statements.html" class="menu-link px-5">My
-                                                Statements</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu separator-->
-                                        <div class="separator my-2"></div>
-                                        <!--end::Menu separator-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-5" data-kt-menu-trigger="hover"
-                                            data-kt-menu-placement="left-start">
-                                            <a href="#" class="menu-link px-5">
-                                                <span class="menu-title position-relative">Language
-                                                    <span
-                                                        class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">English
-                                                        <img class="w-15px h-15px rounded-1 ms-2"
-                                                            src="{{ asset ('assetsAdmin/assets/media/flags/united-states.svg') }}"
-                                                            alt="" /></span></span>
-                                            </a>
-                                            <!--begin::Menu sub-->
-                                            <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="../../demo1/dist/account/settings.html"
-                                                        class="menu-link d-flex px-5 active">
-                                                        <span class="symbol symbol-20px me-4">
-                                                            <img class="rounded-1"
-                                                                src="{{ asset ('assetsAdmin/assets/media/flags/united-states.svg') }}"
-                                                                alt="" />
-                                                        </span>English</a>
-                                                </div>
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="../../demo1/dist/account/settings.html"
-                                                        class="menu-link d-flex px-5">
-                                                        <span class="symbol symbol-20px me-4">
-                                                            <img class="rounded-1"
-                                                                src="{{ asset ('assetsAdmin/assets/media/flags/spain.svg') }}"
-                                                                alt="" />
-                                                        </span>Spanish</a>
-                                                </div>
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="../../demo1/dist/account/settings.html"
-                                                        class="menu-link d-flex px-5">
-                                                        <span class="symbol symbol-20px me-4">
-                                                            <img class="rounded-1"
-                                                                src="{{ asset ('assetsAdmin/assets/media/flags/germany.svg') }}"
-                                                                alt="" />
-                                                        </span>German</a>
-                                                </div>
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="../../demo1/dist/account/settings.html"
-                                                        class="menu-link d-flex px-5">
-                                                        <span class="symbol symbol-20px me-4">
-                                                            <img class="rounded-1"
-                                                                src="{{ asset ('assetsAdmin/assets/media/flags/japan.svg') }}"
-                                                                alt="" />
-                                                        </span>Japanese</a>
-                                                </div>
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="../../demo1/dist/account/settings.html"
-                                                        class="menu-link d-flex px-5">
-                                                        <span class="symbol symbol-20px me-4">
-                                                            <img class="rounded-1"
-                                                                src="{{ asset ('assetsAdmin/assets/media/flags/france.svg') }}"
-                                                                alt="" />
-                                                        </span>French</a>
-                                                </div>
-                                                <!--end::Menu item-->
-                                            </div>
-                                            <!--end::Menu sub-->
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-5 my-1">
-                                            <a href="../../demo1/dist/account/settings.html"
-                                                class="menu-link px-5">Account Settings</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-5">
-                                            <a href="{{ route('logout') }}" class="menu-link px-5">Sign Out</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu separator-->
-                                        <div class="separator my-2"></div>
-                                        <!--end::Menu separator-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-5">
-                                            <div class="menu-content px-5">
-                                                <label
-                                                    class="form-check form-switch form-check-custom form-check-solid pulse pulse-success"
-                                                    for="kt_user_menu_dark_mode_toggle">
-                                                    <input class="form-check-input w-30px h-20px" type="checkbox"
-                                                        value="1" name="mode" id="kt_user_menu_dark_mode_toggle"
-                                                        data-kt-url="../../demo1/dist/index.html" />
-                                                    <span class="pulse-ring ms-n1"></span>
-                                                    <span class="form-check-label text-gray-600 fs-7">Dark Mode</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <!--end::Menu item-->
-                                    </div>
-                                    <!--end::User account menu-->
-                                    <!--end::Menu wrapper-->
-                                </div>
-                                <!--end::User menu-->
-                                <!--begin::Header menu toggle-->
-                                <div class="d-flex align-items-center d-lg-none ms-2 me-n3" title="Show header menu">
-                                    <div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px"
-                                        id="kt_header_menu_mobile_toggle">
-                                        <!--begin::Svg Icon | path: icons/duotune/text/txt001.svg') }}-->
-                                        <span class="svg-icon svg-icon-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <path
-                                                    d="M13 11H3C2.4 11 2 10.6 2 10V9C2 8.4 2.4 8 3 8H13C13.6 8 14 8.4 14 9V10C14 10.6 13.6 11 13 11ZM22 5V4C22 3.4 21.6 3 21 3H3C2.4 3 2 3.4 2 4V5C2 5.6 2.4 6 3 6H21C21.6 6 22 5.6 22 5Z"
-                                                    fill="black" />
-                                                <path opacity="0.3"
-                                                    d="M21 16H3C2.4 16 2 15.6 2 15V14C2 13.4 2.4 13 3 13H21C21.6 13 22 13.4 22 14V15C22 15.6 21.6 16 21 16ZM14 20V19C14 18.4 13.6 18 13 18H3C2.4 18 2 18.4 2 19V20C2 20.6 2.4 21 3 21H13C13.6 21 14 20.6 14 20Z"
-                                                    fill="black" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </div>
-                                </div>
-                                <!--end::Header menu toggle-->
-                            </div>
-                            <!--end::Toolbar wrapper-->
-                        </div>
-                        <!--end::Wrapper-->
+                        <!--end::Header menu toggle-->
                     </div>
-                    <!--end::Container-->
+                    <!--end::Toolbar wrapper-->
                 </div>
-                <!--end::Header-->
-                <!--begin::Content-->
-                <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-                    <!--begin::Toolbar-->
-                    <!--end::Toolbar-->
-                    <!--begin::Post-->
-                    <div class="post d-flex flex-column-fluid" id="kt_post">
-                        <!--begin::Container-->
-                        <div id="kt_content_container" class="container-xxl">
-                            @yield('content')
-                        </div>
-                    </div>
-                    <!--end::Post-->
-                </div>
-                <!--end::Content-->
-                <!--begin::Footer-->
-                <div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
-                    <!--begin::Container-->
-                    <div
-                        class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
-                        <!--begin::Copyright-->
-                        <div class="text-dark order-2 order-md-1">
-                            <span class="text-muted fw-bold me-1">2022©</span>
-                            <a href="https://keenthemes.com" target="_blank"
-                                class="text-gray-800 text-hover-primary">Keenthemes</a>
-                        </div>
-                        <!--end::Copyright-->
-                        <!--begin::Menu-->
-                        <ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
-                            <li class="menu-item">
-                                <a href="https://keenthemes.com" target="_blank" class="menu-link px-2">About</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="https://devs.keenthemes.com" target="_blank" class="menu-link px-2">Support</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="https://1.envato.market/EA4JP" target="_blank"
-                                    class="menu-link px-2">Purchase</a>
-                            </li>
-                        </ul>
-                        <!--end::Menu-->
-                    </div>
-                    <!--end::Container-->
-                </div>
-                <!--end::Footer-->
+                <!--end::Wrapper-->
             </div>
-            <!--end::Wrapper-->
+            <!--end::Container-->
         </div>
-        <!--end::Page-->
+        <!--end::Header-->
+        <!--begin::Content-->
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Toolbar-->
+            <!--end::Toolbar-->
+            <!--begin::Post-->
+            <div class="post d-flex flex-column-fluid" id="kt_post">
+                <!--begin::Container-->
+                <div id="kt_content_container" class="container-xxl">
+                    @yield('content')
+                </div>
+            </div>
+            <!--end::Post-->
+        </div>
+        <!--end::Content-->
+        <!--begin::Footer-->
+        <div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
+            <!--begin::Container-->
+            <div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
+                <!--begin::Copyright-->
+                <div class="text-dark order-2 order-md-1">
+                    <span class="text-muted fw-bold me-1">2022©</span>
+                    <a href="https://keenthemes.com" target="_blank"
+                        class="text-gray-800 text-hover-primary">Keenthemes</a>
+                </div>
+                <!--end::Copyright-->
+                <!--begin::Menu-->
+                <ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
+                    <li class="menu-item">
+                        <a href="https://keenthemes.com" target="_blank" class="menu-link px-2">About</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="https://devs.keenthemes.com" target="_blank" class="menu-link px-2">Support</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="https://1.envato.market/EA4JP" target="_blank" class="menu-link px-2">Purchase</a>
+                    </li>
+                </ul>
+                <!--end::Menu-->
+            </div>
+            <!--end::Container-->
+        </div>
+        <!--end::Footer-->
+    </div>
+    <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
     </div>
     <div id="kt_engage_demos" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="explore"
         data-kt-drawer-activate="true" data-kt-drawer-overlay="true"
@@ -1149,17 +1144,19 @@
 
     </script>
     <script>
-        $(document).ready(function() {
-            @if (Session::has('error'))
-                toastr.error('{{ Session::get('error') }}');
+        $(document).ready(function () {
+            @if(Session::has('error'))
+            toastr.error('{{ Session::get('
+                error ') }}');
             @elseif(Session::has('success'))
-                toastr.success('{{ Session::get('success') }}');
+            toastr.success('{{ Session::get('
+                success ') }}');
             @endif
         });
 
     </script>
-       <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     @yield('page-js')
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->

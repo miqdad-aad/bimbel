@@ -107,11 +107,11 @@ class PaketBimbelController extends Controller
         // dd($id);
         $data = PaketBimbelModels::with('detailPaket')->where('id_paket_bimbel', $id)->first();
         $detail = DB::table('detail_paket_bimbel as a')
-        ->leftjoin('m_pembelajaran as b', 'a.id_materi_tes', 'b.id_materi')
+        ->leftjoin('m_jenis_tes as b', 'a.id_materi_tes', 'b.id_jenis_tes')
         ->where('a.id_paket_bimbel', $id)
         ->get();
         // dd($detail);
-        $materi_tes = Pembelajaran::all();
+        $materi_tes = JenisTesModels::all();
         // dd($materi_tes);
         return view('admin.master.editMasterPaketBimbel', compact('data', 'detail', 'materi_tes'));
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\BookingUserModels;
 use Hash;
 use DB;
 use Auth;
@@ -12,7 +13,14 @@ class AuthController extends Controller
 {
     public function dashboard(Request $request)
     {
-        return view('admin.dashboard.dashboard');
+        $auth = Auth::user()->id_siswa;
+        $data = BookingUserModels::where('id_siswa', Auth::user()->id_siswa)
+        ->leftjoin('m_paket_bimbel as mp', 'booking_user.id_paket', 'mp.id_paket_bimbel')
+        ->leftjoin('detail_paket_bimbel as dp', 'dp.id_paket_bimbel', 'mp.id_paket_bimbel')
+        ->leftjoin('m_jenis_tes as mj', 'mj.id_jenis_tes', 'dp.id_materi_tes')
+        ->get();
+        // printJSON($data);
+        return view('admin.dashboard.dashboard', compact('data'));
     }
 
     public function registerMentor(Request $request)

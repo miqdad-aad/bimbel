@@ -26,4 +26,9 @@ class DetailPaketBimbel extends Model
     public function getMateriTesAttribute(){
         return Pembelajaran::where("id_materi", $this->id_materi_tes)->first();
     }
+
+    public function paket_bimbel_user()
+    {
+        return $this->hasOne(BookingUserModels::class,'id_paket_bimbel','id_paket_bimbel');
+    }
 }
