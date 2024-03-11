@@ -50,8 +50,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Deskripsi Soal</th>
-                                <th>Score</th>
+                                <th>Deskripsi Soal</th> 
                                 <th width="250">Action</th>
                             </tr>
                         </thead>
@@ -145,14 +144,15 @@
                 {
                     data: 'pertanyaan',
                     name: 'name',
-                    className: 'text-left'
+                    className: 'text-left',
+                    render: function (meta, data, row) {
+                        if (row.pertanyaan.length > 100) {
+                            return row.pertanyaan.substring(0, 100) + '...';
+                        }
+                        return row.pertanyaan;
+                    }
                 },
-                {
-                    data: 'score',
-                    name: 'name',
-                    className: 'text-center'
-                },
-
+               
                 {
                     data: 'action',
                     name: 'action',

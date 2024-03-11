@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Pembelajaran;
+use App\Models\JenisTesModels;
 
 class DetailPaketBimbel extends Model
 {
     use HasFactory;
     protected $table ="detail_paket_bimbel";
     protected $guard = '*';
-    protected $appends = ['materi_tes'];
+    protected $appends = ['jenis_tes'];
 
   
     public function materi()
@@ -23,8 +24,8 @@ class DetailPaketBimbel extends Model
     {
         return $this->belongsTo(Pembelajaran::class,'id_materi','id_materi_tes');
     }
-    public function getMateriTesAttribute(){
-        return Pembelajaran::where("id_materi", $this->id_materi_tes)->first();
+    public function getJenisTesAttribute(){
+        return JenisTesModels::where("id_jenis_tes", $this->id_jenis_tes)->first();
     }
 
     public function paket_bimbel_user()

@@ -8,7 +8,7 @@
             data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
             class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
             <!--begin::Title-->
-            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Edit Soal
+            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Detail Soal
 
                 <span class="h-20px border-gray-200 border-start ms-3 mx-2"></span>
 
@@ -37,7 +37,7 @@
                                     <h3>Uraian Soal</h3>
                                 </p>
                             </label>
-                            <textarea name="pertanyaan" cols="30" class="form-control"
+                            <textarea name="pertanyaan" cols="30" class="form-control" disabled
                                 rows="10">{{ $soal->pertanyaan }}</textarea>
                         </div>
                         <div class="col-sm-6 form-group">
@@ -54,7 +54,7 @@
                                     <h3>Penjelasan / Keterangan</h3>
                                 </p>
                             </label>
-                            <textarea name="penjelasan" id="" cols="30" rows="10" class="form-control">{{ $soal->penjelasan }}</textarea>
+                            <textarea name="penjelasan" id="" cols="30" rows="10" class="form-control" disabled>{{ $soal->penjelasan }}</textarea>
                         </div>
                         
                     </div>
@@ -70,37 +70,27 @@
                                         <th>Kode</th>
                                         <th>Benar ?</th>
                                         <th>Uraian Jawaban</th>
-                                        <th>File tambahan</th>
-                                        <th>
-
-                                            <button class="btn btn-sm btn-success add-jawaban" type="button"><i
-                                                    class="fa fa-plus-circle"></i></button>
-                                        </th>
+                                        <th>File tambahan</th> 
                                     </tr>
                                 </thead>
                                 <tbody class="body-jawaban">
                                     @foreach($jawab as $t)
                                     <tr class="text-center">
-                                        <td style="width:50px;" class="text-center"><input name="kode_jawaban[]"
-                                                value="{{ $t->kode_jawaban }}"
-                                                class="form-control form-control-sm kode-jawaban" /></td>
+                                        <td style="width:50px;" class="text-center">{{ $t->kode_jawaban }}</td>
                                         <td class="text-center">
                                             <input type="radio" name="jawaban_benar" class="nilai-benar" <?= $t->is_true == 1 ? 'checked' : '' ?> />
                                              <input type="hidden" name="is_true[]" value="<?= $t->is_true ?>" class="is-true-selected" />
                                         </td>
-                                        <td style="width:50%"> <textarea name="keterangan[]" cols="30"
-                                                class="form-control summernote-jawaban"
-                                                rows="2">{{ $t->keterangan }}</textarea></td>
+                                        <td style="width:50%" class="text-left">{!! $t->keterangan  !!}</td>
                                         <td>
-                                            <input type="file" name="file_tambahan[]"
-                                                class="form-control form-control-sm" />
+                                          
                                             @if(!empty($t->file_tambahan))
                                              <a href="{{ asset('public/jawaban/'. $t->file_tambahan) }}" download>Download File</a>
-                                            @endif
-                                            <input type="hidden" value="<?= $t->file_tambahan ?>" name="old_file[]">
+                                             @else
+                                             Tidak ada file tambahan
+                                            @endif 
                                         </td>
-                                        <td><button class="btn btn-sm btn-danger remove-input-field" type="button"><i
-                                                    class="fa fa-trash"></i></button></td>
+                                        
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -109,7 +99,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <button class="btn btn-success btn-sm" type="submit">Simpan Soal</button>
+                            <!-- <button class="btn btn-success btn-sm" type="submit">Simpan Soal</button> -->
                             <a class="btn btn-sm btn-danger" href="{{ url('soal?id_materi='. $pembelajaran->id_materi) }}">Halaman Sebelumnya</a>
                         </div>
                     </div>
