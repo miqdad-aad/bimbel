@@ -40,6 +40,7 @@ class SoalController extends Controller
                         $btn = '';
                         if(Auth::user()->role != 3){
                             $btn = '  <a href="'. url('edit/soal/'. $row->id_soal) .'" class="edit btn btn-info btn-sm ">Edit</a>';
+                            $btn .= '  <a href="'. url('detail/soal/'. $row->id_soal) .'" class="detail btn btn-secondary btn-sm ">Detail</a>';
                             $btn .= ' <a type="button"  class="delete btn btn-danger btn-sm btn-hapus">Delete</a>';
                         }
    
@@ -153,6 +154,18 @@ class SoalController extends Controller
         
         
         return view('admin.soal.edit',compact('paket','soal','jawab','pembelajaran'));
+
+    }
+    public function detail($id)
+    {
+        $soal =SoalModels::with('paketSoal')->where('id_soal', $id)->first();
+        $jawab = JawabanSoalModels::where('id_soal', $id)->get();
+        $paket = MasterPaketModels::all();
+        $pembelajaran = Pembelajaran::where('id_materi', $soal->id_materi)->first();
+
+        
+        
+        return view('admin.soal.detail',compact('paket','soal','jawab','pembelajaran'));
 
     }
 

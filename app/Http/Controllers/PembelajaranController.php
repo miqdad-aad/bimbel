@@ -39,6 +39,12 @@ class PembelajaranController extends Controller
                 $data->whereIn('id_materi', $detailPaket);
 
             }
+            if(!empty($request->id_jenis_tes)){
+                $data->where('id_jenis_tes', $request->id_jenis_tes);
+            }
+            if(!empty($request->kategori_pembelajaran)){
+                $data->where('id_kategori_pembelajaran', $request->kategori_pembelajaran);
+            }
             $data->get();
             $data = $data->get();
              return DataTables::of($data)
@@ -61,7 +67,9 @@ class PembelajaranController extends Controller
                      ->rawColumns(['action','totalSoal'])
                      ->make(true);
                     }
-                    return view('admin.pembelajaran.view');
+
+                    $kategoriPembelajaran = DB::table('m_kategori_pembelajaran')->get(); 
+                    return view('admin.pembelajaran.view', compact('kategoriPembelajaran'));
     }
 
    

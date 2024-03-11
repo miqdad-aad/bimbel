@@ -118,6 +118,7 @@ Route::controller(SekolahKedinasanController::class)->group(function () {
 Route::controller(SoalController::class)->group(function () {
     Route::get('/soal', 'index')->name('soal.view');
     Route::get('/edit/soal/{id}', 'edit')->name('soal.edit');
+    Route::get('/detail/soal/{id}', 'detail')->name('soal.detail');
     Route::post('/update/soal', 'update')->name('soal.update');
     Route::get('/tambah/soal', 'create')->name('soal.create');
     Route::post('/addSoal', 'store')->name('addSoal.store');
@@ -126,6 +127,7 @@ Route::controller(SoalController::class)->group(function () {
 });
 
 Route::controller(PembelajaranController::class)->group(function () {
+    Route::post('/pembelajaran/view/ajax', 'index')->name('pembelajaran.view.ajax');
     Route::get('/pembelajaran', 'index')->name('pembelajaran.view');
     Route::get('pembelajaran/edit/{id}', 'edit')->name('pembelajaran.edit');
     Route::get('/tambah/pembelajaran', 'create')->name('pembelajaran.create');
