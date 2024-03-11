@@ -74,7 +74,7 @@ class PaketBimbelController extends Controller
                 
                 DetailPaketBimbel::insert([
                     'id_paket_bimbel' => $id,
-                    'id_materi_tes' => $request->id_materi_tes[$i],
+                    'id_jenis_tes' => $request->id_materi_tes[$i],
                 ]); 
             }
             DB::commit();
@@ -143,7 +143,7 @@ class PaketBimbelController extends Controller
                 
                 DetailPaketBimbel::insert([
                     'id_paket_bimbel' => $request->id_paket_bimbel,
-                    'id_materi_tes' => $request->id_materi_tes[$i],
+                    'id_jenis_tes' => $request->id_materi_tes[$i],
                 ]); 
             }
             DB::commit();
