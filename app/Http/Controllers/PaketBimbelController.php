@@ -8,6 +8,7 @@ use App\Models\MateriTesModels;
 use App\Models\KategoriSoalModels;
 use App\Models\PaketBimbelModels;
 use App\Models\DetailPaketBimbel;
+use App\Models\JenisTesModels;
 use App\Models\Pembelajaran;
 use Yajra\DataTables\Facades\DataTables;
 use DB;
@@ -44,7 +45,7 @@ class PaketBimbelController extends Controller
     public function create()
     {
         
-        $materi_tes = Pembelajaran::all();
+        $materi_tes = JenisTesModels::all();
        return view('admin.master.addMasterPaket', compact('materi_tes'));
     }
 
@@ -79,6 +80,7 @@ class PaketBimbelController extends Controller
             DB::commit();
             return redirect('paketBimbel');
         } catch (\Exception $e) {
+            DB::rollback(); 
             dd($e->getMessage());
         }
     }

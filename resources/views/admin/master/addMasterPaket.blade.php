@@ -86,7 +86,7 @@
             $('.body-jawaban').append(`<tr class="text-center">
                 <td class="text-left"><select class="select2materiTes form-control form-control-sm" name="id_materi_tes[]">
                                 @foreach($materi_tes as $h)
-                                    <option value="{{ $h->id_materi }}">{{ $h->uraian_materi }}</option>
+                                    <option value="{{ $h->id_jenis_tes }}">{{ $h->jenis_tes }}</option>
                                 @endforeach
                             </select></td>
                 <td><button class="btn btn-sm btn-danger btn-hapus" type="button"><i class="fa fa-trash"></i></button></td>

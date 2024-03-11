@@ -72,7 +72,8 @@ class SekolahKedinasanModels extends Model
             DB::commit();
             return true;
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            DB::rollback(); 
+            return redirect()->back();
         }
     }
 }
