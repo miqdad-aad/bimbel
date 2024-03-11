@@ -37,7 +37,7 @@
                             </div>
                             <!--end::Card title-->
                         </div>
-                        <!--end::Card header-->
+                        
                         <!--begin::Card body-->
                         <div class="card-body text-center pt-0">
                             <!--begin::Image input-->
@@ -64,15 +64,11 @@
                                     <input type="file" name="foto_profil" accept=".png, .jpg, .jpeg" />
                                     <!--end::Inputs-->
                                 </label>
-                                <!--end::Label-->
-                                <!--begin::Cancel-->
                                 <span
                                     class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
                                     data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
                                     <i class="bi bi-x fs-2"></i>
                                 </span>
-                                <!--end::Cancel-->
-                                <!--begin::Remove-->
                                 <span
                                     class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
                                     data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
@@ -80,11 +76,8 @@
                                 </span>
                             </div>
                         </div>
-                        <!--end::Card body-->
                     </div>
                 </div>
-                <!--end::Aside column-->
-                <!--begin::Main column-->
                 <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                     <div class="tab-content">
                         <!--begin::Tab pane-->
@@ -98,24 +91,13 @@
                                             <h2>Profile Anda</h2>
                                         </div>
                                     </div>
-                                    <!--end::Card header-->
-                                    <!--begin::Card body-->
                                     <div class="card-body pt-0">
-                                        <!--begin::Input group-->
                                         <div class="mb-10 fv-row">
-                                            <!--begin::Label-->
                                             <label class="required form-label">Nama</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
                                             <input type="text" class="form-control mb-2" placeholder="name"
                                                 value="{{ $data->name }}" readonly />
                                         </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
                                         <div>
-                                            <!--begin::Label-->
-                                            <!--end::Label-->
-                                            <!--begin::Editor-->
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <label class="form-label">Password Lama</label>
@@ -131,9 +113,9 @@
                                             </div>
                                             <!--end::Description-->
                                         </div>
-                                        <!--end::Input group-->
+                                        
                                     </div>
-                                    <!--end::Card header-->
+                                    
                                 </div>
                             </div>
                         </div>
@@ -156,6 +138,7 @@
                 <!--end::Main column-->
             </form>
             <!--end::Form-->
+            
         </div>
         <!--end::Container-->
     </div>

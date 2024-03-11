@@ -49,6 +49,14 @@
 
                             </select>
                         </div>
+                        <div class="col-sm-12 form-group">
+                            <label for="">
+                                <p>
+                                    <h3>Judul Materi</h3>
+                                </p>
+                            </label>
+                            <input type="text" class="form-control" name="judul_materi">
+                        </div>
                         {{-- <div class="col-sm-4 form-group">
                             <label for="">
                                 <p>

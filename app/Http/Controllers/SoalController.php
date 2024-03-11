@@ -114,7 +114,8 @@ class SoalController extends Controller
             DB::commit();
             return redirect('soal?id_materi='. $request->id_materi);
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            DB::rollback(); 
+            return redirect()->back();
         }
        
     }
@@ -207,7 +208,8 @@ class SoalController extends Controller
             DB::commit();
             return redirect('soal?id_materi='. $request->id_materi);
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            DB::rollback(); 
+            return redirect()->back();
         }
     }
 

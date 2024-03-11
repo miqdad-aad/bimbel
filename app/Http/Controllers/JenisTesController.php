@@ -60,7 +60,8 @@ class JenisTesController extends Controller
             DB::commit();
             return response()->json(['status' => 200]);
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            DB::rollback(); 
+            return redirect()->back();
         }
     }
 
@@ -104,7 +105,8 @@ class JenisTesController extends Controller
             DB::commit();
             return response()->json(['status' => 200]);
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            DB::rollback(); 
+            return redirect()->back();
         }
     }
 
