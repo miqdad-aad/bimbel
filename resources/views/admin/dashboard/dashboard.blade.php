@@ -1,5 +1,6 @@
 @extends('admin.layout')
 @section('content')
+@if(Auth::user()->role == 3)
 <h1>Semua daftar soal</h1>
 <div class="row g-5 g-xl-10 mb-xl-10">
     @foreach ($data as $item)
@@ -35,4 +36,5 @@
     </div>
     @endforeach
 </div>
+@endif
 @endsection
