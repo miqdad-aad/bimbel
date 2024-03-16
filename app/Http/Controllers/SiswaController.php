@@ -29,7 +29,7 @@ class SiswaController extends Controller
 
         })
         ->leftjoin('m_jenis_tes as td', 'tx.id_jenis_tes', 'td.id_jenis_tes')
-        ->select(DB::RAW('td.id_jenis_tes, td.jenis_tes, count( m_soal.id_soal ) AS total_soal, sum( IFNULL( tv.score, 0 )) score, count( tv.id_soal ) total_soal_dikerjakan '))
+        ->select(DB::RAW('td.id_jenis_tes, td.jenis_tes, count( m_soal.id_soal ) AS total_soal, sum( IFNULL( tv.score, 0 )) score, count( tv.id_soal ) total_soal_dikerjakan, sum(IF(tv.score > 0 ,1,0)) soal_benar '))
         ->whereIn('tx.id_jenis_tes', $detailPaket)
         ->groupBy('tx.id_jenis_tes')
         ->get();
