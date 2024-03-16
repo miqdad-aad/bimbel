@@ -681,7 +681,7 @@
         </div>
         <!--end::Header-->
         <!--begin::Content-->
-        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content" style=" padding-top: 0px; ">
             <!--begin::Toolbar-->
             <!--end::Toolbar-->
             <!--begin::Post-->
