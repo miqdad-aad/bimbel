@@ -9,7 +9,7 @@ use App\Models\JawabanSoalModels;
 use App\Models\ExamProgresModels;
 use App\Models\DetailPaketBimbel;
 use Auth;
-
+use DB;
 class SiswaController extends Controller
 {
     /**
@@ -19,7 +19,23 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        //
+        
+        $booking = BookingUserModels::with('paket_booking')->where('id_siswa', Auth::user()->id_siswa)->first();
+        $detailPaket = DetailPaketBimbel::where('id_paket_bimbel', $booking->paket_booking->id_paket_bimbel)->pluck('id_materi_tes')->toArray();
+        $soal = SoalModels::join('m_pembelajaran as tx', 'tx.id_materi', 'm_soal.id_materi')
+        ->leftJoin('exam_progres as tv', function($join) use($booking)
+        {
+            $join->on('m_soal.id_soal', '=', 'tv.id_soal')->where('id_siswa', '=' ,Auth::user()->id_siswa)->where('id_booking','=' ,$booking->id); 
+
+        })
+        ->leftjoin('m_jenis_tes as td', 'tx.id_jenis_tes', 'td.id_jenis_tes')
+        ->select(DB::RAW('td.id_jenis_tes, td.jenis_tes, count( m_soal.id_soal ) AS total_soal, sum( IFNULL( tv.score, 0 )) score, count( tv.id_soal ) total_soal_dikerjakan '))
+        ->whereIn('tx.id_jenis_tes', $detailPaket)
+        ->groupBy('tx.id_jenis_tes')
+        ->get();
+        printJSON($soal);
+        
+        return view('siswa.list_exam');
     }
 
     /**
