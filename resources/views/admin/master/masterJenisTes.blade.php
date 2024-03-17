@@ -45,6 +45,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Jenis Tes</th>
+                                <th>Gambar</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -73,12 +74,50 @@
                             <input name="jenis_tes" class="form-control jenis_tes" type="text">
                             <input name="id_jenis_tes" class="form-control jenis_tes" type="text" hidden>
                         </div>
+                        <div class="col-sm-12">
+                            <label class="form-label" for="text">Foto Jenis Tes</label>
+                            <input class="form-control file gambar" id="input-id" name="gambar" type="file"
+                                data-preview-file-type="text" required>
+                            <p class="text-danger"></p>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary " id="btn-close"
                         data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary btn-tambah">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade " id="modal8" aria-modal="true" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="addkategori" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title">Form Input Jenis Tes</h5><button type="button" class="btn btn-label-danger btn-icon"
+                        data-bs-dismiss="modal"><i class="fa fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label class="form-label" for="text">Nama Jenis Tes</label>
+                            <input name="jenis_tes" class="form-control jenis_tes1" type="text">
+                            <input name="id_jenis_tes" class="form-control jenis_tes1" type="text" hidden>
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="form-label" for="text">Foto Jenis Tes</label>
+                            <input class="form-control file gambar1" id="input-id" name="gambar1" type="file"
+                                data-preview-file-type="text" required>
+                            <p class="text-danger"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary " id="btn-close"
+                        data-bs-dismiss="modal">Close</button>
                     <button type="button" style="display:none" class="btn btn-primary btn-update">perbarui</button>
                 </div>
             </form>
@@ -88,11 +127,17 @@
 @endsection
 @section('page-js')
 <script>
+    $(".gambar").fileinput({
+        'showUpload': false,
+        'previewFileType': 'any',
+    });
+</script>
+<script>
     $(document).ready(function () {
 
         var _url = $('meta[name="url"]').attr('content');
         var params = null;
-
+        var url = "{{ asset('public/jenis_tes/') }}";
         var table = $('#yajra-datatable').DataTable({
             processing: true,
             serverSide: true,
@@ -108,6 +153,15 @@
                     data: 'jenis_tes',
                     name: 'name',
                     className: 'text-center'
+                },
+                {
+                    data: 'gambar',
+                    name: 'name',
+                    className: 'text-center',
+                    render: function (meta, data, row, type) {
+                        return '<img style="max-width: 100px;" src="' + url + '/' + row.gambar +
+                            '" />';
+                    },
                 },
                 {
                     data: 'action',
@@ -151,20 +205,22 @@
         $(document).on('click', '.btn-edit', function () {
             params = table.row($(this).closest('tr')).data();
             jenis_tes_id = params.id_jenis_tes;
-            $('.jenis_tes').val(params.jenis_tes);
+            $('.jenis_tes1').val(params.jenis_tes);
             $('.btn-tambah').hide()
             $('.btn-update').show()
-            $('#modal7').modal('show');
+            $('#modal8').modal('show');
 
         });
         $(document).on('click', '.btn-update', function () {
-            var jenis_tes = $('.jenis_tes').val();
-            $('#modal7').modal('show');
+            var jenis_tes = $('.jenis_tes1').val();
+            var gambar1 = $('.gambar1').val();
+            $('#modal8').modal('show');
             $.ajax({
                 url: "{{ route('updateJenisTes') }}",
                 type: "POST",
                 data: {
                     jenis_tes: jenis_tes,
+                    gambar1: gambar1,
                     id_jenis_tes: jenis_tes_id,
                     _token: "{{ csrf_token() }}"
                 },
@@ -173,15 +229,13 @@
                     toastr.success('Data Jenis Tes ' + 
                         ' berhasil di perbarui', 'Berhasil !!!');
                     table.ajax.reload(null, false)
-                    $('#modal7').modal('hide');
+                    $('#modal8').modal('hide');
                 },
                 error: function (data) {
                     toastr.error(data.responseJSON.message, 'Error !!!');
-                    $('#modal7').modal('hide');
+                    $('#modal8').modal('hide');
                 },
             });
-            $('.btn-save').show()
-            $('.btn-update').hide()
         });
 
     });

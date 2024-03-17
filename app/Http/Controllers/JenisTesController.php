@@ -8,7 +8,7 @@ use App\Models\MateriTesModels;
 use App\Models\BabTesModels;
 use Yajra\DataTables\Facades\DataTables;
 use DB;
-
+use Str;
 class JenisTesController extends Controller
 {
     /**
@@ -18,6 +18,7 @@ class JenisTesController extends Controller
      */
     public function index(Request $request)
     {
+        // printJSON($data);
         if($request->ajax() ){
             $data = JenisTesModels::all();
              return DataTables::of($data)
@@ -54,7 +55,12 @@ class JenisTesController extends Controller
         // dd($request);
         DB::beginTransaction();
         try {
+            $file = $request->file('gambar');
+            $filename = Str::slug($request->jenis_tes) . '.' . $file->getClientOriginalExtension();
+            $file->move('public/jenis_tes', $filename);
+
             JenisTesModels::create([
+                'gambar' => $filename,
                 'jenis_tes' => $request->jenis_tes,
             ]);
             DB::commit();
@@ -96,12 +102,27 @@ class JenisTesController extends Controller
      */
     public function update(Request $request)
     {
-        // dd($request);
+
         DB::beginTransaction();
         try {
+            // dd($request);
+            $data = JenisTesModels::where('id_jenis_tes', $request->id_jenis_tes)->first();
+            // dd($data);
+            $filename = "";
+            if (!empty($request->gambar1)) {
+                $file = $request->file('gambar1');
+                dd($file);
+                $filename = Str::slug($request->jenis_tes) . '.' . "png";
+                $file->move('public/jenis_tes', $filename);
+            } else{
+                $filename = $data->gambar;
+            }
+            dd($filename);
             JenisTesModels::where('id_jenis_tes', $request->id_jenis_tes)->update([
                 'jenis_tes' => $request->jenis_tes,
+                'gambar' => $filename,
             ]);
+
             DB::commit();
             return response()->json(['status' => 200]);
         } catch (\Exception $e) {

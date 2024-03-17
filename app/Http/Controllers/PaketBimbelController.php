@@ -77,6 +77,7 @@ class PaketBimbelController extends Controller
                     'id_jenis_tes' => $request->id_materi_tes[$i],
                 ]); 
             }
+            // dd($id);
             DB::commit();
             return redirect('paketBimbel');
         } catch (\Exception $e) {
