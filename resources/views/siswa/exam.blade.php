@@ -8,9 +8,9 @@
                   
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 form-group">
                         <div class="card">
-                            <div v-if="count_soal <= <?= $totalSoalTersedia ?>">
+                            <div v-if="count_soal <= <?= $soal->total_soal - $soal->total_soal_dikerjakan ?>">
                                 <div class="card-header">
-                                    <h3>Soal @{{ count_soal }}</h3>
+                                    <h3>Soal {{ $soal->jenis_tes }}</h3>
                                 </div>
 
                                 <div class="card-body text-center" v-for="(soal , index) in dataSoal" :key="index">
@@ -24,10 +24,10 @@
                                                 'btn btn-answer btn-success': kode_pilih == jawaban.kode_jawaban,
                                                 'btn btn-answer btn-danger':  kode_salah == jawaban.kode_jawaban ,
                                                 'btn btn-answer btn-secondary' : kode_non_selected == null
-                                                }" :keyindex="soal.id_soal" :keykode="jawaban.kode_jawaban"
+                                                }" :keyindex="soal.id_soal" :keyjenistes="soal.id_jenis_tes" :keykode="jawaban.kode_jawaban"
                                                 @click="actionRespon">
-                                                    <img :src="jawaban.url_file_tambahan" style="width:40%; margin-bottom:50px;" alt="" v-if="jawaban.url_file_tambahan">
-                                                    <span v-if="!jawaban.url_file_tambahan">@{{ jawaban.kode_jawaban }} - @{{ jawaban.keterangan }}</span>
+                                                    <img :keyindex="soal.id_soal" :keyjenistes="soal.id_jenis_tes" :keykode="jawaban.kode_jawaban" :src="jawaban.url_file_tambahan" style="width:40%; margin-bottom:50px;" alt="" v-if="jawaban.url_file_tambahan">
+                                                    <span :keyindex="soal.id_soal" :keyjenistes="soal.id_jenis_tes" :keykode="jawaban.kode_jawaban" v-if="!jawaban.url_file_tambahan">@{{ jawaban.kode_jawaban }} - @{{ jawaban.keterangan }}</span>
                                                     
                                                     
                                                 </button>
@@ -36,14 +36,16 @@
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <p class="notifikasi-text-answer">@{{ notifTextAnswer }} </p>
-                                            <h4>Total Score @{{ score }} dari 5 Soal.</h4>
+                                            <h4>Total Score @{{ score }}</h4>
+                                            <h4>Total Soal  {{ $soal->total_soal }}</h4>
+                                            <h4>Total Soal Sudah dikerjakan  @{{ selesai_dikerjakan }}</h4>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div v-else>
                                 <div class="card-body text-center">
-                                    <h2 class="card-text elment-soal">Latihan Soal selesai dengan Scoore Akhir :
+                                    <h2 class="card-text elment-soal">Latihan Soal selesai dengan Score Akhir :
                                         @{{ score }}</h2>
                                     <br>
                                     <br>
@@ -105,28 +107,32 @@
                 kode_salah: null,
                 kode_non_selected: null,
                 notifTextAnswer: '',
-                score: 0,
+                score: parseFloat("{{ $soal->score }}"),
                 count_soal: 0,
+                selesai_dikerjakan: 0,
             }
         },
         methods: {
             actionRespon(e) {
             
-                let soalRow = this.dataSoal[0];
-                var jawabanSelected = e.target.getAttribute('keykode');;
+                let id_soal = e.target.getAttribute('keyindex');
+                let id_jenis_tes = e.target.getAttribute('keyjenistes');
+                var jawabanSelected = e.target.getAttribute('keykode');
+                console.log(e.target);
 
                 const apiUrl = 'http://localhost:8000/jawaban_soal';
                 axios.post(apiUrl, {
-                        soal_id: soalRow.id_soal,
-                        jawaban: jawabanSelected
+                        soal_id: id_soal,
+                        jawaban: jawabanSelected,
+                        id_jenis_tes: id_jenis_tes,
                     })
                     .then(response => {
                         var dataJawab = response.data;
-                        console.log(response.data);
+                        console.log(response);
                         if (dataJawab.status == 'benar') {
                             this.kode_pilih = dataJawab.jawaban_benar;
                             this.notifTextAnswer = 'Jawaban Anda Benar';
-                            this.score += 5;
+                            this.score += parseFloat(5);
                         } else {
                             this.kode_salah = jawabanSelected;
                             this.notifTextAnswer = 'Jawaban Anda Salah';
@@ -146,13 +152,14 @@
                 this.kode_salah = null;
                 this.kode_non_selected = null;
                 this.notifTextAnswer = null;
-                const apiUrl = 'http://localhost:8000/soal_exam/';
+                const apiUrl = 'http://localhost:8000/soal/' + "{{ $soal->id_jenis_tes }}";
 
                 axios.get(apiUrl)
-                    .then(response => {
-                        console.log(response.data.data);
+                .then(response => {
+                        console.log(response);
                         this.dataSoal = response.data.data;
-                        console.log(this.dataSoal);
+                        this.selesai_dikerjakan = collect(response.data.selesai_dikerjakan).count();
+                        
                     })
                     .catch(error => {
                         console.error('Error fetching data:', error);

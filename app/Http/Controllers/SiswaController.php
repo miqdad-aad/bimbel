@@ -23,7 +23,7 @@ class SiswaController extends Controller
         // printJSON($soal);
         if($request->ajax() ){
             $booking = BookingUserModels::with('paket_booking')->where('id_siswa', Auth::user()->id_siswa)->first();
-            $detailPaket = DetailPaketBimbel::where('id_paket_bimbel', $booking->paket_booking->id_paket_bimbel)->pluck('id_materi_tes')->toArray();
+            $detailPaket = DetailPaketBimbel::where('id_paket_bimbel', $booking->paket_booking->id_paket_bimbel)->pluck('id_jenis_tes')->toArray();
             $soal = SoalModels::join('m_pembelajaran as tx', 'tx.id_materi', 'm_soal.id_materi')
             ->leftJoin('exam_progres as tv', function($join) use($booking)
             {
@@ -40,9 +40,9 @@ class SiswaController extends Controller
                      ->addColumn('action', function($row){
                         $btn = '';
                         if ($row->total_soal == $row->total_soal_dikerjakan) {
-                            $btn .= '  <a href="" class="edit btn btn-info btn-sm btn-edit">Sudah Selesai</a>';
+                            $btn .= '  <button type="button" class="btn btn-success btn-sm">Sudah Selesai</button>';
                         }else {
-                            $btn .= '  <a href="'. url('soal_exam?id_jenis_tes='.$row->id_jenis_tes) .'" data-id="'. $row->id_jenis_tes .'" class="edit btn btn-info btn-sm btn-edit">Kerjakan</a>';
+                            $btn .= '  <a href="'. url('soal_exam/'.$row->id_jenis_tes) .'" data-id="'. $row->id_jenis_tes .'" class="edit btn btn-info btn-sm btn-edit">Kerjakan</a>';
                         }
    
                         return $btn;
@@ -66,34 +66,45 @@ class SiswaController extends Controller
         //
     }
     
-    public function exam()
+    public function exam($id_jenis_tes)
     {
-        $totalSoalTersedia = SoalModels::inRandomOrder();    
-        
-        $progresExam =  ExamProgresModels::where('id_siswa', Auth::user()->id_siswa)->pluck('id_soal')->toArray();
         $booking = BookingUserModels::with('paket_booking')->where('id_siswa', Auth::user()->id_siswa)->first();
-        $detailPaket = DetailPaketBimbel::where('id_paket_bimbel', $booking->paket_booking->id_paket_bimbel)->pluck('id_materi_tes')->toArray();
-     
-        $totalSoalTersedia->whereIn('id_materi', $detailPaket);
-        $totalSoalTersedia->whereNotIn('id_soal', $progresExam);
-        $totalSoalTersedia->get();
-        $totalSoalTersedia = $totalSoalTersedia->count();
+        $soal = SoalModels::join('m_pembelajaran as tx', 'tx.id_materi', 'm_soal.id_materi')
+        ->leftJoin('exam_progres as tv', function($join) use($booking)
+        {
+            $join->on('m_soal.id_soal', '=', 'tv.id_soal')->where('id_siswa', '=' ,Auth::user()->id_siswa)->where('id_booking','=' ,$booking->id); 
+
+        })
+        ->leftjoin('m_jenis_tes as td', 'tx.id_jenis_tes', 'td.id_jenis_tes')
+        ->select(DB::RAW('td.id_jenis_tes, td.jenis_tes, count( m_soal.id_soal ) AS total_soal, sum( IFNULL( tv.score, 0 )) score, count( tv.id_soal ) total_soal_dikerjakan, sum(IF(tv.score > 0 ,1,0)) soal_benar '))
+        ->where('tx.id_jenis_tes', $id_jenis_tes)
+        ->groupBy('tx.id_jenis_tes')
+        ->first();
+        // printJSON($soal);
         
-      return view('siswa.exam', compact('totalSoalTersedia'));
+      return view('siswa.exam', compact('soal'));
     }
 
-    public function soal_exam()
+    public function soal_exam($id_jenis_tes)
     {
-        $data = SoalModels::inRandomOrder();    
-        
-        $progresExam =  ExamProgresModels::where('id_siswa', Auth::user()->id_siswa)->pluck('id_soal')->toArray();
         $booking = BookingUserModels::with('paket_booking')->where('id_siswa', Auth::user()->id_siswa)->first();
-        $detailPaket = DetailPaketBimbel::where('id_paket_bimbel', $booking->paket_booking->id_paket_bimbel)->pluck('id_materi_tes')->toArray();
-     
-        $data->whereIn('id_materi', $detailPaket);
-        $data->whereNotIn('id_soal', $progresExam);
-        $data->limit(1)->get();
-        $data = $data->get();
+        $detailPaket = DetailPaketBimbel::where('id_paket_bimbel', $booking->paket_booking->id_paket_bimbel)->pluck('id_jenis_tes')->toArray();
+
+        $data = SoalModels::join('m_pembelajaran as tx', 'tx.id_materi', 'm_soal.id_materi')
+        ->leftJoin('exam_progres as tv', function($join) use($booking)
+        {
+            $join->on('m_soal.id_soal', '=', 'tv.id_soal')->where('id_siswa', '=' ,Auth::user()->id_siswa)->where('id_booking','=' ,$booking->id); 
+
+        })
+        ->leftjoin('m_jenis_tes as td', 'tx.id_jenis_tes', 'td.id_jenis_tes')
+        ->select(DB::RAW('m_soal.id_soal,m_soal.pertanyaan, m_soal.file_tambahan,tx.id_jenis_tes'))
+        ->where('tx.id_jenis_tes', $id_jenis_tes)
+        ->whereNull('tv.id_soal')
+        ->inRandomOrder()->limit(1)->get();
+
+        $soaldikerjakan = ExamProgresModels::where('id_jenis_tes', $id_jenis_tes)->where('id_siswa', '=' ,Auth::user()->id_siswa)->where('id_booking','=' ,$booking->id)->select('score')->get();
+        
+
         $exc = array();
         foreach($data as $k){
             $jawaban = JawabanSoalModels::where('id_soal', $k->id_soal)->get();
@@ -114,20 +125,25 @@ class SiswaController extends Controller
 
         }
         
-        if(!empty($exc)) return response(array('total_data' => count($exc), 'message' => 'data ditemukan', 'data' => $exc), 200);
-        return response(array('total_data' => count($exc), 'message' => 'data tidak ditemukan', 'data' => $exc), 400);
+        if(!empty($exc)) return response(array('total_data' => count($exc), 'message' => 'data ditemukan', 'data' => $exc,'selesai_dikerjakan' => $soaldikerjakan), 200);
+        return response(array('total_data' => count($exc), 'message' => 'data tidak ditemukan', 'data' => $exc,'selesai_dikerjakan' => $soaldikerjakan), 200);
     }
 
     public function jawaban_soal(Request $request)
     {
         $jawaban = JawabanSoalModels::where('id_soal', $request->soal_id)->where('is_true', 1)->first();
+        $booking = BookingUserModels::with('paket_booking')->where('id_siswa', Auth::user()->id_siswa)->first();
         
         if($jawaban->kode_jawaban == $request->jawaban ){
             ExamProgresModels::insert([
                 'id_soal' => $request->soal_id,
                 'id_siswa' => Auth::user()->id_siswa,
                 'jawaban_dipilih' => $request->jawaban,
-                'score' => 5
+                'id_jenis_tes' => $request->id_jenis_tes,
+                'score' => 5,
+                'id_booking' => $booking->id,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ]);
             return response(array('keterangan' => $jawaban->rk, 'jawaban_benar' => $jawaban->kode_jawaban, 'status' => 'benar'), 200);
         }else{
@@ -135,7 +151,11 @@ class SiswaController extends Controller
                 'id_soal' => $request->soal_id,
                 'id_siswa' => Auth::user()->id_siswa,
                 'jawaban_dipilih' => $request->jawaban,
-                'score' => 0
+                'id_jenis_tes' => $request->id_jenis_tes,
+                'score' => 0,
+                'id_booking' => $booking->id,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ]);
             return response(array('keterangan' => $jawaban->rk, 'jawaban_benar' => $jawaban->kode_jawaban, 'status' => 'salah'), 200);
         }
