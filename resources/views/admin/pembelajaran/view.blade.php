@@ -8,7 +8,7 @@
             data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
             class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
             <!--begin::Title-->
-            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Tambah Pembelajaran
+            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1"> Pembelajaran
 
                 <span class="h-20px border-gray-200 border-start ms-3 mx-2"></span>
 
@@ -27,6 +27,7 @@
         <div class="card card-xl-stretch mb-5 mb-xl-8">
             <div class="card-body py-3">
                 <div class="row">
+                    @if(Auth::user()->role == 1)
                     <div class="col-sm-2 form-group">
                         <label class="form-group" style="margin-bottom:5px;" for="">Action</label><br>
                         <div class="btn-group">
@@ -36,6 +37,7 @@
                                     class="fas fa-sync-alt"></i></a>&nbsp;&nbsp;
                         </div>
                     </div>
+                    @endif
                     <div class="col-sm-3 form-group">
                         <label class="form-group" style="margin-bottom:5px;">Jenis Tes</label>
                         <select class="id_jenis_tes form-control form-control-sm filter"></select>

@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-sm-6 form-group">
                             <label for=""><p><h3>Penjelasan / Keteragan</h3></p></label>
-                            <textarea name="penjelasan" id="" cols="30" rows="10" class="form-control"></textarea>
+                            <textarea name="penjelasan" id="" cols="30" rows="10" class="form-control" required></textarea>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -72,7 +72,7 @@
                             <br>
                             <br>
                             <button class="btn btn-sm btn-success" type="submit">Simpan Soal</button>
-                            <a class="btn btn-sm btn-danger" href="{{ url('soal?id_materi='.isset($_GET['id_materi']) ? $_GET['id_materi'] : '') }}">Halaman Sebelumnya</a>
+                            <a class="btn btn-sm btn-danger" href="{{ url('soal?id_materi='.$id_materi) }}">Halaman Sebelumnya</a>
                         </div>
                     </div>
                 </div>

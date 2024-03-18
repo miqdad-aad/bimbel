@@ -35,8 +35,8 @@ class PembelajaranController extends Controller
             $data = Pembelajaran::with(['jenis_tes','kategoriSoal','bab_tes','materi_tes','kategori_pembelajaran']);
             if(Auth::user()->role == 3){
                 $booking = BookingUserModels::with('paket_booking')->where('id_siswa', Auth::user()->id_siswa)->first();
-                $detailPaket = DetailPaketBimbel::where('id_paket_bimbel', $booking->paket_booking->id_paket_bimbel)->pluck('id_materi_tes')->toArray();
-                $data->whereIn('id_materi', $detailPaket);
+                $detailPaket = DetailPaketBimbel::where('id_paket_bimbel', $booking->paket_booking->id_paket_bimbel)->pluck('id_jenis_tes')->toArray();
+                $data->whereIn('id_jenis_tes', $detailPaket);
 
             }
             if(!empty($request->id_jenis_tes)){

@@ -187,7 +187,7 @@ class SoalController extends Controller
                 $filename=$data->file_tambahan;
             }else{
                 $file = $request->file('file_tambahan_soal');
-                $filename = Str::slug($request->file_tambahan_soal) . '.' . $file->getClientOriginalExtension();
+                $filename = rand(10,1000).'.'.date('Ymd') . '.' . $file->getClientOriginalExtension();
                 $file->move('public/soal', $filename);    
             }
             // dd($filename);

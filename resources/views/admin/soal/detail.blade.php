@@ -78,14 +78,18 @@
                                     <tr class="text-center">
                                         <td style="width:50px;" class="text-center">{{ $t->kode_jawaban }}</td>
                                         <td class="text-center">
+                                            @if(Auth::user()->role == 1)
                                             <input type="radio" name="jawaban_benar" class="nilai-benar" <?= $t->is_true == 1 ? 'checked' : '' ?> />
-                                             <input type="hidden" name="is_true[]" value="<?= $t->is_true ?>" class="is-true-selected" />
+                                            @else
+                                            -
+                                            @endif
+                                        
                                         </td>
                                         <td style="width:50%" class="text-left">{!! $t->keterangan  !!}</td>
                                         <td>
                                           
                                             @if(!empty($t->file_tambahan))
-                                             <a href="{{ asset('public/jawaban/'. $t->file_tambahan) }}" download>Download File</a>
+                                             <a href="{{ asset('public/jawaban/'. $t->file_tambahan) }}" download><img src="{{ asset('public/jawaban/'. $t->file_tambahan) }}" style="width:150px" ></a>
                                              @else
                                              Tidak ada file tambahan
                                             @endif 

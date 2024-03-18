@@ -120,7 +120,7 @@
                 var jawabanSelected = e.target.getAttribute('keykode');
                 console.log(e.target);
 
-                const apiUrl = 'http://localhost:8000/jawaban_soal';
+                const apiUrl = "{{ url('jawaban_soal') }}";
                 axios.post(apiUrl, {
                         soal_id: id_soal,
                         jawaban: jawabanSelected,
@@ -152,7 +152,7 @@
                 this.kode_salah = null;
                 this.kode_non_selected = null;
                 this.notifTextAnswer = null;
-                const apiUrl = 'http://localhost:8000/soal/' + "{{ $soal->id_jenis_tes }}";
+                const apiUrl = "{{ url('soal') }}" + "{{ $soal->id_jenis_tes }}";
 
                 axios.get(apiUrl)
                 .then(response => {
