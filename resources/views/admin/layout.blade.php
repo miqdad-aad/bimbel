@@ -681,7 +681,7 @@
         </div>
         <!--end::Header-->
         <!--begin::Content-->
-        <div class="content d-flex flex-column flex-column-fluid" id="kt_content" style=" padding-top: 0px; ">
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
             <!--begin::Toolbar-->
             <!--end::Toolbar-->
             <!--begin::Post-->
@@ -1157,6 +1157,7 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/collect.js/4.18.3/collect.min.js" integrity="sha512-LkKpealLJ+RNIuYaXSC+l/0Zf5KjYCpMaUrON9WUC+LG316w3UEImyaUpWMWfqNGC4vLOkxDWEVKQE+Wp0shKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @yield('page-js')
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->

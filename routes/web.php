@@ -32,7 +32,8 @@ use App\Http\Controllers\MasterAkunController;
 
 Route::controller(SiswaController::class)->group(function () {
     Route::get('/exam', 'index')->name('exam');
-    Route::get('/soal_exam', 'soal_exam')->name('soal_exam');
+    Route::get('/soal_exam/{id_jenis_tes}', 'exam');
+    Route::get('/soal/{id_jenis_tes}', 'soal_exam')->name('soal_exam');
     Route::post('/jawaban_soal', 'jawaban_soal')->name('jawaban_soal');
 });
 Route::controller(MasterOrganisasiController::class)->group(function () {

@@ -127,7 +127,7 @@ class BookingController extends Controller
             if($request->approve == 1){
                 
 
-                User::create([
+                User::insert([
                     'username' => $booking->siswa_booking->username,
                     'password' => $booking->siswa_booking->password,
                     'name' => $booking->siswa_booking->nama,

@@ -20,7 +20,7 @@ class AuthController extends Controller
         $data = array();
         if (Auth::user()->role == 3) {
             $booking = BookingUserModels::with('paket_booking')->where('id_siswa', Auth::user()->id_siswa)->first();
-            $detailPaket = DetailPaketBimbel::where('id_paket_bimbel', $booking->paket_booking->id_paket_bimbel)->pluck('id_materi_tes')->toArray();
+            $detailPaket = DetailPaketBimbel::where('id_paket_bimbel', $booking->paket_booking->id_paket_bimbel)->pluck('id_jenis_tes')->toArray();
             $data = SoalModels::join('m_pembelajaran as tx', 'tx.id_materi', 'm_soal.id_materi')
             ->leftJoin('exam_progres as tv', function($join) use($booking)
             {

@@ -26,6 +26,7 @@
     <div class="col-xl-12">
         <div class="card card-xl-stretch mb-5 mb-xl-8">
             <div class="card-body py-3">
+                @if(Auth::user()->role == 1)
                 <div class="row">
                     <div class="col-xl-10">
                         <div class="btn-group">
@@ -43,6 +44,7 @@
 
                     </div>
                 </div>
+                @endif
                 <div class="table-responsive mt-3">
                     <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4 fs-9"
                         id="yajra-datatable">
