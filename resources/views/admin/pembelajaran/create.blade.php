@@ -55,7 +55,7 @@
                                     <h3>Judul Materi</h3>
                                 </p>
                             </label>
-                            <input type="text" class="form-control" name="judul_materi">
+                            <input type="text" class="form-control" name="judul_materi" value="{{ isset($data->judul_materi) ? $data->judul_materi : '' }}">
                         </div>
                         {{-- <div class="col-sm-4 form-group">
                             <label for="">

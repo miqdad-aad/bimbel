@@ -124,6 +124,7 @@ Route::controller(SoalController::class)->group(function () {
     Route::get('/tambah/soal', 'create')->name('soal.create');
     Route::post('/addSoal', 'store')->name('addSoal.store');
     Route::get('/deleteMentor/{hapus}', 'destroy')->name('deleteMentor');
+    Route::get('/deleteSoal/{hapus}', 'deleteSoal')->name('deleteSoal');
     Route::get('/downloadTemplateSoal', 'downloadTemplateSoal')->name('downloadTemplateSoal');
 });
 
@@ -134,6 +135,7 @@ Route::controller(PembelajaranController::class)->group(function () {
     Route::get('/tambah/pembelajaran', 'create')->name('pembelajaran.create');
     Route::post('/addpembelajaran', 'store')->name('addpembelajaran.store');
     Route::get('/deletepembelajaran/{hapus}', 'destroy')->name('deletepembelajaran');
+    Route::get('/detailMateri/{id}', 'detailMateri')->name('detailMateri');
     
 });
 

@@ -7,6 +7,7 @@ use App\Models\MasterPaketModels;
 use App\Models\SoalModels;
 use App\Models\JawabanSoalModels;
 use App\Models\Pembelajaran;
+use App\Models\ExamProgresModels;
 use DB;
 use Str;
 use Auth;
@@ -243,5 +244,14 @@ class SoalController extends Controller
     public function downloadTemplateSoal(){
         $file="template/template_soal.xlsx";
         return response()->download(public_path($file));
+    }
+
+    public function deleteSoal($id)
+    {
+        // dd($id);
+        SoalModels::where('id_soal',$id)->delete();
+        ExamProgresModels::where('id_soal', $id)->delete();
+        DB::table('m_jawaban_soal')->where('id_soal',$id)->delete();
+        return response()->json(['status' => 200]);
     }
 }

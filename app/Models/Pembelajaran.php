@@ -50,6 +50,12 @@ class Pembelajaran extends Model
     {
         return $this->belongsTo(KategoriPembelajaranModels::class,'id_kategori_pembelajaran','id_kategori_pembelajaran');
     }
+    
+    public function mentor()
+    {
+        return $this->belongsTo(MentorModels::class,'id_mentor','id_mentor');
+
+    }
 
     
     public function addPembelajaran($request)

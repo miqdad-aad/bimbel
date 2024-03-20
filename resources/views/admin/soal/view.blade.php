@@ -213,7 +213,7 @@
 
                 Swal.fire({
                     title: 'Apakah Anda Yakin?',
-                    text: "Menghapus Kendaraan!",
+                    text: "Menghapus Soal!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -222,9 +222,9 @@
                     confirmButtonText: 'Yes, Hapus!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        $.get(_url + "/deleteKegiatan/" + params.id_kegiatan, function (data) {
-                            toastr.success('Data Kegiatan ' + params.nama_kegiatan +
-                                ' berhasil di simpan',
+                        $.get(_url + "/deleteSoal/" + params.id_soal, function (data) {
+                            toastr.success('Data Soal ' + params.id_soal +
+                                ' berhasil di Hapus',
                                 'Berhasil !!!');
                             table.ajax.reload(null, false)
                         });

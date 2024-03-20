@@ -30,7 +30,7 @@ class PembelajaranController extends Controller
 
     public function index(Request $request)
     {
-        // dd($data);
+        // printJSON($data);
         if($request->ajax() ){
             $data = Pembelajaran::with(['jenis_tes','kategoriSoal','bab_tes','materi_tes','kategori_pembelajaran']);
             if(Auth::user()->role == 3){
@@ -54,8 +54,14 @@ class PembelajaranController extends Controller
                          if(Auth::user()->role != 3){
                            $btn = '  <a href="'. url('pembelajaran/edit/'. $row->id_materi) .'" class="edit btn btn-info btn-sm btn-edit">Edit</a>';
                            $btn .= ' <a type="button"  class="delete btn btn-danger btn-sm btn-hapus">Delete</a>';
-                         }
-                         $btn .= ' <a target="_blank" href="'. url('soal?id_materi='.$row->id_materi) .'" class=" btn btn-success btn-sm ">Manajemen Soal</a>';
+                           $btn .= ' <a target="_blank" href="'. url('soal?id_materi='.$row->id_materi) .'" class=" btn btn-success btn-sm ">Manajemen Soal</a>';
+                         }else {
+                            if ($row->id_kategori_pembelajaran == 3) {
+                                $btn .= ' <a target="_blank" href="'. url('detailMateri/'.$row->slug) .'" class=" btn btn-success btn-sm ">Detail Materi</a>';
+                            }else {
+                                $btn .= ' <a target="_blank" href="'. url('soal?id_materi='.$row->id_materi) .'" class=" btn btn-success btn-sm ">Manajemen Soal</a>';
+                            }
+                        }
    
                         return $btn;
                      })
@@ -148,6 +154,13 @@ class PembelajaranController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function detailMateri($id)
+    {
+        $data =  Pembelajaran::with(['jenis_tes','kategoriSoal','bab_tes','materi_tes','kategori_pembelajaran', 'mentor'])->where('slug', $id)->first();
+        
+        return view('admin.pembelajaran.detailMateri', compact('data'));
     }
 
     

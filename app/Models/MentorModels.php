@@ -88,4 +88,10 @@ class MentorModels extends Model
         return asset('public/mentor/'. $this->gambar);
 
     }
+
+    public function mentor()
+    {
+        return $this->hasOne(Pembelajaran::class,'id_mentor','id_mentor');
+
+    }
 }
